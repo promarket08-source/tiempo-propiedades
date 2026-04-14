@@ -46,6 +46,43 @@
         @keyframes whatsappPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); transform: scale(1); } 50% { box-shadow: 0 0 0 25px rgba(34, 197, 94, 0); transform: scale(1.08); } }
         .img-zoom { transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .img-zoom:hover { transform: scale(1.12); }
+        
+        /* Animaciones Hero */
+        .hero-content { opacity: 0; transform: translateY(40px); animation: fadeInUp 1s ease forwards 0.3s; }
+        .hero-stats { opacity: 0; transform: translateY(30px); animation: fadeInUp 1s ease forwards 0.8s; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Particles */
+        .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .particle { position: absolute; width: 4px; height: 4px; background: #67d4fc; border-radius: 50%; opacity: 0.6; animation: float 15s infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
+        
+        /* Floating elements */
+        .float-element { animation: floatElem 6s ease-in-out infinite; }
+        @keyframes floatElem { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+        
+        /* Logo reloj animado */
+        .clock-logo { position: relative; width: 48px; height: 48px; }
+        .clock-face { width: 100%; height: 100%; border: 3px solid #67d4fc; border-radius: 50%; position: relative; background: linear-gradient(135deg, #050505, #0a0a0a); }
+        .clock-center { position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; transform: translate(-50%, -50%); }
+        .clock-hand-hour { position: absolute; top: 50%; left: 50%; width: 3px; height: 14px; background: #fff; border-radius: 2px; transform-origin: bottom center; transform: translate(-50%, -100%) rotate(30deg); animation: clockHour 12s linear infinite; }
+        .clock-hand-min { position: absolute; top: 50%; left: 50%; width: 2px; height: 18px; background: #67d4fc; border-radius: 2px; transform-origin: bottom center; transform: translate(-50%, -100%) rotate(180deg); animation: clockMin 2s linear infinite; }
+        @keyframes clockHour { to { transform: translate(-50%, -100%) rotate(390deg); } }
+        @keyframes clockMin { to { transform: translate(-50%, -100%) rotate(540deg); } }
+        
+        /* Glow effect */
+        .glow { animation: glowPulse 3s ease-in-out infinite; }
+        @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 20px rgba(103, 212, 252, 0.3); } 50% { box-shadow: 0 0 40px rgba(103, 212, 252, 0.6); } }
+        
+        /* Reveal animations */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Stagger delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
     </style>
 </head>
 <body class="bg-[#050505]">
@@ -56,8 +93,12 @@
         <div class=max-w-7xl mx-auto px-6 py-4>
             <div class="flex items-center justify-between">
                 <a href=# class="flex items-center gap-4 group">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-celest to-celest/50 flex items-center justify-center">
-                        <i class="fas fa-home text-dark text-xl"></i>
+                    <div class="clock-logo glow">
+                        <div class="clock-face">
+                            <div class="clock-hand-hour"></div>
+                            <div class="clock-hand-min"></div>
+                            <div class="clock-center"></div>
+                        </div>
                     </div>
                     <div>
                         <span class="font-display text-2xl font-bold">Tiempo<span class="text-celest">Propiedades</span></span>
@@ -84,10 +125,21 @@
             <img src=https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80 class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/50 to-dark"></div>
         </div>
+        <div class="particles">
+            <div class="particle" style="left: 10%; animation-delay: 0s; animation-duration: 12s;"></div>
+            <div class="particle" style="left: 20%; animation-delay: 2s; animation-duration: 14s;"></div>
+            <div class="particle" style="left: 35%; animation-delay: 4s; animation-duration: 11s;"></div>
+            <div class="particle" style="left: 50%; animation-delay: 1s; animation-duration: 13s;"></div>
+            <div class="particle" style="left: 65%; animation-delay: 3s; animation-duration: 15s;"></div>
+            <div class="particle" style="left: 80%; animation-delay: 5s; animation-duration: 12s;"></div>
+            <div class="particle" style="left: 90%; animation-delay: 2.5s; animation-duration: 14s;"></div>
+        </div>
+        <div class="float-element absolute top-20 left-10 w-32 h-32 bg-celest/10 rounded-full blur-3xl"></div>
+        <div class="float-element absolute bottom-20 right-10 w-48 h-48 bg-red-500/10 rounded-full blur-3xl" style="animation-delay: 2s;"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
-            <div class="text-center">
+            <div class="text-center hero-content">
                 <span class="inline-flex items-center gap-3 glass rounded-full px-5 py-2.5 mb-8">
-                    <span class="w-2.5 h-2.5 bg-green-400 rounded-full"></span>
+                    <span class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
                     <span class="text-sm font-medium text-white/80">Villarrica, Chile</span>
                 </span>
                 <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
@@ -107,7 +159,7 @@
                         Escribir Ahora
                     </a>
                 </div>
-                <div class="grid grid-cols-3 gap-8 pt-16 max-w-xl mx-auto">
+                <div class="grid grid-cols-3 gap-8 pt-16 max-w-xl mx-auto hero-stats">
                     <div class="text-center">
                         <span class="font-display text-4xl font-bold text-celest">150+</span>
                         <p class="text-white/50 text-sm mt-2">Parcelas Vendidas</p>
@@ -142,9 +194,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <article class="card-magic glass rounded-3xl overflow-hidden group">
+                <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-1">
                     <div class="relative h-72 overflow-hidden">
-                        <img src=https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80 alt="Parcela Chesque" class="w-full h-full object-cover img-zoom">
+                        <img src="https://gen.pollinations.ai/prompt/sur-chile-forestal-parcela-native-trees-mountain-volcano-view-pine-forest?width=600&height=400&nologo=true" alt="Parcela Chesque" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
@@ -166,9 +218,9 @@
                     </div>
                 </article>
 
-                <article class="card-magic glass rounded-3xl overflow-hidden group">
+                <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-2">
                     <div class="relative h-72 overflow-hidden">
-                        <img src=https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80 alt="Parcela Cudico" class="w-full h-full object-cover img-zoom">
+                        <img src="https://gen.pollinations.ai/prompt/sur-chile-parcela-cudico-5000m2-native-forest-road-access-mountain-view?width=600&height=400&nologo=true" alt="Parcela Cudico" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
@@ -190,9 +242,9 @@
                     </div>
                 </article>
 
-                <article class="card-magic glass rounded-3xl overflow-hidden group">
+                <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-3">
                     <div class="relative h-72 overflow-hidden">
-                        <img src=https://images.unsplash.com/photo-1464146072230-91cabc968266?w=600&q=80 alt="Parcela 5ta Faja" class="w-full h-full object-cover img-zoom">
+                        <img src="https://gen.pollinations.ai/prompt/sur-chile-parcela-5ta-faja-forestal-native-trees-electricity-underground-gate-access?width=600&height=400&nologo=true" alt="Parcela 5ta Faja" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
@@ -214,9 +266,9 @@
                     </div>
                 </article>
 
-                <article class="card-magic glass rounded-3xl overflow-hidden group">
+                <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-4">
                     <div class="relative h-72 overflow-hidden">
-                        <img src=https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80 alt="Parcela Conquil" class="w-full h-full object-cover img-zoom">
+                        <img src="https://gen.pollinations.ai/prompt/sur-chile-parcela-conquil-volcano-view-river-park-1ha-forest-nature?width=600&height=400&nologo=true" alt="Parcela Conquil" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
@@ -255,9 +307,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <article class="card-magic glass rounded-3xl overflow-hidden group">
+                <article class="card-magic glass rounded-3xl overflow-hidden group reveal">
                     <div class="relative h-72 overflow-hidden">
-                        <img src=https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80 alt="Casa Los Volcanes" class="w-full h-full object-cover img-zoom">
+                        <img src="https://gen.pollinations.ai/prompt/southern-chile-house-los-volcanes-villarrica-3bedroom-mountain-view-modern-cabin-wood?width=600&height=400&nologo=true" alt="Casa Los Volcanes" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
@@ -297,8 +349,12 @@
         <div class=max-w-7xl mx-auto px-6>
             <div class="text-center">
                 <a href=# class="flex items-center gap-3 mb-6 justify-center">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-celest to-celest/50 flex items-center justify-center">
-                        <i class="fas fa-home text-dark text-xl"></i>
+                    <div class="clock-logo" style="width:48px;height:48px;">
+                        <div class="clock-face">
+                            <div class="clock-hand-hour"></div>
+                            <div class="clock-hand-min"></div>
+                            <div class="clock-center"></div>
+                        </div>
                     </div>
                     <span class="font-display text-2xl font-bold">Tiempo<span class="text-celest">Propiedades</span></span>
                 </a>
@@ -325,6 +381,17 @@
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
+        
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
