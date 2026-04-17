@@ -13,12 +13,7 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body { 
-            font-family: 'Satoshi', sans-serif; 
-            background: var(--dark); 
-            color: #fff; 
-            line-height: 1.6;
-        }
+        body { font-family: 'Satoshi', sans-serif; background: var(--dark); color: #fff; line-height: 1.6; }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
@@ -49,12 +44,7 @@
             position: relative;
         }
         
-        .logo-center {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
+        .logo-center { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
         
         .logo-hand {
             position: absolute;
@@ -90,10 +80,7 @@
             transition: 0.3s;
         }
         
-        .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(239,68,68,0.4);
-        }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(239,68,68,0.4); }
         
         .hero {
             min-height: 100vh;
@@ -120,10 +107,7 @@
             background: linear-gradient(to bottom, rgba(5,5,5,0.8), rgba(5,5,5,0.95));
         }
         
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
+        .hero-content { position: relative; z-index: 1; }
         
         .hero-badge {
             display: inline-flex;
@@ -136,22 +120,11 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .hero-badge .dot {
-            width: 10px;
-            height: 10px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
+        .hero-badge .dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
         
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
         
-        .hero h1 {
-            font-size: clamp(36px, 8vw, 72px);
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
+        .hero h1 { font-size: clamp(36px, 8vw, 72px); font-weight: 700; margin-bottom: 20px; line-height: 1.1; }
         
         .gradient-text {
             background: linear-gradient(135deg, var(--celest), #fff, var(--accent));
@@ -160,20 +133,9 @@
             background-clip: text;
         }
         
-        .hero p {
-            font-size: 18px;
-            color: rgba(255,255,255,0.6);
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
+        .hero p { font-size: 18px; color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto 30px; }
         
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-        }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 50px; }
         
         .btn-primary {
             background: linear-gradient(135deg, var(--accent), #dc2626);
@@ -186,10 +148,7 @@
             transition: 0.3s;
         }
         
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(239,68,68,0.5);
-        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(239,68,68,0.5); }
         
         .btn-secondary {
             background: rgba(255,255,255,0.1);
@@ -204,54 +163,19 @@
             transition: 0.3s;
         }
         
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.15);
-        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.15); }
         
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        
+        .hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
         .stat { text-align: center; }
         .stat-num { font-size: 42px; font-weight: 700; color: var(--celest); }
         .stat-text { font-size: 14px; color: rgba(255,255,255,0.5); }
         
-        .section-title {
-            text-align: center;
-            padding: 80px 0 50px;
-        }
+        .section-title { text-align: center; padding: 80px 0 50px; }
+        .section-title span { display: inline-flex; align-items: center; gap: 15px; color: var(--celest); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; }
+        .section-title h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; margin-bottom: 15px; }
+        .section-title p { color: rgba(255,255,255,0.5); font-size: 17px; }
         
-        .section-title span {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--celest);
-            font-size: 13px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-        
-        .section-title h2 {
-            font-size: clamp(32px, 5vw, 52px);
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: rgba(255,255,255,0.5);
-            font-size: 17px;
-        }
-        
-        .properties {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding-bottom: 80px;
-        }
+        .properties { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding-bottom: 80px; }
         
         .property-card {
             background: rgba(255,255,255,0.03);
@@ -262,27 +186,11 @@
             cursor: pointer;
         }
         
-        .property-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(103,212,252,0.15);
-        }
+        .property-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(103,212,252,0.15); }
         
-        .property-img {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .property-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-        
-        .property-card:hover .property-img img {
-            transform: scale(1.1);
-        }
+        .property-img { height: 220px; overflow: hidden; position: relative; }
+        .property-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .property-card:hover .property-img img { transform: scale(1.1); }
         
         .property-badge {
             position: absolute;
@@ -296,77 +204,20 @@
             font-weight: 700;
         }
         
-        .property-details {
-            padding: 20px;
-        }
+        .property-details { padding: 20px; }
+        .property-location { color: var(--celest); font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .property-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .property-size { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 15px; }
+        .property-price { font-size: 24px; font-weight: 700; color: var(--celest); padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
         
-        .property-location {
-            color: var(--celest);
-            font-size: 13px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .contact { text-align: center; padding: 80px 20px; background: rgba(255,255,255,0.02); }
+        .contact h2 { font-size: 36px; margin-bottom: 15px; }
+        .contact p { color: rgba(255,255,255,0.6); margin-bottom: 30px; font-size: 18px; }
         
-        .property-name {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        
-        .property-size {
-            color: rgba(255,255,255,0.5);
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-        
-        .property-price {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--celest);
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .contact {
-            text-align: center;
-            padding: 80px 20px;
-            background: rgba(255,255,255,0.02);
-        }
-        
-        .contact h2 {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-        
-        .contact p {
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
-        
-        footer {
-            padding: 60px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        footer .logo {
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-        
-        footer p {
-            color: rgba(255,255,255,0.4);
-            font-size: 14px;
-        }
-        
-        footer .credit {
-            color: rgba(255,255,255,0.3);
-            font-size: 12px;
-            margin-top: 10px;
-        }
+        footer { padding: 60px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        footer .logo { justify-content: center; margin-bottom: 25px; }
+        footer p { color: rgba(255,255,255,0.4); font-size: 14px; }
+        footer .credit { color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 10px; }
         
         .whatsapp-float {
             position: fixed;
@@ -387,10 +238,7 @@
             text-decoration: none;
         }
         
-        @keyframes floatPulse {
-            0%,100%{transform:scale(1)}
-            50%{transform:scale(1.1)}
-        }
+        @keyframes floatPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
         
         .chat-btn {
             position: fixed;
@@ -412,12 +260,12 @@
             position: fixed;
             bottom: 170px;
             right: 20px;
-            width: 300px;
-            max-height: 400px;
+            width: 320px;
+            max-height: 450px;
             background: #0a0a0a;
             border-radius: 15px;
             z-index: 98;
-            box-shadow: 0 10px 40px rgba(0,0, 0, 0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             display: none;
             flex-direction: column;
             overflow: hidden;
@@ -427,137 +275,112 @@
         
         .chat-header {
             background: linear-gradient(135deg, var(--celest), #3b82f6);
-            padding: 15px;
+            padding: 12px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .chat-header h4 { font-size: 15px; font-weight: 700; }
-        .chat-header p { font-size: 11px; opacity: 0.7; }
+        .chat-header h4 { font-size: 14px; font-weight: 700; }
+        .chat-header p { font-size: 10px; opacity: 0.7; }
         
-        .chat-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            max-height: 250px;
-        }
+        .chat-messages { flex: 1; padding: 12px; overflow-y: auto; max-height: 280px; }
         
         .chat-msg {
-            max-width: 80%;
-            padding: 10px 14px;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            font-size: 13px;
+            max-width: 85%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 12px;
             line-height: 1.4;
         }
         
-        .chat-msg.bot { background: #1a1a1a; align-self: flex-start; }
+        .chat-msg.bot { background: #1a1a1a; color: #fff; align-self: flex-start; }
         .chat-msg.user { background: var(--celest); color: #000; margin-left: auto; }
         
-        .quick-btns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 10px 15px;
-            border-top: 1px solid #222;
+        .chat-tip {
+            background: rgba(103,212,252,0.1);
+            border: 1px solid var(--celest);
+            padding: 8px 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 11px;
+            color: var(--celest);
         }
+        
+        .chat-tip i { margin-right: 5px; }
+        
+        .quick-btns { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-top: 1px solid #222; }
         
         .quick-btn {
             background: transparent;
             border: 1px solid var(--celest);
             color: var(--celest);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 11px;
             cursor: pointer;
         }
         
         .quick-btn:hover { background: var(--celest); color: #000; }
         
-        .chat-input {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #222;
-            gap: 10px;
-        }
+        .chat-input { display: flex; padding: 10px; border-top: 1px solid #222; gap: 8px; }
         
         .chat-input input {
             flex: 1;
             background: #1a1a1a;
             border: none;
             color: #fff;
-            padding: 10px 15px;
-            border-radius: 25px;
+            padding: 8px 12px;
+            border-radius: 20px;
             outline: none;
+            font-size: 12px;
         }
         
         .chat-input button {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--celest), #3b82f6);
             border: none;
             border-radius: 50%;
             color: #fff;
             cursor: pointer;
+            font-size: 12px;
         }
         
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            padding: 30px 20px;
-            overflow-y: auto;
+        .progreso-bar {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            padding: 8px 12px;
+            border-bottom: 1px solid #222;
         }
         
+        .progreso-step {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+        }
+        
+        .progreso-step.active { background: var(--celest); }
+        .progreso-step.completo { background: #22c55e; }
+        
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; padding: 30px 20px; overflow-y: auto; }
         .modal.active { display: block; }
-        
-        .modal-close {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 32px;
-            color: #fff;
-            cursor: pointer;
-            z-index: 10;
-        }
-        
+        .modal-close { position: fixed; top: 20px; right: 20px; font-size: 32px; color: #fff; cursor: pointer; z-index: 10; }
         .modal h2 { font-size: 28px; margin-bottom: 10px; }
         .modal .location { color: rgba(255,255,255,0.6); margin-bottom: 20px; }
         
-        .modal-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        .modal-grid { display: grid; grid-template-columns: 1fr; gap: 25px; max-width: 900px; margin: 0 auto; }
         
-        @media(min-width:768px) {
-            .modal-grid { grid-template-columns: 1fr 1fr; }
-        }
+        @media(min-width:768px) { .modal-grid { grid-template-columns: 1fr 1fr; } }
         
-        .modal-img {
-            width: 100%;
-            border-radius: 15px;
-        }
+        .modal-img { width: 100%; border-radius: 15px; }
         
-        .modal-info {
-            background: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 15px;
-        }
-        
+        .modal-info { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; }
         .modal-info p { color: rgba(255,255,255,0.8); margin-bottom: 20px; }
-        
-        .modal-price {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--celest);
-            margin-bottom: 20px;
-        }
+        .modal-price { font-size: 32px; font-weight: 700; color: var(--celest); margin-bottom: 20px; }
         
         .modal-btn {
             display: block;
@@ -571,27 +394,11 @@
             margin-bottom: 15px;
         }
         
-        .modal-map {
-            width: 100%;
-            height: 200px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        
-        .modal-map iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        .modal-map { width: 100%; height: 200px; border-radius: 15px; overflow: hidden; margin-bottom: 15px; }
+        .modal-map iframe { width: 100%; height: 100%; border: none; }
         
         .modal-features { list-style: none; }
-        .modal-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.7);
-        }
-        
+        .modal-features li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
         .modal-features li i { color: var(--celest); margin-right: 10px; }
         
         @media(max-width:768px) {
@@ -753,27 +560,35 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-headset"></i></button>
+    <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
     
     <div class="chat-panel active" id="chatPanel">
         <div class="chat-header">
             <div>
-                <h4>Asistente IA</h4>
-                <p>Online</p>
+                <h4>👨‍💼 Asesor Timepo Propiedades</h4>
+                <p>Expertos en inversiones</p>
             </div>
-            <button onclick="toggleChat()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">×</button>
+            <button onclick="toggleChat()" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">×</button>
         </div>
+        
+        <div class="progreso-bar" id="progresoBar">
+            <div class="progreso-step" data-step="1"></div>
+            <div class="progreso-step" data-step="2"></div>
+            <div class="progreso-step" data-step="3"></div>
+            <div class="progreso-step" data-step="4"></div>
+            <div class="progreso-step" data-step="5"></div>
+        </div>
+        
         <div class="chat-messages" id="chatMessages">
-            <div class="chat-msg bot">¡Hola! 👋 Soy el asistente de Tiempo Propiedades. ¿Qué tipo de propiedad buscas?</div>
+            <div class="chat-msg bot">
+                <b>👋 Hola! Soy tu asesor de Tiempo Propiedades</b><br><br>
+                Antes de mostrarte las propiedades, me gustaría conocerte mejor para ofrecerte exactly lo que buscas.<br><br>
+                <b>¿Cómo te llamas?</b>
+            </div>
         </div>
-        <div class="quick-btns">
-            <button onclick="sendOption('parcelas')" class="quick-btn">Parcelas</button>
-            <button onclick="sendOption('casa')" class="quick-btn">Casa</button>
-            <button onclick="sendOption('precios')" class="quick-btn">Precios</button>
-            <button onclick="sendOption('recomendada')" class="quick-btn">⭐</button>
-        </div>
+        
         <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')sendMessage()">
+            <input type="text" id="chatInput" placeholder="Escribe tu respuesta..." onkeypress="if(event.key==='Enter')sendMessage()">
             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
@@ -784,97 +599,41 @@
     </div>
 
     <script>
+        // Base de datos de clientes
+        let cliente = {
+            nombre: '',
+            necesidad: '',
+            presupuesto: '',
+            tieneMascotas: '',
+            tieneNinos: '',
+            ciudad: '',
+            telefono: '',
+            propiedadInteres: '',
+            fecha: new Date().toISOString()
+        };
+        
+        let paso = 1;
+        
         const properties = {
-            chesque: {
-                name: "Parcela Chesque",
-                price: "$44.000.000",
-                location: "10 min de Lican Ray",
-                size: "5.000 m²",
-                desc: "Hermosa parcela con árboles nativos. Empalme eléctrico conectado. Acceso a estero cercano para pesca y camping.",
-                features: ["5.000 m²", "Árboles nativos", "Empalme conectado", "Acceso a estero", "Plusvalía 4%"],
-                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg",
-                map: "https://www.google.com/maps?q=-39.4285,-72.2314&z=15&output=embed"
-            },
-            cudico: {
-                name: "Parcela Cudico",
-                price: "$58.000.000",
-                location: "4km de Lican Ray",
-                size: "5.000 m²",
-                desc: "A solo 300 metros de la carretera principal. Luz a conectar en la propiedad.",
-                features: ["5.000 m²", "A 300mts carretera", "Luz a conectar"],
-                img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n",
-                map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed"
-            },
-            '5tafaja': {
-                name: "Parcela 5ta Faja",
-                price: "$48.000.000",
-                location: "18 min Villarrica",
-                size: "5.000 m²",
-                desc: "Mucho árbol nativo y luz soterrada. Portón de acceso.",
-                features: ["5.000 m²", "Árbol nativo", "Luz soterrada"],
-                img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n",
-                map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed"
-            },
-            conquil: {
-                name: "Parcela Conquil",
-                price: "$65.000.000",
-                location: "km 6 Camino Conquil",
-                size: "5.000 m²",
-                desc: "Vista panorámica completa al volcán. 1 hectárea de parque común.",
-                features: ["5.000 m²", "Vista al volcán", "1 ha parque común"],
-                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg",
-                map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed"
-            },
-            losvolcanes: {
-                name: "Casa Los Volcanes",
-                price: "$89.000.000",
-                location: "Sector Los Volcanes",
-                size: "120 m²",
-                desc: "3 dormitorios + sala de escritorio. Cocina living-comedor. Lista para habitar.",
-                features: ["3 Dormitorios", "Sala escritorio", "1 Baño"],
-                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg",
-                map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed"
-            }
+            chesque: { name: "Parcela Chesque", price: "$44.000.000", location: "10 min de Lican Ray", size: "5.000 m²", desc: "Hermosa parcela con árboles nativos. Empalme eléctrico conectado.", features: ["5.000 m²", "Árboles nativos", "Plusvalía 4%"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg", map: "https://www.google.com/maps?q=-39.4285,-72.2314&z=15&output=embed" },
+            cudico: { name: "Parcela Cudico", price: "$58.000.000", location: "4km de Lican Ray", size: "5.000 m²", desc: "A solo 300 metros de la carretera principal. Luz a conectar.", features: ["5.000 m²", "A 300mts carretera"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n", map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed" },
+            '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", location: "18 min Villarrica", size: "5.000 m²", desc: "Mucho árbol nativo y luz soterrada.", features: ["5.000 m²", "Luz soterrada"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n", map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed" },
+            conquil: { name: "Parcela Conquil", price: "$65.000.000", location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Vista panorámica al volcán. 1 ha parque común.", features: ["5.000 m²", "Vista al volcán"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg", map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed" },
+            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRGbqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" }
         };
         
         const wa = "56974219730";
         
-        function openProperty(id) {
-            const p = properties[id];
-            const msg = `Hola! Estoy interesado en ${p.name} (${p.location})`;
-            const mapUrl = `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`;
-            document.getElementById('modalContent').innerHTML = `
-                <div class="modal-grid">
-                    <div>
-                        <img src="${p.img}" class="modal-img" alt="${p.name}">
-                    </div>
-                    <div class="modal-info">
-                        <h2>${p.name}</h2>
-                        <div class="location"><i class="fas fa-map-marker-alt"></i> ${p.location} | ${p.size}</div>
-                        <p>${p.desc}</p>
-                        <div class="modal-price">${p.price}</div>
-                        <a href="${mapUrl}" class="modal-btn"><i class="fab fa-whatsapp"></i> Consultar</a>
-                        <div class="modal-map">
-                            <iframe src="${p.map}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                        <ul class="modal-features">
-                            ${p.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-            `;
-            document.getElementById('propertyModal').classList.add('active');
+        function updateProgreso() {
+            const steps = document.querySelectorAll('.progreso-step');
+            steps.forEach((s, i) => {
+                s.classList.remove('active', 'completo');
+                if (i + 1 < paso) s.classList.add('completo');
+                if (i + 1 === paso) s.classList.add('active');
+            });
         }
-        
-        function closeProperty() { document.getElementById('propertyModal').classList.remove('active'); }
         
         function toggleChat() { document.getElementById('chatPanel').classList.toggle('active'); }
-        
-        function sendOption(opt) {
-            const msgs = { parcelas: 'Quiero ver las parcelas', casa: 'Cuéntame sobre la casa', precios: '¿Precios?', recomendada: '¿Cuál me recomiendas?' };
-            addMsg(msgs[opt] || 'Hola', 'user');
-            setTimeout(() => getBotResponse(opt), 500);
-        }
         
         function sendMessage() {
             const input = document.getElementById('chatInput');
@@ -893,25 +652,138 @@
             document.getElementById('chatMessages').scrollTop = 9999;
         }
         
-        function getBotResponse(opt) {
-            const r = {
-                parcelas: '🎯 Parcelas: Chesque $44M⭐, 5ta Faja $48M, Cudico $58M, Conquil $65M. ✅ Plusvalía 4% anual. ¿Cuál te interesa?',
-                casa: '🏠 Casa Los Volcanes $89M - 3 dormitorios + escritorio. Lista para habitar.',
-                precios: '💰 Parcelas $44M-$65M. Casa $89M. ✅ Plusvalía 4% anual garantizada!',
-                recomendada: '⭐ Mi recomendación: Parcela Chesque $44M. ✅ Mejor precio + árboles nativos + empalme conectado.'
-            };
-            addMsg(r[opt] || '¿Algo más?', 'bot');
+        function processMsg(msg) {
+            let t = msg.toLowerCase();
+            let r = '';
+            
+            switch(paso) {
+                case 1: // Nombre
+                    cliente.nombre = msg;
+                    r = `<b>¡Mucho gusto, ${msg}! 👋</b><br><br>Ahora cuéntame,<br><b>¿Qué tipo de propiedad buscas?</b><br><br>📍 <i>Parcela para invertir / Casa para vivir / Terreno</i>`;
+                    paso = 2;
+                    break;
+                    
+                case 2: // Necesidad
+                    cliente.necesidad = msg;
+                    r = `<b>¡Entendido! ${msg}</b><br><br>💰 <b>¿Cuál es tu presupuesto?</b><br><br>🎯 <i>$40-50M / $50-60M / $60-80M / $80M+</i>`;
+                    paso = 3;
+                    break;
+                    
+                case 3: // Presupuesto
+                    cliente.presupuesto = msg;
+                    r = `<b>Perfecto, ${cliente.nombre}!</b> 💰<br><br>🐕 <b>¿Tienes mascotas?</b><br><br>🐾 <i>Sí, tengo perros / No, no tengo / Me gustaría tener</i>`;
+                    paso = 4;
+                    break;
+                    
+                case 4: // Mascotas
+                    cliente.tieneMascotas = msg;
+                    r = `<b>¡Qué rico! ${msg}</b><br><br>👶 <b>¿Tienes niños o planeas tener familia?</b><br><br>😊 <i>Sí, tengo niños / No, somos adultos / Planeamos familia</i>`;
+                    paso = 5;
+                    break;
+                    
+                case 5: // Niños
+                    cliente.tieneNinos = msg;
+                    r = `<b>¡Perfecto! ${msg}</b><br><br>📍 <b>¿De dónde eres? ¿En qué ciudad vives?</b><br><br>🌆 <i>Santiago / Concepción / Otra ciudad...</i>`;
+                    paso = 6;
+                    break;
+                    
+                case 6: // Ciudad
+                    cliente.ciudad = msg;
+                    r = `<b>¡Excelente! 🌟</b><br><br>Ahora tengo todo lo que necesito para найти tu propiedad идеальную.<br><br>Déjame mostrarte las mejores opciones que temos based on tus preferences:<br><br>` +
+                        `<b>🏆 MI RECOMENDACIÓN:</b><br><br>` +
+                        `⭐ <b>Parcela Chesque</b> - $44M<br>` +
+                        `• La mejor relación precio-calidad<br>` +
+                        `• Árboles nativos de arrayan<br>` +
+                        `• Empalme eléctrico conectado<br>` +
+                        `• Acceso a estero para pesca<br>` +
+                        `• <b>Plusvalía garantizada 4%</b><br><br>` +
+                        `<b>📱 ¿Te interesa esta propiedad?</b><br>` +
+                        `<i>Responde "sí" o "quiero más info"</i>`;
+                    paso = 7;
+                    break;
+                    
+                case 7: // Interés
+                    if (t.includes('sí') || t.includes('si') || t.includes('quiero')) {
+                        cliente.propiedadInteres = 'Parcela Chesque';
+                        r = `<b>¡Excelente elección! 🎉</b><br><br>Te ago el contacto con nuestros asesores para coordinar una visita:<br><br>` +
+                            `<a href="https://wa.me/${wa}?text=Hola,%20soy%20${encodeURIComponent(cliente.nombre)}.%20Estoy%20interesado%20en%20Parcela%20Chesque.%20Mi%20presupuesto%20es%20${encodeURIComponent(cliente.presupuesto)}" class="btn-whatsapp" style="display:inline-block;margin-top:10px;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;">Contactar Asesor 📱</a><br><br>` +
+                            `<b>📋 Resumen de tu búsqueda:</b><br>` +
+                            `• Presupuesto: ${cliente.presupuesto}<br>` +
+                            `• Necesidad: ${cliente.necesidad}<br>` +
+                            `• Ciudad: ${cliente.ciudad}<br><br>` +
+                            `<i>¡Gracias por tu interés! 😊</i>`;
+                        saveToDatabase();
+                    } else {
+                        r = `<b>Te entiendo!</b><br><br>Aquí tenemos otras opciones:<br><br>` +
+                            `🏠 <b>Casa Los Volcanes</b> - $89M<br>` +
+                            `• 3 dormitorios + escritorio<br>` +
+                            `• Lista para habitar<br><br>` +
+                            `📍 Responde "casa" para más info`;
+                        paso = 8;
+                    }
+                    break;
+                    
+                case 8:
+                    if (t.includes('casa')) {
+                        cliente.propiedadInteres = 'Casa Los Volcanes';
+                        r = `<b>¡Excelente! 🏠</b><br><br>Te agendo con nuestro asesor:<br><br>` +
+                            `<a href="https://wa.me/${wa}?text=Interested%20in%20Casa%20Los%20Volcanes" class="btn-primary" style="display:inline-block;padding:12px 20px;border-radius:25px;text-decoration:none;">Contactar 📱</a>`;
+                        saveToDatabase();
+                    } else {
+                        r = `¿Te gustaría ver más propiedades? Responde "sí" para ver el catálogo completo.`;
+                    }
+                    break;
+                    
+                default:
+                    r = `¿En qué más puedo ayudarte?，我们可以 mostrarte las parcelas disponíveis.`;
+            }
+            
+            setTimeout(() => {
+                addMsg(r, 'bot');
+                updateProgreso();
+            }, 600);
         }
         
-        function processMsg(m) {
-            let t = m.toLowerCase();
-            let r = 'Escríbenos al WhatsApp para más información';
-            if (t.includes('parcela')) r = '🎯 Parcelas $44M-$65M. La más popular: Chesque $44M. ✅ Plusvalía 4%.';
-            else if (t.includes('casa')) r = '🏠 Casa Los Volcanes $89M - 3 dormitorios, sala de escritorio.';
-            else if (t.includes('precio')) r = '💰 $44M-$89M. ✅ Plusvalía 4% anual!';
-            else if (t.includes('hola')) r = '¡Hola! 😊 ¿En qué puedo ayudarte?';
-            setTimeout(() => addMsg(r, 'bot'), 600);
+        function saveToDatabase() {
+            console.log('💾 Cliente registrado:', cliente);
+            
+            const db = JSON.parse(localStorage.getItem('clientesTP') || '[]');
+            db.push(cliente);
+            localStorage.setItem('clientesTP', JSON.stringify(db));
+            
+            fetch('https://api.vercel.com/v1/integrations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    data: cliente,
+                    timestamp: new Date().toISOString()
+                })
+            }).catch(e => console.log('DB local guardada'));
         }
+        
+        function openProperty(id) {
+            const p = properties[id];
+            const msg = `Hola! Estoy interesado en ${p.name}`;
+            const mapUrl = `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`;
+            document.getElementById('modalContent').innerHTML = `
+                <div class="modal-grid">
+                    <div><img src="${p.img}" class="modal-img" alt="${p.name}"></div>
+                    <div class="modal-info">
+                        <h2>${p.name}</h2>
+                        <div class="location"><i class="fas fa-map-marker-alt"></i> ${p.location} | ${p.size}</div>
+                        <p>${p.desc}</p>
+                        <div class="modal-price">${p.price}</div>
+                        <a href="${mapUrl}" class="modal-btn"><i class="fab fa-whatsapp"></i> Consultar</a>
+                        <div class="modal-map"><iframe src="${p.map}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                        <ul class="modal-features">${p.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul>
+                    </div>
+                </div>`;
+            document.getElementById('propertyModal').classList.add('active');
+        }
+        
+        function closeProperty() { document.getElementById('propertyModal').classList.remove('active'); }
+        
+        updateProgreso();
     </script>
 </body>
 </html>
