@@ -92,6 +92,7 @@
         .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; cursor: pointer; padding: 20px; }
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
+        .photo-count { position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 20px; font-size: 12px; }
     </style>
 </head>
 <body class="bg-[#050505]">
@@ -210,7 +211,7 @@
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
                         </div>
-                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                        <div class="photo-count">
                             <i class="fas fa-images text-celest mr-1"></i> Ver fotos
                         </div>
                     </div>
@@ -237,7 +238,7 @@
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
                         </div>
-                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                        <div class="photo-count">
                             <i class="fas fa-images text-celest mr-1"></i> Ver fotos
                         </div>
                     </div>
@@ -259,13 +260,13 @@
 
                 <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-3">
                     <div class="relative h-72 overflow-hidden cursor-pointer" onclick="openGallery('5tafaja')">
-                        <img src="https://gen.pollinations.ai/prompt/sur-chile-parcela-5ta-faja-forestal-native-trees-electricity-underground-gate-access?width=600&height=400&nologo=true" alt="Parcela 5ta Faja" class="w-full h-full object-cover img-zoom">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w320-h180-n" alt="Parcela 5ta Faja" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
                         </div>
-                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
-                            <i class="fas fa-images text-celest mr-1"></i> Ver fotos
+                        <div class="photo-count">
+                            <i class="fas fa-images text-celest mr-1"></i> 11 fotos
                         </div>
                     </div>
                     <div class="p-7">
@@ -291,7 +292,7 @@
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
                         </div>
-                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                        <div class="photo-count">
                             <i class="fas fa-images text-celest mr-1"></i> Ver fotos
                         </div>
                     </div>
@@ -335,7 +336,7 @@
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
                         </div>
-                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                        <div class="photo-count">
                             <i class="fas fa-images text-celest mr-1"></i> 17 fotos
                         </div>
                     </div>
@@ -418,14 +419,24 @@
                 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAFuQxWX7QlP_Cip5hzSKD82rkiIM-T1NBEbCdZQKizQ10Ttb8EturaiIWxF_mZ1-OyILDlkSy3KtjOT4WMq0XX6kicJRInfyoQD2dxZoSSrhLGSIFVk2SVZtyxy05mxrCOxd6jL8f88XeQqEKMG6RbLjwDX7ptS0UfmsJZ2Iv-OoYQvIE2RZzHDPW5xd_/s320/IMG_20250616_163859462.jpg',
                 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLRHbqC_gu3DStEdb1jk_fgUl6Sw-t6Rhr2GC6dVUkvpmfzILUDxNYbloDQahDj5VqymAUy2BLZnR2GbZhVWlHVfYSCIc3krHzAJBW20skpDgTV8BeYxfdhnA4jdPiRvlLuN_oLBlt_e2KTIEn7E-P84TlNts1I_QXqFFbmPgsteGROoyjU69l9ehmo1SL/s320/IMG_20250616_163941667.jpg'
             ],
+            '5tafaja': [
+                'https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEjlPSo5uLmhS7jH-TZJWjDHXN6YTgWGpkq2Gi1V1XOENmRFbgBl7rYrJghNBnDYLUUB530LPrKk9GCRi5vbjtegtDAXRDxMowD6y8aj_LION0X_5RVWcqQ___AVCHOyfPV7JF0p4U9D49doWOdwIBVXeMcqm0yNrt4KvYIURYrF6oNITqtMgmK2aEvGnvl6=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEjasFR7RMG29FUNfs5N8s_odoNQC0RqOxz_0-FNnCG2LnaeNU6UOc8Jp9E4sNqFUg12RtE1p4nZBl8N76fr0V2UzFTfXMYVXL6nw77iCSxca2l292YNXvfOxYp1qMoSZrbVSEwx7Lyz5rnN1obtJENGJCuI3dUblIyjQBUtYr51kb7Yd6T3SZyKE_66OUWo=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEiVF0krUCOvxq06kLmUbfmGzhU-mFhuoocoi-FJikriOXu8Y9WlIKYFyEZU9GStykjP4eGt-Kec796jNrnwONvQ5gR2efaUWiw0oaTeycqoce8Mszzf65qji5sUlt5KcjVv1nV6xZZb8ctRemhwLrDmedObJ9iJiBaXNmmLX3cXsMEsPC78TsvJ9_iuXoPw=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEh1cyVvjHrSGM3Yi03O9hDD2aabvRBjbn65upc8k0vA61aUVmeVTQYX8Ip4uXkbKEE_lPygiVXhOQ8-NTkITOpz0zmpOiAdrTtVTqXD9AmQ9koFCCl7e6ow-uG2XeyKG181tPj4CvN7FtxrdBXuZiWUI0OpHzT4T4ln5_95cTBF9whTOraeEZXPnTxe9uaf=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEhnUHMKgk7oyfjp20S7FbhkbcrNlkab87IKwYy-Bd_wxrTaagcexxEjg1wU0trzaNBVRbFGqLkE1Cl5cYL_4oEzlJuGpqQsHaJWw_K7_IDG0DWuGLI3teL9tz3ZlWhMm_LkzNdnKDxxtBk5xzJP2xVzIZ-vpVjfl473oRFFMqG3uoxrpOeqY2PqPF3fntGp=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEjDdMMkpB-Hh6mxpdUTsYRf-_jYAiQiDGAQSj1PfmE8twC2DztDwlosY6bXyvZKjBArpGlUz9WNvdK6UqCxCL-dG2JVCCOUi2WFAKvvNHnZVE8BV7MtxJJ2_aUAvyVnDs_0X-XqTfTWu9UH-Ad24_oSweXJ7d3nnhtrzAZ9TWbvAr_ZW2C_wTUOREsg5MFs=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEiUmiv8sFA7NFBC5kA0l4BmNKqaZRZw7tCUJ5f91P_PcLROcJYOuVsq2pUj-CGuC46i_ZP0KlyqqF9A6si0M4QEpzrdjg8ZIo2_fF3rZO4jVVRYuWzapCPva1I_LlqSD3G_YpWNF1tl79NPbfdEi8vjsEIcMElarI2E_fcKH_ugJG74g2g7n1zmbNr5wt4h=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEgLgES4I31yJ1_VS60oo_gqnURL1BjGF2IR-KbNm3NGB2fp3wgSLLNNQvIu48-N--uDUuzZ05f8OG5sAWz_q250uw4TJ_umPbsp18J-bvyRiDOwaZEjxYI-wXG1SGIXFLN-CJDb48-8eJRfsz8M0m0kw0IUuyfY9s-38ctscf9xOp9F4iOi3kQNUCfN8q-H=w320-h240-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEjbSB4ZK6Q0P-cPgV7E6GbHB5x5qHJkI6pRXpJmP56Z9Y3fyMD5Im7xG3FzvCjh43jQbd4Pw-rARF7sw4velzds7Begnzrrm4tHE-3Orp4UYB7D2y6KCTT75e9k0MDy2JcmgqvBXe82eDD_baGMpTfASvMWDRTaXacWCw4R2QnVrSXIzZnonnr7IxUsb0wB=w320-h240-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEiRLJcIhcwjVuuGh4fqS4LbTIh-K8C5W8sr8-k7Vdn6IeW9l9zssRvbQwh9625wWW4dXW4xU-q_ErBwjFUlZ2sgmwiUMkD60r2_wXfS9NYd5bcCKIr4BFx7NUEuVl5mX_8JggT8lvBkUKQpOwFgmrLTE62fYaaRTZ0LbXFR-eP3PHKMJ1gm9Eijdfg8HYpw=w320-h240-n'
+            ],
             chesque: [
                 'https://gen.pollinations.ai/prompt/sur-chile-forestal-parcela-native-trees-mountain-volcano-view-pine-forest?width=600&height=400&nologo=true'
             ],
             cudico: [
                 'https://gen.pollinations.ai/prompt/sur-chile-parcela-cudico-5000m2-native-forest-road-access-mountain-view?width=600&height=400&nologo=true'
-            ],
-            '5tafaja': [
-                'https://gen.pollinations.ai/prompt/sur-chile-parcela-5ta-faja-forestal-native-trees-electricity-underground-gate-access?width=600&height=400&nologo=true'
             ],
             conquil: [
                 'https://gen.pollinations.ai/prompt/sur-chile-parcela-conquil-volcano-view-river-park-1ha-forest-nature?width=600&height=400&nologo=true'
