@@ -357,23 +357,6 @@
             margin-bottom: 25px;
         }
         
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 20px;
-        }
-        
-        .footer-links a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .footer-links a:hover { color: var(--celest); }
-        
         footer p {
             color: rgba(255,255,255,0.4);
             font-size: 14px;
@@ -434,7 +417,7 @@
             background: #0a0a0a;
             border-radius: 15px;
             z-index: 98;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0, 0, 0.5);
             display: none;
             flex-direction: column;
             overflow: hidden;
@@ -636,8 +619,8 @@
                 <a href="#casas">Casas</a>
                 <a href="#contacto">Contacto</a>
             </div>
-            <a href="https://wa.me/56974219730?text=Hola,%20vi%20la%20web%20de%20Tiempo%20Propiedades" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> WhatsApp
+            <a href="https://wa.me/56974219730" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Escribir
             </a>
         </div>
     </nav>
@@ -653,7 +636,7 @@
             <p>Descubre parcelas con árboles nativos, vista al volcán y ubicación privilegiada. Inversión segura en el sur de Chile.</p>
             <div class="hero-buttons">
                 <a href="#parcelas" class="btn-primary"><i class="fas fa-search"></i> Ver Parcelas</a>
-                <a href="https://wa.me/56974219730?text=Hola,%20vi%20la%20web%20de%20Tiempo%20Propiedades" class="btn-secondary"><i class="fab fa-whatsapp"></i> Escribir Ahora</a>
+                <a href="https://wa.me/56974219730" class="btn-secondary"><i class="fab fa-whatsapp"></i> Escribir Ahora</a>
             </div>
             <div class="hero-stats">
                 <div class="stat"><div class="stat-num">150+</div><div class="stat-text">Parcelas Vendidas</div></div>
@@ -748,7 +731,7 @@
     <section id="contacto" class="contact">
         <h2>¿Quieres Más Información?</h2>
         <p>Escríbenos y te enviamos el catálogo completo</p>
-        <a href="https://wa.me/56974219730?text=Hola,%20vi%20la%20web%20de%20Tiempo%20Propiedades%20y%20quiero%20más%20info" class="btn-primary"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
+        <a href="https://wa.me/56974219730" class="btn-primary"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
     </section>
 
     <footer>
@@ -761,16 +744,12 @@
                 <h1>Tiempo<span>Propiedades</span></h1>
             </div>
         </a>
-        <div class="footer-links">
-            <a href="https://wa.me/56974219730?text=Hola"><i class="fab fa-whatsapp"></i> +56 9 7421 9730</a>
-            <a href="https://instagram.com/tuwebpro" target="_blank"><i class="fab fa-instagram"></i> @tuwebpro</a>
-        </div>
         <p style="margin-bottom:15px">Villarrica, Chile</p>
         <p>© 2026 Tiempo Propiedades. Todos los derechos reservados.</p>
         <p class="credit">Impulsado por 360 Marketing</p>
     </footer>
 
-    <a href="https://wa.me/56974219730?text=Hola,%20vi%20la%20web%20de%20Tiempo%20Propiedades" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/56974219730" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -862,7 +841,8 @@
         
         function openProperty(id) {
             const p = properties[id];
-            const mapUrl = `https://wa.me/${wa}?text=Hola,%20estoy%20interesado%20en%20${p.name.replace(' ','%20')}%20(${p.location.replace(' ','%20')})`;
+            const msg = `Hola! Estoy interesado en ${p.name} (${p.location})`;
+            const mapUrl = `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`;
             document.getElementById('modalContent').innerHTML = `
                 <div class="modal-grid">
                     <div>
@@ -925,7 +905,7 @@
         
         function processMsg(m) {
             let t = m.toLowerCase();
-            let r = 'Escríbenos al <a href="https://wa.me/'+wa+'" style="color:#4ade80">+56 9 7421 9730</a>';
+            let r = 'Escríbenos al WhatsApp para más información';
             if (t.includes('parcela')) r = '🎯 Parcelas $44M-$65M. La más popular: Chesque $44M. ✅ Plusvalía 4%.';
             else if (t.includes('casa')) r = '🏠 Casa Los Volcanes $89M - 3 dormitorios, sala de escritorio.';
             else if (t.includes('precio')) r = '💰 $44M-$89M. ✅ Plusvalía 4% anual!';
