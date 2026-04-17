@@ -83,6 +83,15 @@
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
+
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 99999; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox-img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+        .lightbox-close { position: absolute; top: 20px; right: 20px; font-size: 30px; color: #fff; cursor: pointer; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; cursor: pointer; padding: 20px; }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
     </style>
 </head>
 <body class="bg-[#050505]">
@@ -195,11 +204,14 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-1">
-                    <div class="relative h-72 overflow-hidden">
+                    <div class="relative h-72 overflow-hidden cursor-pointer" onclick="openGallery('chesque')">
                         <img src="https://gen.pollinations.ai/prompt/sur-chile-forestal-parcela-native-trees-mountain-volcano-view-pine-forest?width=600&height=400&nologo=true" alt="Parcela Chesque" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
+                        </div>
+                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                            <i class="fas fa-images text-celest mr-1"></i> Ver fotos
                         </div>
                     </div>
                     <div class="p-7">
@@ -219,11 +231,14 @@
                 </article>
 
                 <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-2">
-                    <div class="relative h-72 overflow-hidden">
+                    <div class="relative h-72 overflow-hidden cursor-pointer" onclick="openGallery('cudico')">
                         <img src="https://gen.pollinations.ai/prompt/sur-chile-parcela-cudico-5000m2-native-forest-road-access-mountain-view?width=600&height=400&nologo=true" alt="Parcela Cudico" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
+                        </div>
+                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                            <i class="fas fa-images text-celest mr-1"></i> Ver fotos
                         </div>
                     </div>
                     <div class="p-7">
@@ -243,11 +258,14 @@
                 </article>
 
                 <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-3">
-                    <div class="relative h-72 overflow-hidden">
+                    <div class="relative h-72 overflow-hidden cursor-pointer" onclick="openGallery('5tafaja')">
                         <img src="https://gen.pollinations.ai/prompt/sur-chile-parcela-5ta-faja-forestal-native-trees-electricity-underground-gate-access?width=600&height=400&nologo=true" alt="Parcela 5ta Faja" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
+                        </div>
+                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                            <i class="fas fa-images text-celest mr-1"></i> Ver fotos
                         </div>
                     </div>
                     <div class="p-7">
@@ -267,11 +285,14 @@
                 </article>
 
                 <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-4">
-                    <div class="relative h-72 overflow-hidden">
+                    <div class="relative h-72 overflow-hidden cursor-pointer" onclick="openGallery('conquil')">
                         <img src="https://gen.pollinations.ai/prompt/sur-chile-parcela-conquil-volcano-view-river-park-1ha-forest-nature?width=600&height=400&nologo=true" alt="Parcela Conquil" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
+                        </div>
+                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                            <i class="fas fa-images text-celest mr-1"></i> Ver fotos
                         </div>
                     </div>
                     <div class="p-7">
@@ -308,11 +329,14 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 <article class="card-magic glass rounded-3xl overflow-hidden group reveal">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://gen.pollinations.ai/prompt/southern-chile-house-los-volcanes-villarrica-3bedroom-mountain-view-modern-cabin-wood?width=600&height=400&nologo=true" alt="Casa Los Volcanes" class="w-full h-full object-cover img-zoom">
+                    <div class="relative h-72 overflow-hidden cursor-pointer" onclick="openGallery('losvolcanes')">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s320/IMG_20250616_162626843_HDR.jpg" alt="Casa Los Volcanes" class="w-full h-full object-cover img-zoom">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent"></div>
                         <div class="absolute top-5 left-5">
                             <span class="bg-celest text-dark text-xs font-bold px-4 py-1.5 rounded-full">Disponible</span>
+                        </div>
+                        <div class="absolute bottom-5 right-5 bg-black/50 px-3 py-1 rounded-full text-xs">
+                            <i class="fas fa-images text-celest mr-1"></i> 17 fotos
                         </div>
                     </div>
                     <div class="p-7">
@@ -335,7 +359,7 @@
     </section>
 
     <section id=contacto class="py-20">
-        <div class=max-w-4xl mx-auto px-6 text-center">
+        <div class=max-w-4xl mx-auto px-6 text-center>
             <h2 class="font-display text-4xl font-bold mb-6">¿Quieres Más Información?</h2>
             <p class="text-xl text-white/60 mb-10">Escríbenos y te enviamos el catálogo completo de propiedades</p>
             <a href="https://wa.me/56964681874?text=Quiero%20ver%20las%20parcelas%20de%20Villarrica" class="btn-accent text-white px-12 py-6 rounded-full font-bold text-xl inline-flex items-center gap-4">
@@ -368,7 +392,78 @@
         <i class="fab fa-whatsapp text-3xl"></i>
     </a>
 
+    <div id="lightbox" class="lightbox" onclick="closeGallery()">
+        <span class="lightbox-close" onclick="closeGallery()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="prevImage(event)">&#10094;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="">
+        <span class="lightbox-nav lightbox-next" onclick="nextImage(event)">&#10095;</span>
+    </div>
+
     <script>
+        const galleries = {
+            losvolcanes: [
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s320/IMG_20250616_162626843_HDR.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5eUxL-SjHHViLv8CtAFAxCB7P4mxWyAXkOHvHf8bwNI-GDwm9s_zkiPtqhw5-vVrrT_iLI9qFcI_OexNqEG1-5hqYGhREaiWujQ_76hKdIr74N1aIkxORXZo9mnGtSQUpp5p_dQDGRyl_NGPvscMb4zZIpEqzDe1OfdZ5N8aXCRnTgbh0-foWJ4eNOxN1/s320/IMG_20250616_163211524.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3eMem8f8R07zAzlcPnJdIlBZ7wv2-ZW8cs069AOGs4qfZpYh6huvha8ylxLM1YNex9DD00ghGHM1Xli8EjBuN_Qqnern0vrU6Y8Nwvl0MW20dhxZEpXmJVE5ENf2ejKfZM3mSSXPR88mf00MwWjXmfoQshDNNonYe8zYWe1r0yGbpyTcLh3C4Ua5WwXXx/s320/IMG_20250616_163255514.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSl0Kof8Gg_byLM4YnQ7BOhunjPn3NNFlvNHVnoxBoNwq6MJtgCcWe2ulLI1tdYD-xTNariovnqxXCVgjyTtD5-8tTAaMqT27Xb6d4WdNJ2M5dQ4n-jBijW3S-tQQySO_MBB6oo8HUg2EYpYHRzwcGUmkHtbw1j-hIkg7ZgDrCIUi3Hb1JLkEYzszzOqzG/s320/IMG_20250616_163502825.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtHgNbDBoVwBQlmyIkx7pprGnskP9n-kzpr-Pzu2IL9bM-7XsNbOoa-Rg2RiD4sAn7MPyA5q9b2FU5pecQanBOjQAgHy65SJSK305OxzsD5cOK9GLp-sQKDQx6fyaRnJ9N9LLXRDQhrTzpsyP0mGBS15gaN0hTHGn1NA-o6liK-QU_kRYPWjvBQZp4asXY/s320/IMG_20250616_163737632_HDR.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAvDO6oCkeb3BNWzfv_xSuIyZFEuqUVJbnLvCSZD31QBBpGnx-A3QOrBtz2-iw7fU9y-3Q5aynKr6CH2PtSBmFJX9sCM_ehycfoWkSkZHHGC69xxK68m-18Np5RN45wzFDD-UmyIv1HgwlWZynmBqaYk5L5YD1THPM7AFwtatR-m7vac8kLtf3INnqUB4d/s320/IMG_20250616_163849950.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihC9_kMh_4I3pH1k9NG6yXStpQ1WodZDFMGxdFQRVrjSDc9DObXdng7J8iv1muHzwSNfCj2mGMbbFxRHJnbjNchmxxI66gC0UvZS0Pr58Zk6yyijoS64MFKT7m4dFyC_j5FjcDsX5sUwh1xHuCqT4iYaf5VSojPydetOxMZkqb0FMJhd1tJGeWYhMZBYX1/s320/IMG_20250616_164005500.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLkuzJ0BfecO5fuF-qgSDwRPbU5bTylf5tF8Be-h37QVgOGfX2yHH6HCpBfDtWGhp5somEcRNEK6t4flLFXDUgjwjymSZtgBAt580crTJrxSmCSHp9z81uf2mMAPN8zhawJQd8UfuAbBIr8-oaG1vSpQqAWvg9-12cbSAGUL9mn8igQU6BXV97eM-g41pk/s320/IMG_20250616_164035274.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJdpG959b4Scl7i4p3VWhHYV33Kp3CQlyfwOe03KFMnaFL8TdP8nncCL4HrRGCHycZTHIStvKRDKCdkn1ANQ2AOtb0-KKSIfK6W8s5y702FrNgh8EDSz8mI_wsumSsJ_TiW9b3izuzy7LB62RyoeA1IsqmwtoUtd2B4fxrt-Kf7jhaTVZZw5-SFGh3fW2V/s320/IMG_20250616_164042531_HDR.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgp6EJwEYbNWymp7JGCuawHqDP8BbJaq-bGx6zfsDD9yXYRI8o9rcWyk3ozMUg6JRQWmkY7pLzGhnu4879WTZlp8zHp3SkoldubxtIM4-_48gDWmK0Q74ZmjqNc4l3Xsae5xA6tJQg_xbCrRxPEOfYJvVT61jhwVch6hVPK3PAaH-Mk2H8pXsgaIAbCiD26/s320/IMG_20250616_164056591.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhy5ATBpcZQN7dLqisPw57IEixYqkS7jGVqDBJO2M4vdKFSYoSLbgAQp-t8QHbOl4XI1wy8-TmlJu6jhclWx661j923vxd2WrBbs7Y79YRNKGXVzk8vVQsS2xkp5yRz7tgWE51dYrsXGDErwS70KoT21HuH5DQRIqlMEGC7QPJXm6L0VxHHa4msdJS5l8ED/s320/IMG_20250616_163311514.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg12sgNuCwlGaBxR5uFtSFNaMadpw9zhfvn2HBYkKf1kWHb7o1DEtTXdOnZBrnldyWO_rbxqV3wn4okHZBhlmxRXHoyYM8p27UWMHHFG4JUJWjvHEa2fAQ9Sk7z0Qb5tVnKLQZgifmCtIcHRsIbJc_hSAuSlYxkYznnHXqgrLGIpypzNQJUnxluGXAP4k2g/s320/IMG_20250616_163325160.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_OuTa2HXEMmdIsGUP2j7q5JUe9XyZbmR1J1eXy9ue9wDA-Am8ZjmMSClVgNwRhiU9CX-HrsMGOwUKFh6-pM4l8dgXAb7WWu9Y7yfTUjOWJYyC8ZGOLtj-UyXUKkOMifJBe6smDVxzrUSpCxm0Zztb0Jc9ovIu-izuAci_yQpFXhnfzzWqGNFtSNW-6anP/s320/IMG_20250616_163717623.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAFuQxWX7QlP_Cip5hzSKD82rkiIM-T1NBEbCdZQKizQ10Ttb8EturaiIWxF_mZ1-OyILDlkSy3KtjOT4WMq0XX6kicJRInfyoQD2dxZoSSrhLGSIFVk2SVZtyxy05mxrCOxd6jL8f88XeQqEKMG6RbLjwDX7ptS0UfmsJZ2Iv-OoYQvIE2RZzHDPW5xd_/s320/IMG_20250616_163859462.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLRHbqC_gu3DStEdb1jk_fgUl6Sw-t6Rhr2GC6dVUkvpmfzILUDxNYbloDQahDj5VqymAUy2BLZnR2GbZhVWlHVfYSCIc3krHzAJBW20skpDgTV8BeYxfdhnA4jdPiRvlLuN_oLBlt_e2KTIEn7E-P84TlNts1I_QXqFFbmPgsteGROoyjU69l9ehmo1SL/s320/IMG_20250616_163941667.jpg'
+            ],
+            chesque: [
+                'https://gen.pollinations.ai/prompt/sur-chile-forestal-parcela-native-trees-mountain-volcano-view-pine-forest?width=600&height=400&nologo=true'
+            ],
+            cudico: [
+                'https://gen.pollinations.ai/prompt/sur-chile-parcela-cudico-5000m2-native-forest-road-access-mountain-view?width=600&height=400&nologo=true'
+            ],
+            '5tafaja': [
+                'https://gen.pollinations.ai/prompt/sur-chile-parcela-5ta-faja-forestal-native-trees-electricity-underground-gate-access?width=600&height=400&nologo=true'
+            ],
+            conquil: [
+                'https://gen.pollinations.ai/prompt/sur-chile-parcela-conquil-volcano-view-river-park-1ha-forest-nature?width=600&height=400&nologo=true'
+            ]
+        };
+
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        function openGallery(name) {
+            currentGallery = galleries[name] || [];
+            currentIndex = 0;
+            if (currentGallery.length > 0) {
+                document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+                document.getElementById('lightbox').classList.add('active');
+            }
+        }
+
+        function closeGallery() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function prevImage(e) {
+            e.stopPropagation();
+            if (currentGallery.length > 0) {
+                currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+                document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+            }
+        }
+
+        function nextImage(e) {
+            e.stopPropagation();
+            if (currentGallery.length > 0) {
+                currentIndex = (currentIndex + 1) % currentGallery.length;
+                document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+            }
+        }
+
         const cursor = document.getElementById('cursor');
         const cursorDot = document.getElementById('cursorDot');
         document.addEventListener('mousemove', (e) => {
@@ -382,7 +477,6 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
         
-        // Reveal on scroll
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
