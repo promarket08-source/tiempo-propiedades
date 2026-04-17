@@ -89,6 +89,8 @@
         footer .logo { justify-content: center; margin-bottom: 25px; }
         footer p { color: rgba(255,255,255,0.4); font-size: 14px; }
         footer .credit { color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 10px; }
+        footer .instagram { color: var(--celest); text-decoration: none; }
+        footer .instagram:hover { color: #fff; }
         
         .whatsapp-float { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d365; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff; z-index: 99; box-shadow: 0 5px 20px rgba(37,211,101,0.4); animation: floatPulse 2s infinite; text-decoration: none; }
         @keyframes floatPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
@@ -248,7 +250,7 @@
         <div class="container properties">
             <article class="property-card" onclick="openProperty('losvolcanes')">
                 <div class="property-img">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOqedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s320/IMG_20250616_162626843_HDR.jpg" alt="Casa Los Volcanes">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s320/IMG_20250616_162626843_HDR.jpg" alt="Casa Los Volcanes">
                     <span class="property-badge">Disponible</span>
                 </div>
                 <div class="property-details">
@@ -273,6 +275,7 @@
             <div class="logo-text"><h1>Tiempo<span>Propiedades</span></h1></div>
         </a>
         <p style="margin-bottom:15px">Villarrica, Chile</p>
+        <p style="margin-bottom:15px"><a href="https://www.instagram.com/tu.web.pro360/" target="_blank" class="instagram"><i class="fab fa-instagram"></i> @tu.web.pro360</a></p>
         <p>© 2026 Tiempo Propiedades. Todos los derechos reservados.</p>
         <p class="credit">Impulsado por 360 Marketing</p>
     </footer>
@@ -323,7 +326,7 @@
             cudico: { name: "Parcela Cudico", price: "$58.000.000", location: "4km de Lican Ray", size: "5.000 m²", desc: "A solo 300 metros de la carretera principal. Luz a conectar.", features: ["5.000 m²", "A 300mts carretera"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n", map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed" },
             '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", location: "18 min Villarrica", size: "5.000 m²", desc: "Mucho árbol nativo y luz soterrada.", features: ["5.000 m²", "Luz soterrada"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n", map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed" },
             conquil: { name: "Parcela Conquil", price: "$65.000.000", location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Vista panorámica al volcán. 1 ha parque común.", features: ["5.000 m²", "Vista al volcán"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg", map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed" },
-            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOqedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" }
+            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" }
         };
         
         const wa = "56974219730";
