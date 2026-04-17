@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang=es>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=UTF-8>
+    <meta name=viewport content=width=device-width, initial-scale=1.0>
     <title>Tiempo Propiedades | Parcelas y Casas en Villarrica</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src=https://cdn.tailwindcss.com></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel=stylesheet>
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css>
     <script>
         tailwind.config = {
             theme: {
@@ -27,17 +27,16 @@
     </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Satoshi', sans-serif; background: #050505; color: #fff; cursor: none; }
-        a, button { cursor: pointer; }
-        .cursor { width: 8px; height: 8px; background: #67d4fc; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; }
-        .cursor-dot { width: 40px; height: 40px; border: 1px solid rgba(103, 212, 252, 0.5); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; mix-blend-mode: difference; }
-        .cursor.hover { transform: scale(3); }
+        body { font-family: 'Satoshi', sans-serif; background: #050505; color: #fff; }
+        .cursor { width: 20px; height: 20px; border: 2px solid #67d4fc; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
+        .cursor-dot { width: 6px; height: 6px; background: #67d4fc; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; }
+        .cursor.hover { transform: scale(2); background: rgba(103, 212, 252, 0.1); }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #67d4fc, #ef4444); border-radius: 3px; }
         .glass { background: rgba(5, 5, 5, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.06); }
-        .card-magic { position: relative; overflow: hidden; transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card-magic::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 0%, rgba(103, 212, 252, 0.08) 50%, transparent 100%); transform: translateX(-100%); transition: transform 2s; }
+        .card-magic { position: relative; overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-magic::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 0%, rgba(103, 212, 252, 0.08) 50%, transparent 100%); transform: translateX(-100%); transition: transform 0.8s; }
         .card-magic:hover::before { transform: translateX(100%); }
         .card-magic:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 40px 80px -20px rgba(103, 212, 252, 0.3); }
         .gradient-text { background: linear-gradient(135deg, #67d4fc 0%, #ffffff 50%, #ef4444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -47,8 +46,8 @@
         @keyframes whatsappPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); transform: scale(1); } 50% { box-shadow: 0 0 0 25px rgba(34, 197, 94, 0); transform: scale(1.08); } }
         .img-zoom { transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .img-zoom:hover { transform: scale(1.12); }
-        .hero-content { opacity: 0; transform: translateY(40px); animation: fadeInUp 2s ease forwards 0.5s; }
-        .hero-stats { opacity: 0; transform: translateY(30px); animation: fadeInUp 2s ease forwards 1.2s; }
+        .hero-content { opacity: 0; transform: translateY(40px); animation: fadeInUp 1s ease forwards 0.3s; }
+        .hero-stats { opacity: 0; transform: translateY(30px); animation: fadeInUp 1s ease forwards 0.8s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
         .particle { position: absolute; width: 4px; height: 4px; background: #67d4fc; border-radius: 50%; opacity: 0.6; animation: float 15s infinite; }
@@ -58,44 +57,60 @@
         .clock-logo { position: relative; width: 48px; height: 48px; }
         .clock-face { width: 100%; height: 100%; border: 3px solid #67d4fc; border-radius: 50%; position: relative; background: linear-gradient(135deg, #050505, #0a0a0a); }
         .clock-center { position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; transform: translate(-50%, -50%); }
-        .clock-hand-hour { position: absolute; top: 50%; left: 50%; width: 3px; height: 14px; background: #fff; border-radius: 2px; transform-origin: bottom center; transform: translate(-50%, -100%) rotate(30deg); animation: clockHour 60s linear infinite; }
-        .clock-hand-min { position: absolute; top: 50%; left: 50%; width: 2px; height: 18px; background: #67d4fc; border-radius: 2px; transform-origin: bottom center; transform: translate(-50%, -100%) rotate(180deg); animation: clockMin 12s linear infinite; }
+        .clock-hand-hour { position: absolute; top: 50%; left: 50%; width: 3px; height: 14px; background: #fff; border-radius: 2px; transform-origin: bottom center; transform: translate(-50%, -100%) rotate(30deg); animation: clockHour 12s linear infinite; }
+        .clock-hand-min { position: absolute; top: 50%; left: 50%; width: 2px; height: 18px; background: #67d4fc; border-radius: 2px; transform-origin: bottom center; transform: translate(-50%, -100%) rotate(180deg); animation: clockMin 2s linear infinite; }
         @keyframes clockHour { to { transform: translate(-50%, -100%) rotate(390deg); } }
         @keyframes clockMin { to { transform: translate(-50%, -100%) rotate(540deg); } }
         .glow { animation: glowPulse 3s ease-in-out infinite; }
         @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 20px rgba(103, 212, 252, 0.3); } 50% { box-shadow: 0 0 40px rgba(103, 212, 252, 0.6); } }
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .property-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; overflow-y: auto; }
+        .property-modal.active { display: block; }
+        .property-modal-content { max-width: 1100px; margin: 30px auto; padding: 0 16px 40px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+        .gallery-item { aspect-ratio: 1/1; border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.3s; }
+        .gallery-item:hover { transform: scale(1.05); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        @media (max-width: 768px) {
+            .property-modal-content { margin: 20px auto; padding: 0 12px 30px; }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .detail-hero-img { height: 200px !important; }
+        }
+        .detail-hero-img { width: 100%; max-height: 50vh; object-fit: cover; border-radius: 12px; cursor: pointer; }
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 99999; align-items: center; justify-content: center; }
         .lightbox.active { display: flex; }
         .lightbox-img { max-width: 95%; max-height: 90vh; border-radius: 8px; object-fit: contain; }
-        .lightbox-close { position: absolute; top: 15px; right: 15px; font-size: 36px; color: #fff; cursor: pointer; z-index: 10; }
-        .lightbox-nav, .property-modal-content { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; cursor: pointer; padding: 15px; }
+        .lightbox-close { position: absolute; top: 20px; right: 20px; font-size: 30px; color: #fff; cursor: pointer; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; cursor: pointer; padding: 20px; }
+        .photo-count { position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 20px; font-size: 12px; }
         .chat-float-btn { position: fixed; bottom: 80px; right: 85px; width: 48px; height: 48px; background: linear-gradient(135deg, #67d4fc, #3b82f6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; box-shadow: 0 5px 20px rgba(103, 212, 252, 0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .chat-panel { display: none; position: fixed; bottom: 138px; right: 15px; width: 250px; max-height: 300px; background: #0a0a0a; border-radius: 12px; z-index: 9998; box-shadow: 0 5px 25px rgba(0,0,0,0.5); }
         .chat-panel.active { display: flex !important; flex-direction: column; }
         .chat-header { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #67d4fc, #3b82f6); padding: 8px 10px; border-radius: 12px 12px 0 0; flex-shrink: 0; }
         .chat-messages { flex: 1; overflow-y: auto; padding: 8px 10px; min-height: 100px; }
         .chat-bubble { max-width: 85%; padding: 6px 10px; border-radius: 12px; margin-bottom: 5px; font-size: 12px; line-height: 1.4; }
-        .chat-bubble.bot, .chat-bubble.user { padding: 10px 14px; border-radius: 16px; margin-bottom: 8px; }
         .chat-bubble.bot { background: #1a1a1a; color: #fff; }
         .chat-bubble.user { background: linear-gradient(135deg, #67d4fc, #3b82f6); color: #fff; margin-left: auto; }
         .quick-options { display: flex; flex-wrap: wrap; gap: 3px; padding: 5px 8px; flex-shrink: 0; }
         .quick-btn { background: transparent; border: 1px solid #67d4fc; color: #67d4fc; padding: 4px 10px; border-radius: 14px; font-size: 11px; cursor: pointer; }
-        .quick-btn:hover { background: #67d4fc; color: #000; }
         .chat-input { display: flex; gap: 5px; padding: 6px 8px; background: #111; border-top: 1px solid #222; flex-shrink: 0; }
         .chat-input input { flex: 1; background: #1a1a1a; border: none; color: #fff; padding: 8px 12px; border-radius: 18px; outline: none; font-size: 12px; }
         .send-btn { background: linear-gradient(135deg, #67d4fc, #3b82f6); border: none; width: 30px; height: 30px; border-radius: 50%; color: white; cursor: pointer; font-size: 11px; flex-shrink: 0; }
     </style>
 </head>
 <body class="bg-[#050505]">
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
+    <div class=cursor id=cursor></div>
+    <div class=cursor-dot id=cursorDot></div>
 
     <nav class="fixed top-0 left-0 right-0 z-50 glass">
-        <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class=max-w-7xl mx-auto px-6 py-4>
             <div class="flex items-center justify-between">
-                <a href="#" class="flex items-center gap-4 group">
+                <a href=# class="flex items-center gap-4 group">
                     <div class="clock-logo glow">
                         <div class="clock-face">
                             <div class="clock-hand-hour"></div>
@@ -108,80 +123,92 @@
                         <p class="text-xs text-white/40">Parcelas y Casas en Villarrica</p>
                     </div>
                 </a>
-                <div class="hidden md:flex gap-8">
-                    <a href="#parcelas" class="text-white/70 hover:text-white">Parcelas</a>
-                    <a href="#casas" class="text-white/70 hover:text-white">Casas</a>
-                    <a href="#contacto" class="text-white/70 hover:text-white">Contacto</a>
+                <div class="hidden lg:flex items-center gap-10">
+                    <a href=#parcelas class="text-white/70 hover:text-celest">Parcelas</a>
+                    <a href=#casas class="text-white/70 hover:text-celest">Casas</a>
+                    <a href=#contacto class="text-white/70 hover:text-celest">Contacto</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://wa.me/56974219730" class="btn-accent text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div class="particles">
-            <div class="particle float-element" style="left: 10%; animation-delay: 0s;"></div>
-            <div class="particle float-element" style="left: 20%; animation-delay: 2s;"></div>
-            <div class="particle float-element" style="left: 30%; animation-delay: 4s;"></div>
-            <div class="particle float-element" style="left: 40%; animation-delay: 1s;"></div>
-            <div class="particle float-element" style="left: 50%; animation-delay: 3s;"></div>
-            <div class="particle float-element" style="left: 60%; animation-delay: 5s;"></div>
-            <div class="particle float-element" style="left: 70%; animation-delay: 2.5s;"></div>
-            <div class="particle float-element" style="left: 80%; animation-delay: 4.5s;"></div>
-            <div class="particle float-element" style="left: 90%; animation-delay: 1.5s;"></div>
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/50 to-dark"></div>
         </div>
-        
-        <div class="max-w-6xl mx-auto px-6 relative z-10 text-center">
-            <div class="hero-content">
-                <span class="inline-flex items-center gap-3 text-celest font-medium tracking-[0.2em] uppercase text-sm mb-8">
-                    <span class="w-12 h-px bg-celest"></span>
-                    Villarrica, Chile
-                    <span class="w-12 h-px bg-celest"></span>
+        <div class="particles">
+            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 35%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 50%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 65%; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 80%; animation-delay: 5s;"></div>
+            <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+        </div>
+        <div class="float-element absolute top-20 left-10 w-32 h-32 bg-celest/10 rounded-full blur-3xl"></div>
+        <div class="float-element absolute bottom-20 right-10 w-48 h-48 bg-red-500/10 rounded-full blur-3xl" style="animation-delay: 2s;"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+            <div class="text-center hero-content">
+                <span class="inline-flex items-center gap-3 glass rounded-full px-5 py-2.5 mb-8">
+                    <span class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+                    <span class="text-sm font-medium text-white/80">Villarrica, Chile</span>
                 </span>
-                <h1 class="font-display text-6xl md:text-8xl font-bold mb-6 leading-tight">
-                    Encuentra tu <span class="gradient-text">Propiedad Ideal</span><br>en el Sur de Chile
+                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
+                    <span class="text-white">Tu Futuro en</span><br>
+                    <span class="gradient-text">Villarrica</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-white/60 mb-12 max-w-2xl mx-auto">
-                    Parcelas y casas con plusvalía garantizada en una de las zonas más demandadas de Chile.
+                <p class="text-xl text-white/60 max-w-2xl mx-auto mb-10">
+                    Descubre parcelas con árboles nativos, vista al volcán y ubicación privilegiada. Inversión segura en el sur de Chile.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#parcelas" class="btn-accent text-white px-10 py-4 rounded-full font-bold text-lg">
-                        Ver Propiedades
+                <div class="flex flex-wrap justify-center gap-5">
+                    <a href=#parcelas class="btn-accent text-white px-10 py-5 rounded-full font-bold text-lg flex items-center gap-3">
+                        <i class="fas fa-search"></i>
+                        Ver Parcelas
                     </a>
-                    <a href="https://wa.me/56974219730" class="glass text-white px-10 py-4 rounded-full font-bold text-lg flex items-center gap-2">
+                    <a href="https://wa.me/56974219730?text=Hola!%20Quiero%20conocer%20las%20parcelas" class="glass text-white px-10 py-5 rounded-full font-bold text-lg flex items-center gap-3">
                         <i class="fab fa-whatsapp text-green-400"></i>
-                        Escríbenos
+                        Escribir Ahora
                     </a>
                 </div>
-            </div>
-            
-            <div class="hero-stats grid grid-cols-3 gap-8 mt-20">
-                <div class="glass rounded-2xl p-6">
-                    <span class="font-display text-4xl md:text-5xl font-bold gradient-text">150+</span>
-                    <p class="text-white/60 mt-2">Propiedades Vendidas</p>
-                </div>
-                <div class="glass rounded-2xl p-6">
-                    <span class="font-display text-4xl md:text-5xl font-bold gradient-text">4%</span>
-                    <p class="text-white/60 mt-2">Plusvalía Anual</p>
-                </div>
-                <div class="glass rounded-2xl p-6">
-                    <span class="font-display text-4xl md:text-5xl font-bold gradient-text">100%</span>
-                    <p class="text-white/60 mt-2">Clientes Felices</p>
+                <div class="grid grid-cols-3 gap-8 pt-16 max-w-xl mx-auto hero-stats">
+                    <div class="text-center">
+                        <span class="font-display text-4xl font-bold text-celest">150+</span>
+                        <p class="text-white/50 text-sm mt-2">Parcelas Vendidas</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="font-display text-4xl font-bold text-celest">4%</span>
+                        <p class="text-white/50 text-sm mt-2">Plusvalía Anual</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="font-display text-4xl font-bold text-celest">25</span>
+                        <p class="text-white/50 text-sm mt-2">Días a Escritura</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="parcelas" class="py-32 relative bg-dark/50">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id=parcelas class="py-32 relative">
+        <div class=max-w-7xl mx-auto px-6>
             <div class="text-center mb-20">
                 <span class="inline-flex items-center gap-3 text-celest font-medium tracking-[0.2em] uppercase text-sm mb-6">
                     <span class="w-12 h-px bg-celest"></span>
-                    Propiedades
+                    Nuestro Portafolio
                     <span class="w-12 h-px bg-celest"></span>
                 </span>
                 <h2 class="font-display text-5xl md:text-6xl font-bold mb-6">
                     Parcelas <span class="gradient-text">Disponibles</span>
                 </h2>
+                <p class="text-xl text-white/50 max-w-2xl mx-auto">
+                    Selección exclusiva de las mejores parcelas en Villarrica, Lican Ray y Pucón
+                </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <article class="card-magic glass rounded-3xl overflow-hidden group reveal delay-1" onclick="openProperty('chesque')">
@@ -244,8 +271,8 @@
         </div>
     </section>
 
-    <section id="casas" class="py-32 relative bg-dark/50">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id=casas class="py-32 relative bg-dark/50">
+        <div class=max-w-7xl mx-auto px-6>
             <div class="text-center mb-20">
                 <span class="inline-flex items-center gap-3 text-celest font-medium tracking-[0.2em] uppercase text-sm mb-6">
                     <span class="w-12 h-px bg-celest"></span>
@@ -275,8 +302,8 @@
         </div>
     </section>
 
-    <section id="contacto" class="py-20">
-        <div class="max-w-4xl mx-auto px-6 text-center">
+    <section id=contacto class="py-20">
+        <div class=max-w-4xl mx-auto px-6 text-center>
             <h2 class="font-display text-4xl font-bold mb-6">¿Quieres Más Información?</h2>
             <p class="text-xl text-white/60 mb-10">Escríbenos y te enviamos el catálogo completo</p>
             <a href="https://wa.me/56974219730?text=Quiero%20ver%20las%20parcelas%20de%20Villarrica" class="btn-accent text-white px-12 py-6 rounded-full font-bold text-xl inline-flex items-center gap-4">
@@ -285,11 +312,17 @@
         </div>
     </section>
 
-    <footer class="py-20 bg-dark/50">
-        <div class="max-w-7xl mx-auto px-6">
+    <footer class="py-16 border-t border-white/5">
+        <div class=max-w-7xl mx-auto px-6>
             <div class="text-center">
-                <a href="#" class="flex items-center gap-4 justify-center mb-6">
-                    <div class="clock-logo glow"><div class="clock-face"><div class="clock-hand-hour"></div><div class="clock-hand-min"></div><div class="clock-center"></div></div></div>
+                <a href=# class="flex items-center gap-3 mb-6 justify-center">
+                    <div class="clock-logo" style="width:48px;height:48px;">
+                        <div class="clock-face">
+                            <div class="clock-hand-hour"></div>
+                            <div class="clock-hand-min"></div>
+                            <div class="clock-center"></div>
+                        </div>
+                    </div>
                     <span class="font-display text-2xl font-bold">Tiempo<span class="text-celest">Propiedades</span></span>
                 </a>
                 <div class="flex items-center justify-center gap-6 mb-4">
@@ -333,74 +366,91 @@
 
     <div id="lightbox" class="lightbox" onclick="closeGallery()">
         <span class="lightbox-close" onclick="closeGallery()">×</span>
-        <span class="lightbox-nav" style="left: 10px;" onclick="prevImage(event)">&#10094;</span>
+        <span class="lightbox-nav" style="left: 20px;" onclick="prevImage(event)">&#10094;</span>
         <img id="lightbox-img" class="lightbox-img" src="" alt="">
-        <span class="lightbox-nav" style="right: 10px;" onclick="nextImage(event)">&#10095;</span>
+        <span class="lightbox-nav" style="right: 20px;" onclick="nextImage(event)">&#10095;</span>
     </div>
 
-    <div id="propertyModal" class="lightbox">
-        <span class="lightbox-close" onclick="closeProperty()">×</span>
-        <div class="property-modal-content" id="propertyContent"></div>
+    <div id="propertyModal" class="property-modal">
+        <div class="property-modal-content">
+            <button onclick="closeProperty()" class="fixed top-4 right-4 text-white text-3xl z-50 hover:text-celest">×</button>
+            <div id="propertyContent"></div>
+        </div>
     </div>
 
     <script>
-        const properties = {
-            chesque: {name: 'Parcela Chesque', price: '$44.000.000', location: '10 min de Lican Ray', size: '5.000 m²', description: 'Hermosa parcela con árboles nativos. Empalme eléctrico conectado. Acceso a estero para pesca.', features: ['5.000 m²', 'Árboles nativos', 'Empalme conectado', 'Plusvalía 4%'], images: ['https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg'], whatsapp: 'Parcela%20Chesque'},
-            cudico: {name: 'Parcela Cudico', price: '$58.000.000', location: '4km de Lican Ray', size: '5.000 m²', description: 'A 300mts de la carretera. Luz a conectar.', features: ['5.000 m²', 'A 300mts carretera', 'Luz a conectar'], images: ['https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n'], whatsapp: 'Parcela%20Cudico'},
-            '5tafaja': {name: 'Parcela 5ta Faja', price: '$48.000.000', location: '18 min de Villarrica', size: '5.000 m²', description: 'Árbol nativo y luz soterrada. Portón de acceso.', features: ['5.000 m²', 'Luz soterrada', 'Árbol nativo'], images: ['https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n'], whatsapp: 'Parcela%205ta%20Faja'},
-            conquil: {name: 'Parcela Conquil', price: '$65.000.000', location: 'km 6 Camino Conquil', size: '5.000 m²', description: 'Vista panorámica al volcán. 1ha parque común.', features: ['5.000 m²', 'Vista al volcán', '1ha parque'], images: ['https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg'], whatsapp: 'Parcela%20Conquil'},
-            losvolcanes: {name: 'Casa Los Volcanes', price: '$89.000.000', location: 'Sector Los Volcanes', size: '120 m²', description: '3 dormitorios + sala de escritorio. Lista para habitar.', features: ['3 Dormitorios', 'Sala escritorio', '1 Baño'], images: ['https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg'], whatsapp: 'Casa%20Los%20Volcanes'}
+        const galleries = {
+            losvolcanes: [
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s320/IMG_20250616_162626843_HDR.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5eUxL-SjHHViLv8CtAFAxCB7P4mxWyAXkOHvHf8bwNI-GDwm9s_zkiPtqhw5-vVrrT_iLI9qFcI_OexNqEG1-5hqYGhREaiWujQ_76hKdIr74N1aIkxORXZo9mnGtSQUpp5p_dQDGRyl_NGPvscMb4zZIpEqzDe1OfdZ5N8aXCRnTgbh0-foWJ4eNOxN1/s320/IMG_20250616_163211524.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3eMem8f8R07zAzlcPnJdIlBZ7wv2-ZW8cs069AOGs4qfZpYh6huvha8ylxLM1YNex9DD00ghGHM1Xli8EjBuN_Qqnern0vrU6Y8Nwvl0MW20dhxZEpXmJVE5ENf2ejKfZM3mSSXPR88mf00MwWjXmfoQshDNNonYe8zYWe1r0yGbpyTcLh3C4Ua5WwXXx/s320/IMG_20250616_163255514.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSl0Kof8Gg_byLM4YnQ7BOhunjPn3NNFlvNHVnoxBoNwq6MJtgCcWe2ulLI1tdYD-xTNariovnqxXCVgjyTtD5-8tTAaMqT27Xb6d4WdNJ2M5dQ4n-jBijW3S-tQQySO_MBB6oo8HUg2EYpYHRzwcGUmkHtbw1j-hIkg7ZgDrCIUi3Hb1JLkEYzszzOqzG/s320/IMG_20250616_163502825.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtHgNbDBoVwBQlmyIkx7pprGnskP9n-kzpr-Pzu2IL9bM-7XsNbOoa-Rg2RiD4sAn7MPyA5q9b2FU5pecQanBOjQAgHy65SJSK305OxzsD5cOK9GLp-sQKDQx6fyaRnJ9N9LLXRDQhrTzpsyP0mGBS15gaN0hTHGn1NA-o6liK-QU_kRYPWjvBQZp4asXY/s320/IMG_20250616_163737632_HDR.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAvDO6oCkeb3BNWzfv_xSuIyZFEuqUVJbnLvCSZD31QBBpGnx-A3QOrBtz2-iw7fU9y-3Q5aynKr6CH2PtSBmFJX9sCM_ehycfoWkSkZHHGC69xxK68m-18Np5RN45wzFDD-UmyIv1HgwlWZynmBqaYk5L5YD1THPM7AFwtatR-m7vac8kLtf3INnqUB4d/s320/IMG_20250616_163849950.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihC9_kMh_4I3pH1k9NG6yXStpQ1WodZDFMGxdFQRVrjSDc9DObXdng7J8iv1muHzwSNfCj2mGMbbFxRHJnbjNchmxxI66gC0UvZS0Pr58Zk6yyijoS64MFKT7m4dFyC_j5FjcDsX5sUwh1xHuCqT4iYaf5VSojPydetOxMZkqb0FMJhd1tJGeWYhMZBYX1/s320/IMG_20250616_164005500.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLkuzJ0BfecO5fuF-qgSDwRPbU5bTylf5tF8Be-h37QVgOGfX2yHH6HCpBfDtWGhp5somEcRNEK6t4flLFXDUgjwjymSZtgBAt580crTJrxSmCSHp9z81uf2mMAPN8zhawJQd8UfuAbBIr8-oaG1vSpQqAWvg9-12cbSAGUL9mn8igQU6BXV97eM-g41pk/s320/IMG_20250616_164035274.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJdpG959b4Scl7i4p3VWhHYV33Kp3CQlyfwOe03KFMnaFL8TdP8nncCL4HrRGCHycZTHIStvKRDKCdkn1ANQ2AOtb0-KKSIfK6W8s5y702FrNgh8EDSz8mI_wsumSsJ_TiW9b3izuzy7LB62RyoeA1IsqmwtoUtd2B4fxrt-Kf7jhaTVZZw5-SFGh3fW2V/s320/IMG_20250616_164042531_HDR.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgp6EJwEYbNWymp7JGCuawHqDP8BbJaq-bGx6zfsDD9yXYRI8o9rcWyk3ozMUg6JRQWmkY7pLzGhnu4879WTZlp8zHp3SkoldubxtIM4-_48gDWmK0Q74ZmjqNc4l3Xsae5xA6tJQg_xbCrRxPEOfYJvVT61jhwVch6hVPK3PAaH-Mk2H8pXsgaIAbCiD26/s320/IMG_20250616_164056591.jpg"
+            ],
+            chesque: [
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s320/IMG_20241019_121008673.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPDkCoUpQ-L8YaDC3-g6gZezwMDqN4f5RIPqkNacr-K3vzyWGO6pS9Ny-o863FmNBI_7QMoidWCY18y4sE6pEqNJZceWw1W-3p0hVuBRSgzaklnqLniTqfICaSjUwmuvWQGS8cRMVbeEfuEp7dNmX53HDEButCzQNy8eGmqsmBv32XFluHI8ENQ863hihP/s320/IMG_20241019_122349923.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDVBbcultgK2cOTW8XJpHULRKF3omdG1ieXisFekyAFD43BlwxFC-wDaNIL7dXovULqlln8bas0LDM6td9j09IopAUF4VmiR-I_YNxME46FY0rrwDA-veYZQ8PaYu0kaEtrnV4Qi-cb5SIICFEU9FK7kuXIjHHq7r4XtK60kUBx7izfM27NI3lhZMmFtl6/s320/IMG_20241019_124021044.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRJ5LVS1uZoxlCTDvA8yq1xRaHiXOPkAHJTMMWMPHJ02AkvzGm5KGvKufpNpzzb_89pb2BrujMcjuspmsvGrqOadElPzmJA-7qN5Qp6Om4Ef9EUtaC7gtWXwYlui2N2sI9FQqqi7mSwmp6Pw2-q40ocx8vVM8noPw5njqlXdmrN_gSvBYQ4XrnUVE3qvj5/s320/IMG_20241019_124454363.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiD7DW0MqdinZDaRtIjOXPDVL1v1pSfGZgULxnXVaO23UiP24Qxu60JG28RQNXhgk7HpLYYomsIiSlrJIzLjDccsO_of4LJEY5Hjs9RqN39pB2aYwUfhizv13mLqKvwV0QxItaFC5z2TEOAeQXsdyJmFXIeMte7rJEwB6fWoicbDVxGPf-gjS-mbB2NRzt6/s320/IMG_20241019_125910192.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9M0PNvysiEPG03pW3wwpDmZzAly06p0AWD7ABug6eFAk7YN3biY2PcFB2EGxozY97J0Dwm1BfO4gBSywI0Lay3ymWa4fOq995xz_j7IvWoNhZx27thZf0AUw7s1FOePwVBQtdQrhQlzT5GOYgTggGDzRUmcFNrX6tTGOOCyYRgnJnwEupBFyDxI7EmLMV/s320/IMG_20241019_130026233.jpg"
+            ],
+            cudico: [
+                "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w240-h240-n",
+                "https://blogger.googleusercontent.com/img/a/AVvXsEhHl1NLTIL12XqUdVqYXh6lr0KV0OI14s9B2Pzigb7oxcnGgyB8l51pzBRYZQw5LSFdlyNAJ25pC0-K5I3LsGGemi-7PPo_5I8PakaQP_bc08-2-gJGiY9VouoXBSSIH5NhRL-_8ZFr57GBFWU5UoiQOtpl8m-33658wx2iPpdEfSL2z1jZl94Vafo0fYNP=w240-h240-n",
+                "https://blogger.googleusercontent.com/img/a/AVvXsEiZzRo0sFf-fQ9g2zsfTucvKZkknFMtR_PTTPull5350pVUAPXe4mBEbLC5AvuSEetK5owxzcyOw_S9VmO28OSx5aUxgbmeU4uJXNvR0ypmw0UhkICquhQoSKlVa0CJoS9cg-jBECjHCrg2GToMfyhzp32SI3xlxUkePyBb3fQ9DzzL2n8VIFY0GDrrKzLy=w240-h240-n",
+                "https://blogger.googleusercontent.com/img/a/AVvXsEjavRRHgBdk7ihrg25eePjOQ0oPpSBqSvvKxL_RZ_gB6HHEjp0hinC8utTVZ1z95ZCuczggvES1CD6CdzcmEZTMS444diDSyuSPnIdeMk1wNyLTd36wXxJZEo6vz47MEGa2nGE7o5pr9_MbZ1yr-7HzvrGPPBgNOKnNUY5zA3QoXE5sw4thajJBoA7iSd9x=w240-h240-n",
+                "https://blogger.googleusercontent.com/img/a/AVvXsEjuQyvJ3DkX48TNloWihiUgI6Wb5LzOweVTA-2C7lvaPvcXqVrxgD3YBOx0nY6FXT6uXTWP5IzVGMCdXLDYGdmZbODZtKq26AIN23kO9b5Y3CkyAp28Fe7hNUIJtnFZAwgJD4oqrFPIOHljGpWygJy59qvnOzCtWIBUSHQB668F8rnYW-BzyvDp3bzPfNRK=w240-h240-n",
+                "https://blogger.googleusercontent.com/img/a/AVvXsEheAFQnZc_GF_GE5j0ZVmzEVnn5wXmkzhBiIm29I2hLrGCmxklkMGzDGDutqx2zyvxvfWjVRS5uJthG31C9BemIwkQWKCZJDT071_AB5KguBXP3mWB_w7gcmW0DBSvky5fuxmr16h29DSbEUqTWqg8MEFRdDqZb6OZwMRvT8hCO-PmFkC5J0AUCPLT7PKSj=w240-h240-n"
+            ],
+            '5tafaja': [
+                "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w320-h180-n",
+                "https://blogger.googleusercontent.com/img/a/AVvXsEjlPSo5uLmhS7jH-TZJWjDHXN6YTgWGpkq2Gi1V1XOENmRFbgBl7rYrJghNBnDYLUUB530LPrKk9GCRi5vbjtegtDAXRDxMowD6y8aj_LION0X_5RVWcqQ___AVCHOyfPV7JF0p4U9D49doWOdwIBVXeMcqm0yNrt4KvYIURYrF6oNITqtMgmK2aEvGnvl6=w320-h180-n",
+                "https://blogger.googleusercontent.com/img/a/AVvXsEjasFR7RMG29FUNfs5N8s_odoNQC0RqOxz_0-FNnCG2LnaeNU6UOc8Jp9E4sNqFUg12RtE1p4nZBl8N76fr0V2UzFTfXMYVXL6nw77iCSxca2l292YNXvfOxYp1qMoSZrbVSEwx7Lyz5rnN1obtJENGJCuI3dUblIyjQBUtYr51kb7Yd6T3SZyKE_66OUWo=w320-h180-n"
+            ],
+            conquil: [
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s320/IMG_20240914_132233162.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyw-EoKZ8vywy6xlV_YkVr8kgIoCmV29KRSFQXKsEy0sVsZ6H_g1TO-0ty2BqX5qE4ZaYWsKMliXcdAZSxW45uicGuNT7Pmt0pPm3jpr7-wYnWtA-pKtB2wgspFYIgzJ7lHqUf-DqFWRESGV-1kRAGUFs4fYGWSPYfwEaFrHzCUyQbCvKsCEYyq1zWtfvr/s320/IMG_20240914_132152407.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxIRW8Herkco43vv_DEaNmAQTxqpqnYsLlGrRhH467-yxKkmGmBLiMGwPCO8SU5b9bIuxwnOU0azBI2F_8ZqNh0UxRI36npW-gvG-gfjizSJ2s4d2bmq2QcZOet2-t3250Y2PAhP75Uuh05uHy1aVO6HX4sxAx5wH2n2gfmJLyFqBE5h8iIjZNxRDLZy2J/s320/IMG_20240914_132104574.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixcJ7vJNlYTojYF_orGpPdAUoqfmdwNYU0gMVybh1p0qU7zk4f5GUdRq9lTa8oD_MjKk7IfVoDjW4bi2UhtAy51nuwotB25Oix7-zd6pXKN0UFbDXyg1ljifufzCID8swDviCJBwCYOb34O1r7psOQ7xPrKVhnmV7VU5dbIfgEfcLzOECLVjA1HktYA9L6/s320/IMG_20240914_133211723.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtMICRdJHWg_iU3N8_dMXn_5vyVPYTLFNouFH-9LxtB9J0gBFfmuWJfK2JehItanO1h30-anjM31DsRlT-GkP5l0k0L-CstYX49mlEtH_p9rvg_qTcb6Djukblr_rpT5dbEBxPjV0fl_xaM33D_N-n2HgPyXyuCFBzsVmeQ9CsHRLv0RYQJDzwMp7ozuDR/s320/IMG_20240914_133136275.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEho75dP2Q890JK0hV8KzZJfdOOhdN44NuTXpp-0c8aphXShmLTzHHwqgdex_sVQiLCN8HX0Jmb_Je3YtR3Z5WyIaXZvXRHHcUfWd9MF6wtsnPJkTuDaI7kzMRXOlz30ZFr2UCrnqrLBCGCgJCL05SdacNXvTlJSX7sksgTImWic1poI9K1J-vlnUrEJHJX_/s320/IMG_20240914_132910105.jpg"
+            ]
         };
-        const wa = '56974219730';
+        const properties = {
+            chesque: {name: "Parcela Chesque", price: "$44.000.000", location: "10 min de Lican Ray", size: "5.000 m²", description: "Hermosa parcela con árboles nativos de arrayan. Empalme eléctrico conectado. Acceso a estero cercano (200 mts) para pesca y camping. Sector tranquilo y seguro.", features: ["5.000 m²", "Árboles nativos", "Empalme conectado", "Acceso a estero", "Plusvalía 4%"], images: galleries.chesque, whatsapp: "Parcela%20Chesque"},
+            cudico: {name: "Parcela Cudico", price: "$58.000.000", location: "4km de Lican Ray", size: "5.000 m²", description: "A solo 300 metros de la carretera principal. Luz a conectar en la propiedad. Agua mediante pozo o inscripción en APR.", features: ["5.000 m²", "A 300mts carretera", "Luz a conectar", "Agua: pozo o APR"], images: galleries.cudico, whatsapp: "Parcela%20Cudico"},
+            '5tafaja': {name: "Parcela 5ta Faja", price: "$48.000.000", location: "18 min Villarrica", size: "5.000 m²", description: "Mucho árbol nativo y luz soterrada. Portón de acceso. A 500 metros de la carretera hacia Pitrufquén.", features: ["5.000 m²", "Árbol nativo", "Luz soterrada", "Portón acceso"], images: galleries['5tafaja'], whatsapp: "Parcela%205ta%20Faja"},
+            conquil: {name: "Parcela Conquil", price: "$65.000.000", location: "km 6 Camino Conquil", size: "5.000 m²", description: "Vista panorámica completa al volcán. 1 hectárea de parque junto al río como área común. Exclusiva.", features: ["5.000 m²", "Vista al volcán", "1 ha parque común"], images: galleries.conquil, whatsapp: "Parcela%20Conquil"},
+            losvolcanes: {name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", description: "3 dormitorios + sala de escritorio. Cocina living-comedor. 2 bodegas. Estacionamiento. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio", "1 Baño", "Cocina living"], images: galleries.losvolcanes, whatsapp: "Casa%20Los%20Volcanes"}
+        };
+        const wa = "56974219730";
+        let currentGallery = [], currentIndex = 0;
         function openProperty(id) {
             const p = properties[id];
-            document.getElementById('propertyContent').innerHTML = `<div class="mb-6"><button onclick="closeProperty()" class="text-celest mb-4"><i class="fas fa-arrow-left"></i> Volver</button><h2 class="text-3xl font-bold mb-2">${p.name}</h2><div class="text-white/60"><i class="fas fa-map-marker-alt text-celest"></i> ${p.location} | <i class="fas fa-ruler-combined text-celest"></i> ${p.size}</div></div><div class="grid md:grid-cols-2 gap-8"><div><img src="${p.images[0]}" class="rounded-xl mb-4 w-full" onclick="openGallery('${id}')"></div><div class="bg-darkcard rounded-xl p-6"><p class="text-white/80 mb-4">${p.description}</p><p class="text-3xl font-bold text-celest mb-4">${p.price}</p><a href="https://wa.me/${wa}?text=Información ${p.whatsapp}" class="btn-accent py-3 rounded-full text-center block"><i class="fab fa-whatsapp"></i> Consultar</a><ul class="mt-4 space-y-2">${p.features.map(f=>`<li><i class="fas fa-check text-celest"></i> ${f}</li>`).join('')}</ul></div></div>`;
+            if (!p) return;
+            document.getElementById('propertyContent').innerHTML = `<div class="mb-6"><button onclick="closeProperty()" class="text-celest mb-4"><i class="fas fa-arrow-left"></i> Volver</button><h2 class="text-3xl font-bold mb-2">${p.name}</h2><div class="text-white/60"><i class="fas fa-map-marker-alt text-celest"></i> ${p.location} | <i class="fas fa-ruler-combined text-celest"></i> ${p.size}</div></div><div class="grid md:grid-cols-2 gap-8"><div><img src="${p.images[0]}" class="rounded-xl mb-4 w-full" onclick="openGallery('${id}')"><div class="gallery-grid">${p.images.slice(1,7).map((img,i)=>`<div class="gallery-item" onclick="openGallery('${id}')"><img src="${img.replace('/s320/','/s400/').replace('=w320-','=w400-').replace('=w240-','=w400-')}" alt="Foto${i+2}"></div>`).join('')}</div></div><div class="bg-darkcard rounded-xl p-6"><p class="text-white/80 mb-4">${p.description}</p><p class="text-3xl font-bold text-celest mb-4">${p.price}</p><a href="https://wa.me/${wa}?text=Información ${p.whatsapp}" class="btn-accent py-3 rounded-full text-center block"><i class="fab fa-whatsapp"></i> Consultar</a><ul class="mt-4 space-y-2">${p.features.map(f=>`<li><i class="fas fa-check text-celest"></i> ${f}</li>`).join('')}</ul></div></div>`;
             document.getElementById('propertyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-        function closeProperty() { document.getElementById('propertyModal').classList.remove('active'); }
-        let currentGallery = [], currentIdx = 0;
-        function openGallery(id) { currentGallery = properties[id].images; currentIdx = 0; document.getElementById('lightbox-img').src = currentGallery[0]; document.getElementById('lightbox').classList.add('active'); }
+        function closeProperty() { document.getElementById('propertyModal').classList.remove('active'); document.body.style.overflow = ''; }
+        function openGallery(id) { currentGallery = properties[id].images; currentIndex = 0; if (currentGallery.length > 0) { const hq = currentGallery.map(img => img.replace('/s320/','/s1600/').replace('=w320-','=w800-').replace('=w240-','=w800-').replace('=w180-','=w800-')); document.getElementById('lightbox-img').src = hq[0]; currentGallery = hq; document.getElementById('lightbox').classList.add('active'); } }
         function closeGallery() { document.getElementById('lightbox').classList.remove('active'); }
-        function prevImage(e) { e.stopPropagation(); currentIdx = (currentIdx - 1 + currentGallery.length) % currentGallery.length; document.getElementById('lightbox-img').src = currentGallery[currentIdx]; }
-        function nextImage(e) { e.stopPropagation(); currentIdx = (currentIdx + 1) % currentGallery.length; document.getElementById('lightbox-img').src = currentGallery[currentIdx]; }
+        function prevImage(e) { e.stopPropagation(); currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; document.getElementById('lightbox-img').src = currentGallery[currentIndex]; }
+        function nextImage(e) { e.stopPropagation(); currentIndex = (currentIndex + 1) % currentGallery.length; document.getElementById('lightbox-img').src = currentGallery[currentIndex]; }
         function toggleChat() { document.getElementById('chat-panel').classList.toggle('active'); }
-        function sendOption(opt) {
-            const msgs = { parcelas: 'Quiero ver las parcelas', casa: 'Cuéntame sobre la casa', precios: '¿Precios?', recomendada: '¿Cuál me recomiendas?' };
-            addMsg(msgs[opt] || 'Hola', 'user'); setTimeout(() => getBotResponse(opt), 500);
-        }
-        function sendMessage() {
-            const input = document.getElementById('user-input');
-            if (input.value.trim()) { addMsg(input.value, 'user'); processMsg(input.value); input.value = ''; }
-        }
-        function addMsg(text, who) {
-            const div = document.createElement('div'); div.className = 'chat-bubble ' + who; div.innerHTML = text; document.getElementById('chat-messages').appendChild(div); document.getElementById('chat-messages').scrollTop = 9999;
-        }
-        function getBotResponse(opt) {
-            const r = { 
-                parcelas: '🎯 Parcelas: Chesque $44M⭐, 5ta Faja $48M, Cudico $58M, Conquil $65M. ✅ Plusvalía 4% anual. ¿Cuál te interesa?',
-                casa: '🏠 Casa Los Volcanes $89M - 3 dormitorios + escritorio. Lista para habitar.',
-                precios: '💰 Parcelas $44M-$65M. Casa $89M. ✅ Plusvalía 4% anual garantizada!',
-                recomendada: '⭐ Mi recomendación: Parcela Chesque $44M. ✅ Mejor precio + árboles nativos + empalme conectado. ¡La mejor inversión!'
-            };
-            addMsg(r[opt] || '¿Algo más?', 'bot');
-        }
-        function processMsg(m) {
-            let t = m.toLowerCase(), r = 'Escríbenos al <a href="https://wa.me/'+wa+'" target="_blank" style="color:#4ade80">+56 9 7421 9730</a>';
-            if (t.includes('parcela')) r = '🎯 Parcelas $44M-$65M. La más popular: Chesque ($44M). ✅ Plusvalía 4% anual.';
-            else if (t.includes('casa')) r = '🏠 Casa Los Volcanes $89M - 3 dormitorios, sala de escritorio.';
-            else if (t.includes('precio')) r = '💰 $44M-$89M. ✅ Plusvalía 4% anual garantizada!';
-            else if (t.includes('ubicación')||t.includes('donde')) r = '📍 Villarrica, Chile. Cerca de Lican Ray y camino a Pucón.';
-            else if (t.includes('hola')) r = '¡Hola! 😊 ¿En qué puedo ayudarte?';
-            setTimeout(() => addMsg(r, 'bot'), 600);
-        }
-        document.addEventListener('mousemove', (e) => {
-            document.getElementById('cursor').style.left = e.clientX-10+'px'; document.getElementById('cursor').style.top = e.clientY-10+'px';
-            document.getElementById('cursorDot').style.left = e.clientX-3+'px'; document.getElementById('cursorDot').style.top = e.clientY-3+'px';
-        });
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => document.getElementById('cursor').classList.add('hover'));
-            el.addEventListener('mouseleave', () => document.getElementById('cursor').classList.remove('hover'));
-        });
+        function sendOption(opt) { const msgs = { parcelas: 'Quiero ver las parcelas', casa: 'Cuéntame sobre la casa', precios: '¿Precios?', recomendada: '¿Cuál me recomiendas?' }; addMsg(msgs[opt] || 'Hola', 'user'); setTimeout(() => getBotResponse(opt), 500); }
+        function sendMessage() { const input = document.getElementById('user-input'); if (input.value.trim()) { addMsg(input.value, 'user'); processMsg(input.value); input.value = ''; } }
+        function addMsg(text, who) { const div = document.createElement('div'); div.className = 'chat-bubble ' + who; div.innerHTML = text; document.getElementById('chat-messages').appendChild(div); document.getElementById('chat-messages').scrollTop = 9999; }
+        function getBotResponse(opt) { const r = { parcelas: '🎯 Parcelas: Chesque $44M⭐, 5ta Faja $48M, Cudico $58M, Conquil $65M. ✅ Plusvalía 4% anual. ¿Cuál te interesa?', casa: '🏠 Casa Los Volcanes $89M - 3 dormitorios + escritorio. Lista para habitar.', precios: '💰 Parcelas $44M-$65M. Casa $89M. ✅ Plusvalía 4% anual garantizada!', recomendada: '⭐ Mi recomendación: Parcela Chesque $44M. ✅ Mejor precio + árboles nativos + empalme conectado. ¡La mejor inversión!' }; addMsg(r[opt] || '¿Algo más?', 'bot'); }
+        function processMsg(m) { let t = m.toLowerCase(), r = 'Escríbenos al <a href="https://wa.me/'+wa+'" target="_blank" style="color:#4ade80">+56 9 7421 9730</a>'; if (t.includes('parcela')) r = '🎯 Parcelas $44M-$65M. La más popular: Chesque ($44M). ✅ Plusvalía 4% anual.'; else if (t.includes('casa')) r = '🏠 Casa Los Volcanes $89M - 3 dormitorios, sala de escritorio.'; else if (t.includes('precio')) r = '💰 $44M-$89M. ✅ Plusvalía 4% anual garantizada!'; else if (t.includes('ubicación')||t.includes('donde')) r = '📍 Villarrica, Chile. Cerca de Lican Ray y camino a Pucón.'; else if (t.includes('hola')) r = '¡Hola! 😊 ¿En qué puedo ayudarte?'; setTimeout(() => addMsg(r, 'bot'), 600); }
+        document.addEventListener('mousemove', (e) => { document.getElementById('cursor').style.left = e.clientX-10+'px'; document.getElementById('cursor').style.top = e.clientY-10+'px'; document.getElementById('cursorDot').style.left = e.clientX-3+'px'; document.getElementById('cursorDot').style.top = e.clientY-3+'px'; });
+        document.querySelectorAll('a, button').forEach(el => { el.addEventListener('mouseenter', () => document.getElementById('cursor').classList.add('hover')); el.addEventListener('mouseleave', () => document.getElementById('cursor').classList.remove('hover')); });
         new IntersectionObserver(e=>e.forEach(el=>el.isIntersecting&&el.target.classList.add('active')),{threshold:0.1}).observe(document.querySelectorAll('.reveal').forEach(el=>el));
     </script>
 </body>
