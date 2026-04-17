@@ -298,17 +298,23 @@
         .chat-msg.bot { background: #1a1a1a; color: #fff; align-self: flex-start; }
         .chat-msg.user { background: var(--celest); color: #000; margin-left: auto; }
         
-        .chat-tip {
-            background: rgba(103,212,252,0.1);
-            border: 1px solid var(--celest);
-            padding: 8px 10px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            font-size: 11px;
-            color: var(--celest);
+        .progreso-bar {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            padding: 8px 12px;
+            border-bottom: 1px solid #222;
         }
         
-        .chat-tip i { margin-right: 5px; }
+        .progreso-step {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+        }
+        
+        .progreso-step.active { background: var(--celest); }
+        .progreso-step.completo { background: #22c55e; }
         
         .quick-btns { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-top: 1px solid #222; }
         
@@ -347,24 +353,6 @@
             cursor: pointer;
             font-size: 12px;
         }
-        
-        .progreso-bar {
-            display: flex;
-            justify-content: center;
-            gap: 4px;
-            padding: 8px 12px;
-            border-bottom: 1px solid #222;
-        }
-        
-        .progreso-step {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #333;
-        }
-        
-        .progreso-step.active { background: var(--celest); }
-        .progreso-step.completo { background: #22c55e; }
         
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; padding: 30px 20px; overflow-y: auto; }
         .modal.active { display: block; }
@@ -522,7 +510,7 @@
         <div class="container properties">
             <article class="property-card" onclick="openProperty('losvolcanes')">
                 <div class="property-img">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg" alt="Casa Los Volcanes">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOqedl7iWXekPSLzP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg" alt="Casa Los Volcanes">
                     <span class="property-badge">Disponible</span>
                 </div>
                 <div class="property-details">
@@ -565,8 +553,8 @@
     <div class="chat-panel active" id="chatPanel">
         <div class="chat-header">
             <div>
-                <h4>👨‍💼 Asesor Timepo Propiedades</h4>
-                <p>Expertos en inversiones</p>
+                <h4>👨‍💼 Asesor Tiempo Propiedades</h4>
+                <p> Expertos en inversiones</p>
             </div>
             <button onclick="toggleChat()" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">×</button>
         </div>
@@ -582,7 +570,7 @@
         <div class="chat-messages" id="chatMessages">
             <div class="chat-msg bot">
                 <b>👋 Hola! Soy tu asesor de Tiempo Propiedades</b><br><br>
-                Antes de mostrarte las propiedades, me gustaría conocerte mejor para ofrecerte exactly lo que buscas.<br><br>
+                Antes de mostrarte las propiedades, me gustaría conocerte mejor para ofrecerte exactamente lo que buscas.<br><br>
                 <b>¿Cómo te llamas?</b>
             </div>
         </div>
@@ -599,7 +587,6 @@
     </div>
 
     <script>
-        // Base de datos de clientes
         let cliente = {
             nombre: '',
             necesidad: '',
@@ -615,11 +602,56 @@
         let paso = 1;
         
         const properties = {
-            chesque: { name: "Parcela Chesque", price: "$44.000.000", location: "10 min de Lican Ray", size: "5.000 m²", desc: "Hermosa parcela con árboles nativos. Empalme eléctrico conectado.", features: ["5.000 m²", "Árboles nativos", "Plusvalía 4%"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg", map: "https://www.google.com/maps?q=-39.4285,-72.2314&z=15&output=embed" },
-            cudico: { name: "Parcela Cudico", price: "$58.000.000", location: "4km de Lican Ray", size: "5.000 m²", desc: "A solo 300 metros de la carretera principal. Luz a conectar.", features: ["5.000 m²", "A 300mts carretera"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n", map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed" },
-            '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", location: "18 min Villarrica", size: "5.000 m²", desc: "Mucho árbol nativo y luz soterrada.", features: ["5.000 m²", "Luz soterrada"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n", map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed" },
-            conquil: { name: "Parcela Conquil", price: "$65.000.000", location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Vista panorámica al volcán. 1 ha parque común.", features: ["5.000 m²", "Vista al volcán"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg", map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed" },
-            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRGbqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" }
+            chesque: { 
+                name: "Parcela Chesque", 
+                price: "$44.000.000", 
+                location: "10 min de Lican Ray", 
+                size: "5.000 m²", 
+                desc: "Hermosa parcela con árboles nativos. Empalme eléctrico conectado.", 
+                features: ["5.000 m²", "Árboles nativos", "Plusvalía 4%"], 
+                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg", 
+                map: "https://www.google.com/maps?q=-39.4285,-72.2314&z=15&output=embed" 
+            },
+            cudico: { 
+                name: "Parcela Cudico", 
+                price: "$58.000.000", 
+                location: "4km de Lican Ray", 
+                size: "5.000 m²", 
+                desc: "A solo 300 metros de la carretera principal. Luz a conectar.", 
+                features: ["5.000 m²", "A 300mts carretera"], 
+                img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n", 
+                map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed" 
+            },
+            '5tafaja': { 
+                name: "Parcela 5ta Faja", 
+                price: "$48.000.000", 
+                location: "18 min Villarrica", 
+                size: "5.000 m²", 
+                desc: "Mucho árbol nativo y luz soterrada.", 
+                features: ["5.000 m²", "Luz soterrada"], 
+                img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n", 
+                map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed" 
+            },
+            conquil: { 
+                name: "Parcela Conquil", 
+                price: "$65.000.000", 
+                location: "km 6 Camino Conquil", 
+                size: "5.000 m²", 
+                desc: "Vista panorámica al volcán. 1 ha parque común.", 
+                features: ["5.000 m²", "Vista al volcán"], 
+                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg", 
+                map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed" 
+            },
+            losvolcanes: { 
+                name: "Casa Los Volcanes", 
+                price: "$89.000.000", 
+                location: "Sector Los Volcanes", 
+                size: "120 m²", 
+                desc: "3 dormitorios + sala de escritorio. Lista para habitar.", 
+                features: ["3 Dormitorios", "Sala escritorio"], 
+                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UzaXQ0aMyOqeDl7iWXekPSLzP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", 
+                map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" 
+            }
         };
         
         const wa = "56974219730";
@@ -657,37 +689,37 @@
             let r = '';
             
             switch(paso) {
-                case 1: // Nombre
+                case 1:
                     cliente.nombre = msg;
                     r = `<b>¡Mucho gusto, ${msg}! 👋</b><br><br>Ahora cuéntame,<br><b>¿Qué tipo de propiedad buscas?</b><br><br>📍 <i>Parcela para invertir / Casa para vivir / Terreno</i>`;
                     paso = 2;
                     break;
                     
-                case 2: // Necesidad
+                case 2:
                     cliente.necesidad = msg;
                     r = `<b>¡Entendido! ${msg}</b><br><br>💰 <b>¿Cuál es tu presupuesto?</b><br><br>🎯 <i>$40-50M / $50-60M / $60-80M / $80M+</i>`;
                     paso = 3;
                     break;
                     
-                case 3: // Presupuesto
+                case 3:
                     cliente.presupuesto = msg;
-                    r = `<b>Perfecto, ${cliente.nombre}!</b> 💰<br><br>🐕 <b>¿Tienes mascotas?</b><br><br>🐾 <i>Sí, tengo perros / No, no tengo / Me gustaría tener</i>`;
+                    r = `<b>¡Perfecto, ${cliente.nombre}!</b> 💰<br><br>🐕 <b>¿Tienes mascotas?</b><br><br>🐾 <i>Sí, tengo perros / No, no tengo / Me gustaría tener</i>`;
                     paso = 4;
                     break;
                     
-                case 4: // Mascotas
+                case 4:
                     cliente.tieneMascotas = msg;
                     r = `<b>¡Qué rico! ${msg}</b><br><br>👶 <b>¿Tienes niños o planeas tener familia?</b><br><br>😊 <i>Sí, tengo niños / No, somos adultos / Planeamos familia</i>`;
                     paso = 5;
                     break;
                     
-                case 5: // Niños
+                case 5:
                     cliente.tieneNinos = msg;
                     r = `<b>¡Perfecto! ${msg}</b><br><br>📍 <b>¿De dónde eres? ¿En qué ciudad vives?</b><br><br>🌆 <i>Santiago / Concepción / Otra ciudad...</i>`;
                     paso = 6;
                     break;
                     
-                case 6: // Ciudad
+                case 6:
                     cliente.ciudad = msg;
                     r = `<b>¡Excelente! 🌟</b><br><br>Ahora tengo todo lo que necesito para найти tu propiedad идеальную.<br><br>Déjame mostrarte las mejores opciones que temos based on tus preferences:<br><br>` +
                         `<b>🏆 MI RECOMENDACIÓN:</b><br><br>` +
@@ -702,7 +734,7 @@
                     paso = 7;
                     break;
                     
-                case 7: // Interés
+                case 7:
                     if (t.includes('sí') || t.includes('si') || t.includes('quiero')) {
                         cliente.propiedadInteres = 'Parcela Chesque';
                         r = `<b>¡Excelente elección! 🎉</b><br><br>Te ago el contacto con nuestros asesores para coordinar una visita:<br><br>` +
@@ -735,7 +767,7 @@
                     break;
                     
                 default:
-                    r = `¿En qué más puedo ayudarte?，我们可以 mostrarte las parcelas disponíveis.`;
+                    r = `¿En qué más puedo ayudarte?`;
             }
             
             setTimeout(() => {
@@ -746,19 +778,9 @@
         
         function saveToDatabase() {
             console.log('💾 Cliente registrado:', cliente);
-            
             const db = JSON.parse(localStorage.getItem('clientesTP') || '[]');
             db.push(cliente);
             localStorage.setItem('clientesTP', JSON.stringify(db));
-            
-            fetch('https://api.vercel.com/v1/integrations', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    data: cliente,
-                    timestamp: new Date().toISOString()
-                })
-            }).catch(e => console.log('DB local guardada'));
         }
         
         function openProperty(id) {
