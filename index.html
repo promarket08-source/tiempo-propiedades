@@ -113,10 +113,6 @@
         .progreso-step.active { background: var(--celest); }
         .progreso-step.completo { background: #22c55e; }
         
-        .quick-btns { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-top: 1px solid #222; }
-        .quick-btn { background: transparent; border: 1px solid var(--celest); color: var(--celest); padding: 5px 10px; border-radius: 15px; font-size: 11px; cursor: pointer; }
-        .quick-btn:hover { background: var(--celest); color: #000; }
-        
         .chat-input { display: flex; padding: 10px; border-top: 1px solid #222; gap: 8px; }
         .chat-input input { flex: 1; background: #1a1a1a; border: none; color: #fff; padding: 8px 12px; border-radius: 20px; outline: none; font-size: 12px; }
         .chat-input button { width: 36px; height: 36px; background: linear-gradient(135deg, var(--celest), #3b82f6); border: none; border-radius: 50%; color: #fff; cursor: pointer; font-size: 12px; }
@@ -130,7 +126,7 @@
         .modal-grid { display: grid; grid-template-columns: 1fr; gap: 25px; max-width: 900px; margin: 0 auto; }
         @media(min-width:768px) { .modal-grid { grid-template-columns: 1fr 1fr; } }
         
-        .modal-img { width: 100%; border-radius: 15px; }
+        .modal-img { width: 100%; border-radius: 15px; cursor: pointer; }
         .modal-info { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; }
         .modal-info p { color: rgba(255,255,255,0.8); margin-bottom: 20px; }
         .modal-price { font-size: 32px; font-weight: 700; color: var(--celest); margin-bottom: 20px; }
@@ -143,6 +139,21 @@
         .modal-features { list-style: none; }
         .modal-features li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
         .modal-features li i { color: var(--celest); margin-right: 10px; }
+        
+        .gallery-thumbs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+        .gallery-thumb { width: 60px; height: 60px; border-radius: 8px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
+        .gallery-thumb:hover, .gallery-thumb.active { border-color: var(--celest); }
+        .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .photo-count { color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 10px; }
+        
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox-img { max-width: 90%; max-height: 85vh; border-radius: 8px; object-fit: contain; }
+        .lightbox-close { position: absolute; top: 20px; right: 20px; font-size: 40px; color: #fff; cursor: pointer; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; cursor: pointer; padding: 20px; }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
         
         @media(max-width:768px) { .nav-links { display: none; } .hero-stats { gap: 25px; } .stat-num { font-size: 32px; } }
     </style>
@@ -317,16 +328,58 @@
         <div id="modalContent"></div>
     </div>
 
+    <div class="lightbox" id="lightbox" onclick="closeGallery()">
+        <span class="lightbox-close" onclick="closeGallery()">×</span>
+        <span class="lightbox-nav lightbox-prev" onclick="prevImage(event)">❮</span>
+        <img id="lightboxImg" class="lightbox-img" src="" alt="">
+        <span class="lightbox-nav lightbox-next" onclick="nextImage(event)">❯</span>
+    </div>
+
     <script>
         let cliente = { nombre: '', necesidad: '', presupuesto: '', tieneMascotas: '', tieneNinos: '', ciudad: '', propiedadInteres: '', fecha: new Date().toISOString() };
         let paso = 1;
         
+        const galleries = {
+            losvolcanes: [
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOqedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s320/IMG_20250616_162626843_HDR.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5eUxL-SjHHViLv8CtAFAxCB7P4mxWyAXkOHvHf8bwNI-GDwm9s_zkiPtqhw5-vVrrT_iLI9qFcI_OexNqEG1-5hqYGhREaiWujQ_76hKdIr74N1aIkxORXZo9mnGtSQUpp5p_dQDGRyl_NGPvscMb4zZIpEqzDe1OfdZ5N8aXCRnTgbh0-foWJ4eNOxN1/s320/IMG_20250616_163211524.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3eMem8f8R07zAzlcPnJdIlBZ7wv2-ZW8cs069AOGs4qfZpYh6huvha8ylxLM1YNex9DD00ghGHM1Xli8EjBuN_Qqnern0vrU6Y8Nwvl0MW20dhxZEpXmJVE5ENf2ejKfZM3mSSXPR88mf00MwWjXmfoQshDNNonYe8zYWe1r0yGbpyTcLh3C4Ua5WwXXx/s320/IMG_20250616_163255514.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSl0Kof8Gg_byLM4YnQ7BOhunjPn3NNFlvNHVnoxBoNwq6MJtgCcWe2ulLI1tdYD-xTNariovnqxXCVgjyTtD5-8tTAaMqT27Xb6d4WdNJ2M5dQ4n-jBijW3S-tQQySO_MBB6oo8HUg2EYpYHRzwcGUmkHtbw1j-hIkg7ZgDrCIUi3Hb1JLkEYzszzOqzG/s320/IMG_20250616_163502825.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLRHbqC_gu3DStEdb1jk_fgUl6Sw-t6Rhr2GC6dVUkvpmfzILUDxNYbloDQahDj5VqymAUy2BLZnR2GbZhVWlHVfYSCIc3krHzAJBW20skpDgTV8BeYxfdhnA4jdPiRvlLuN_oLBlt_e2KTIEn7E-P84TlNts1I_QXqFFbmPgsteGROoyjU69l9ehmo1SL/s320/IMG_20250616_163737632_HDR.jpg'
+            ],
+            chesque: [
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s320/IMG_20241019_121008673.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPDkCoUpQ-L8YaDC3-g6gZezwMDqN4f5RIPqkNacr-K3vzyWGO6pS9Ny-o863FmNBI_7QMoidWCY18y4sE6pEqNJZceWw1W-3p0hVuBRSgzaklnqLniTqfICaSjUwmuvWQGS8cRMVbeEfuEp7dNmX53HDEButCzQNy8eGmqsmBv32XFluHI8ENQ863hihP/s320/IMG_20241019_122349923.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDVBbcultgK2cOTW8XJpHULRKF3omdG1ieXisFekyAFD43BlwxFC-wDaNIL7dXovULqlln8bas0LDM6td9j09IopAUF4VmiR-I_YNxME46FY0rrwDA-veYZQ8PaYu0kaEtrnV4Qi-cb5SIICFEU9FK7kuXIjHHq7r4XtK60kUBx7izfM27NI3lhZMmFtl6/s320/IMG_20241019_124021044.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRJ5LVS1uZoxlCTDvA8yq1xRaHiXOPkAHJTMMWMPHJ02AkvzGm5KGvKufpNpzzb_89pb2BrujMcjuspmsvGrqOadElPzmJA-7qN5Qp6Om4Ef9EUtaC7gtWXwYlui2N2sI9FQqqi7mSwmp6Pw2-q40ocx8vVM8noPw5njqlXdmrN_gSvBYQ4XrnUVE3qvj5/s320/IMG_20241019_124454363.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGLyKMbOYOEZULu1ogRFqKRNjnDF589Q08QxjOrEHt7MAWgNqh5zUsNPVzZ5OUzizGEGfbFg9PkcRQQ5dhbyK9z0FN5_BWnB_ykctJ0Sb15Q0KIyRxiYaV6bhAupFQLpC1fHcRjHxXxB0qrQT4jc-lqEvpQd1VlRVwdO4ZsxPNrYrW8RQQzYJyfgHCfDSw/s320/IMG_20241019_121552304.jpg'
+            ],
+            cudico: [
+                'https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w240-h240-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEhHl1NLTIL12XqUdVqYXh6lr0KV0OI14s9B2Pzigb7oxcnGgyB8l51pzBRYZQw5LSFdlyNAJ25pC0-K5I3LsGGemi-7PPo_5I8PakaQP_bc08-2-gJGiY9VouoXBSSIH5NhRL-_8ZFr57GBFWU5UoiQOtpl8m-33658wx2iPpdEfSL2z1jZl94Vafo0fYNP=w240-h240-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEiZzRo0sFf-fQ9g2zsfTucvKZkknFMtR_PTTPull5350pVUAPXe4mBEbLC5AvuSEetK5owxzcyOw_S9VmO28OSx5aUxgbmeU4uJXNvR0ypmw0UhkICquhQoSKlVa0CJoS9cg-jBECjHCrg2GToMfyhzp32SI3xlxUkePyBb3fQ9DzzL2n8VIFY0GDrrKzLy=w240-h240-n'
+            ],
+            '5tafaja': [
+                'https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEjlPSo5uLmhS7jH-TZJWjDHXN6YTgWGpkq2Gi1V1XOENmRFbgBl7rYrJghNBnDYLUUB530LPrKk9GCRi5vbjtegtDAXRDxMowD6y8aj_LION0X_5RVWcqQ___AVCHOyfPV7JF0p4U9D49doWOdwIBVXeMcqm0yNrt4KvYIURYrF6oNITqtMgmK2aEvGnvl6=w320-h180-n',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEjasFR7RMG29FUNfs5N8s_odoNQC0RqOxz_0-FNnCG2LnaeNU6UOc8Jp9E4sNqFUg12RtE1p4nZBl8N76fr0V2UzFTfXMYVXL6nw77iCSxca2l292YNXvfOxYp1qMoSZrbVSEwx7Lyz5rnN1obtJENGJCuI3dUblIyjQBUtYr51kb7Yd6T3SZyKE_66OUWo=w320-h180-n'
+            ],
+            conquil: [
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s320/IMG_20240914_132233162.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyw-EoKZ8vywy6xlV_YkVr8kgIoCmV29KRSFQXKsEy0sVsZ6H_g1TO-0ty2BqX5qE4ZaYWsKMliXcdAZSxW45uicGuNT7Pmt0pPm3jpr7-wYnWtA-pKtB2wgspFYIgzJ7lHqUf-DqFWRESGV-1kRAGUFs4fYGWSPYfwEaFrHzCUyQbCvKsCEYyq1zWtfvr/s320/IMG_20240914_132152407.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxIRW8Herkco43vv_DEaNmAQTxqpqnYsLlGrRhH467-yxKkmGmBLiMGwPCO8SU5b9bIuxwnOU0azBI2F_8ZqNh0UxRI36npW-gvG-gfjizSJ2s4d2bmq2QcZOet2-t3250Y2PAhP75Uuh05uHy1aVO6HX4sxAx5wH2n2gfmJLyFqBE5h8iIjZNxRDLZy2J/s320/IMG_20240914_132104574.jpg'
+            ]
+        };
+
+        let currentGallery = [];
+        let currentIndex = 0;
+
         const properties = {
             chesque: { name: "Parcela Chesque", price: "$44.000.000", location: "10 min de Lican Ray", size: "5.000 m²", desc: "Hermosa parcela con árboles nativos. Empalme eléctrico conectado.", features: ["5.000 m²", "Árboles nativos", "Plusvalía 4%"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg", map: "https://www.google.com/maps?q=-39.4285,-72.2314&z=15&output=embed" },
             cudico: { name: "Parcela Cudico", price: "$58.000.000", location: "4km de Lican Ray", size: "5.000 m²", desc: "A solo 300 metros de la carretera principal. Luz a conectar.", features: ["5.000 m²", "A 300mts carretera"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n", map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed" },
             '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", location: "18 min Villarrica", size: "5.000 m²", desc: "Mucho árbol nativo y luz soterrada.", features: ["5.000 m²", "Luz soterrada"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n", map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed" },
             conquil: { name: "Parcela Conquil", price: "$65.000.000", location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Vista panorámica al volcán. 1 ha parque común.", features: ["5.000 m²", "Vista al volcán"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg", map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed" },
-            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" }
+            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOqedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" }
         };
         
         const wa = "56974219730";
@@ -391,11 +444,11 @@
                     break;
                 case 6:
                     cliente.ciudad = msg;
-                    r = `<b>¡Excelente! 🌟</b><br><br>Ahora tengo todo lo que necesito para найти tu propiedad идеальную.<br><br>Déjame mostrarte las mejores opciones:<br><br>` +
+                    r = `<b>¡Excelente! 🌟</b><br><br>Ahora tengo todo lo que necesito para encontrar tu propiedad ideal.<br><br>Déjame mostrarte las mejores opciones:<br><br>` +
                         `<b>🏆 MI RECOMENDACIÓN:</b><br><br>` +
                         `⭐ <b>Parcela Chesque</b> - $44M<br>` +
                         `• La mejor relación precio-calidad<br>` +
-                        `• Árboles nativos de arrayan<br>` +
+                        `• Árboles nativos de arrayán<br>` +
                         `• Empalme eléctrico conectado<br>` +
                         `• <b>Plusvalía garantizada 4%</b><br><br>` +
                         `<b>📱 ¿Te interesa esta propiedad?</b><br>` +
@@ -405,7 +458,7 @@
                 case 7:
                     if (t.includes('sí') || t.includes('si') || t.includes('quiero')) {
                         cliente.propiedadInteres = 'Parcela Chesque';
-                        r = `<b>¡Excelente elección! 🎉</b><br><br>Te ago el contacto con nuestros asesores:<br><br>` +
+                        r = `<b>¡Excelente elección! 🎉</b><br><br>Te paso el contacto con nuestros asesores:<br><br>` +
                             `<a href="https://wa.me/${wa}?text=Hola,%20soy%20${encodeURIComponent(cliente.nombre)}.%20Estoy%20interesado%20en%20Parcela%20Chesque" class="btn-whatsapp" style="display:inline-block;margin-top:10px;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;">Contactar Asesor 📱</a><br><br>` +
                             `<b>📋 Resumen:</b><br>• Presupuesto: ${cliente.presupuesto}<br>• Necesidad: ${cliente.necesidad}<br>• Ciudad: ${cliente.ciudad}<br><br>` +
                             `<i>¡Gracias por tu interés! 😊</i>`;
@@ -446,9 +499,19 @@
             const p = properties[id];
             const msg = `Hola! Estoy interesado en ${p.name}`;
             const mapUrl = `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`;
+            
+            const propGalleries = galleries[id] || [p.img];
+            const thumbsHtml = propGalleries.map((img, i) => 
+                `<div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="openGallery('${id}', ${i})"><img src="${img}" alt="Foto ${i+1}"></div>`
+            ).join('');
+            
             document.getElementById('modalContent').innerHTML = `
                 <div class="modal-grid">
-                    <div><img src="${p.img}" class="modal-img" alt="${p.name}"></div>
+                    <div>
+                        <img src="${p.img}" class="modal-img" alt="${p.name}" onclick="openGallery('${id}', 0)">
+                        <div class="gallery-thumbs" id="galleryThumbs">${thumbsHtml}</div>
+                        <p class="photo-count">${propGalleries.length} fotos • Click en imagen para ver todas</p>
+                    </div>
                     <div class="modal-info">
                         <h2>${p.name}</h2>
                         <div class="location"><i class="fas fa-map-marker-alt"></i> ${p.location} | ${p.size}</div>
@@ -460,6 +523,33 @@
                     </div>
                 </div>`;
             document.getElementById('propertyModal').classList.add('active');
+        }
+        
+        function openGallery(id, index) {
+            currentGallery = galleries[id] || [properties[id].img];
+            currentIndex = index;
+            document.getElementById('lightboxImg').src = currentGallery[index];
+            document.getElementById('lightbox').classList.add('active');
+            
+            document.querySelectorAll('.gallery-thumb').forEach((t, i) => {
+                t.classList.toggle('active', i === index);
+            });
+        }
+        
+        function closeGallery() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        
+        function prevImage(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+            document.getElementById('lightboxImg').src = currentGallery[currentIndex];
+        }
+        
+        function nextImage(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex + 1) % currentGallery.length;
+            document.getElementById('lightboxImg').src = currentGallery[currentIndex];
         }
         
         function closeProperty() { document.getElementById('propertyModal').classList.remove('active'); }
