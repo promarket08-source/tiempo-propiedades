@@ -22,7 +22,6 @@
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -96,7 +95,6 @@
             box-shadow: 0 10px 30px rgba(239,68,68,0.4);
         }
         
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -221,7 +219,6 @@
         .stat-num { font-size: 42px; font-weight: 700; color: var(--celest); }
         .stat-text { font-size: 14px; color: rgba(255,255,255,0.5); }
         
-        /* Section Titles */
         .section-title {
             text-align: center;
             padding: 80px 0 50px;
@@ -249,7 +246,6 @@
             font-size: 17px;
         }
         
-        /* Properties Grid */
         .properties {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -333,7 +329,6 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         
-        /* Contact Section */
         .contact {
             text-align: center;
             padding: 80px 20px;
@@ -351,7 +346,6 @@
             font-size: 18px;
         }
         
-        /* Footer */
         footer {
             padding: 60px 20px;
             text-align: center;
@@ -391,7 +385,6 @@
             margin-top: 10px;
         }
         
-        /* WhatsApp Float */
         .whatsapp-float {
             position: fixed;
             bottom: 25px;
@@ -408,6 +401,7 @@
             z-index: 99;
             box-shadow: 0 5px 20px rgba(37,211,101,0.4);
             animation: floatPulse 2s infinite;
+            text-decoration: none;
         }
         
         @keyframes floatPulse {
@@ -415,7 +409,6 @@
             50%{transform:scale(1.1)}
         }
         
-        /* Chat Widget */
         .chat-btn {
             position: fixed;
             bottom: 100px;
@@ -526,7 +519,6 @@
             cursor: pointer;
         }
         
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -593,7 +585,21 @@
             text-align: center;
             text-decoration: none;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-map {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .modal-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         .modal-features { list-style: none; }
@@ -605,7 +611,6 @@
         
         .modal-features li i { color: var(--celest); margin-right: 10px; }
         
-        /* Responsive */
         @media(max-width:768px) {
             .nav-links { display: none; }
             .hero-stats { gap: 25px; }
@@ -614,7 +619,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="container">
             <a href="#" class="logo">
@@ -632,13 +636,12 @@
                 <a href="#casas">Casas</a>
                 <a href="#contacto">Contacto</a>
             </div>
-            <a href="https://wa.me/56974219730" class="btn-whatsapp">
+            <a href="https://wa.me/56974219730?text=Hola,%20vi%20la%20web%20de%20Tiempo%20Propiedades" class="btn-whatsapp">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
@@ -650,7 +653,7 @@
             <p>Descubre parcelas con árboles nativos, vista al volcán y ubicación privilegiada. Inversión segura en el sur de Chile.</p>
             <div class="hero-buttons">
                 <a href="#parcelas" class="btn-primary"><i class="fas fa-search"></i> Ver Parcelas</a>
-                <a href="https://wa.me/56974219730?text=Hola" class="btn-secondary"><i class="fab fa-whatsapp"></i> Escribir Ahora</a>
+                <a href="https://wa.me/56974219730?text=Hola,%20vi%20la%20web%20de%20Tiempo%20Propiedades" class="btn-secondary"><i class="fab fa-whatsapp"></i> Escribir Ahora</a>
             </div>
             <div class="hero-stats">
                 <div class="stat"><div class="stat-num">150+</div><div class="stat-text">Parcelas Vendidas</div></div>
@@ -660,7 +663,6 @@
         </div>
     </section>
 
-    <!-- Parcelas -->
     <section id="parcelas">
         <div class="section-title">
             <span><span style="width:40px;height:1px;background:var(--celest);display:inline-block;"></span> Nuestro Portafolio <span style="width:40px;height:1px;background:var(--celest);display:inline-block;"></span></span>
@@ -722,7 +724,6 @@
         </div>
     </section>
 
-    <!-- Casas -->
     <section id="casas">
         <div class="section-title">
             <span><span style="width:40px;height:1px;background:var(--celest);display:inline-block;"></span> Propiedades <span style="width:40px;height:1px;background:var(--celest);display:inline-block;"></span></span>
@@ -744,14 +745,12 @@
         </div>
     </section>
 
-    <!-- Contacto -->
     <section id="contacto" class="contact">
         <h2>¿Quieres Más Información?</h2>
         <p>Escríbenos y te enviamos el catálogo completo</p>
-        <a href="https://wa.me/56974219730?text=Quiero%20ver%20las%20parcelas" class="btn-primary"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
+        <a href="https://wa.me/56974219730?text=Hola,%20vi%20la%20web%20de%20Tiempo%20Propiedades%20y%20quiero%20más%20info" class="btn-primary"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
     </section>
 
-    <!-- Footer -->
     <footer>
         <a href="#" class="logo">
             <div class="logo-img">
@@ -763,7 +762,7 @@
             </div>
         </a>
         <div class="footer-links">
-            <a href="https://wa.me/56974219730"><i class="fab fa-whatsapp"></i> +56 9 7421 9730</a>
+            <a href="https://wa.me/56974219730?text=Hola"><i class="fab fa-whatsapp"></i> +56 9 7421 9730</a>
             <a href="https://instagram.com/tuwebpro" target="_blank"><i class="fab fa-instagram"></i> @tuwebpro</a>
         </div>
         <p style="margin-bottom:15px">Villarrica, Chile</p>
@@ -771,15 +770,12 @@
         <p class="credit">Impulsado por 360 Marketing</p>
     </footer>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/56974219730?text=Hola" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/56974219730?text=Hola,%20vi%20la%20web%20de%20Tiempo%20Propiedades" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Chat Button -->
     <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-headset"></i></button>
     
-    <!-- Chat Panel -->
     <div class="chat-panel active" id="chatPanel">
         <div class="chat-header">
             <div>
@@ -803,7 +799,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal" id="propertyModal">
         <span class="modal-close" onclick="closeProperty()">×</span>
         <div id="modalContent"></div>
@@ -811,17 +806,63 @@
 
     <script>
         const properties = {
-            chesque: {name: "Parcela Chesque", price: "$44.000.000", location: "10 min de Lican Ray", size: "5.000 m²", desc: "Hermosa parcela con árboles nativos. Empalme eléctrico conectado. Acceso a estero cercano para pesca y camping.", features: ["5.000 m²", "Árboles nativos", "Empalme conectado", "Acceso a estero", "Plusvalía 4%"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg"},
-            cudico: {name: "Parcela Cudico", price: "$58.000.000", location: "4km de Lican Ray", size: "5.000 m²", desc: "A solo 300 metros de la carretera principal. Luz a conectar en la propiedad.", features: ["5.000 m²", "A 300mts carretera", "Luz a conectar"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n"},
-            '5tafaja': {name: "Parcela 5ta Faja", price: "$48.000.000", location: "18 min Villarrica", size: "5.000 m²", desc: "Mucho árbol nativo y luz soterrada. Portón de acceso.", features: ["5.000 m²", "Árbol nativo", "Luz soterrada"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n"},
-            conquil: {name: "Parcela Conquil", price: "$65.000.000", location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Vista panorámica completa al volcán. 1 hectárea de parque común.", features: ["5.000 m²", "Vista al volcán", "1 ha parque común"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg"},
-            losvolcanes: {name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Cocina living-comedor. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio", "1 Baño"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg"}
+            chesque: {
+                name: "Parcela Chesque",
+                price: "$44.000.000",
+                location: "10 min de Lican Ray",
+                size: "5.000 m²",
+                desc: "Hermosa parcela con árboles nativos. Empalme eléctrico conectado. Acceso a estero cercano para pesca y camping.",
+                features: ["5.000 m²", "Árboles nativos", "Empalme conectado", "Acceso a estero", "Plusvalía 4%"],
+                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg",
+                map: "https://www.google.com/maps?q=-39.4285,-72.2314&z=15&output=embed"
+            },
+            cudico: {
+                name: "Parcela Cudico",
+                price: "$58.000.000",
+                location: "4km de Lican Ray",
+                size: "5.000 m²",
+                desc: "A solo 300 metros de la carretera principal. Luz a conectar en la propiedad.",
+                features: ["5.000 m²", "A 300mts carretera", "Luz a conectar"],
+                img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n",
+                map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed"
+            },
+            '5tafaja': {
+                name: "Parcela 5ta Faja",
+                price: "$48.000.000",
+                location: "18 min Villarrica",
+                size: "5.000 m²",
+                desc: "Mucho árbol nativo y luz soterrada. Portón de acceso.",
+                features: ["5.000 m²", "Árbol nativo", "Luz soterrada"],
+                img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n",
+                map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed"
+            },
+            conquil: {
+                name: "Parcela Conquil",
+                price: "$65.000.000",
+                location: "km 6 Camino Conquil",
+                size: "5.000 m²",
+                desc: "Vista panorámica completa al volcán. 1 hectárea de parque común.",
+                features: ["5.000 m²", "Vista al volcán", "1 ha parque común"],
+                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg",
+                map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed"
+            },
+            losvolcanes: {
+                name: "Casa Los Volcanes",
+                price: "$89.000.000",
+                location: "Sector Los Volcanes",
+                size: "120 m²",
+                desc: "3 dormitorios + sala de escritorio. Cocina living-comedor. Lista para habitar.",
+                features: ["3 Dormitorios", "Sala escritorio", "1 Baño"],
+                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOQedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg",
+                map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed"
+            }
         };
         
         const wa = "56974219730";
         
         function openProperty(id) {
             const p = properties[id];
+            const mapUrl = `https://wa.me/${wa}?text=Hola,%20estoy%20interesado%20en%20${p.name.replace(' ','%20')}%20(${p.location.replace(' ','%20')})`;
             document.getElementById('modalContent').innerHTML = `
                 <div class="modal-grid">
                     <div>
@@ -832,7 +873,10 @@
                         <div class="location"><i class="fas fa-map-marker-alt"></i> ${p.location} | ${p.size}</div>
                         <p>${p.desc}</p>
                         <div class="modal-price">${p.price}</div>
-                        <a href="https://wa.me/${wa}?text=Información ${p.name.replace(' ','%20')}" class="modal-btn"><i class="fab fa-whatsapp"></i> Consultar</a>
+                        <a href="${mapUrl}" class="modal-btn"><i class="fab fa-whatsapp"></i> Consultar</a>
+                        <div class="modal-map">
+                            <iframe src="${p.map}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
                         <ul class="modal-features">
                             ${p.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}
                         </ul>
