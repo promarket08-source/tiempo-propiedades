@@ -75,6 +75,7 @@
         .property-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .property-card:hover .property-img img { transform: scale(1.1); }
         .property-badge { position: absolute; top: 15px; left: 15px; background: var(--celest); color: var(--dark); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+        .property-badge.inversion { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; }
         .property-details { padding: 20px; }
         .property-location { color: var(--celest); font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
         .property-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
@@ -108,7 +109,7 @@
         .chat-msg.bot { background: #1a1a1a; color: #fff; align-self: flex-start; }
         .chat-msg.user { background: var(--celest); color: #000; margin-left: auto; }
         
-        .progreso-bar { display: flex; justify-content: center; gap: 4px; padding: 8px 12px; border-bottom: 1px solid #222; }
+        .progreso_bar { display: flex; justify-content: center; gap: 4px; padding: 8px 12px; border-bottom: 1px solid #222; }
         .progreso-step { width: 8px; height: 8px; border-radius: 50%; background: #333; }
         .progreso-step.active { background: var(--celest); }
         .progreso-step.completo { background: #22c55e; }
@@ -272,6 +273,19 @@
                     <div class="property-price">$89.000.000</div>
                 </div>
             </article>
+            
+            <article class="property-card" onclick="openProperty('saturnino')">
+                <div class="property-img">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgIgIDYVz05RXkjA5_rZI60OVD15n9CTxZNnKk2JPPCFlC7i0GYbLYjnHx2XOsOFBwXQL8wP1uyqzpIbnRhyjrf-TjUv18b6N8fUblCCJdDAOktviIf9xLtEb57A7ROJ7gXjelvjBzmxQHLC2oYQJfg25pDu-PgUnsvHHTmPrPjKc8s3KUpqoguIT0pBUmj" alt="Casa Esquina Saturnino Epulef">
+                    <span class="property-badge inversion">INVERSIÓN</span>
+                </div>
+                <div class="property-details">
+                    <div class="property-location"><i class="fas fa-map-marker-alt"></i> Saturnino Epulef con Manuel Antonio</div>
+                    <h3 class="property-name">Casa Esquina - Inversión</h3>
+                    <div class="property-size">280 m² • 2 Casas • 7 Dormitorios</div>
+                    <div class="property-price">$450.000.000</div>
+                </div>
+            </article>
         </div>
     </section>
 
@@ -302,7 +316,7 @@
             <button onclick="toggleChat()" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">×</button>
         </div>
         
-        <div class="progreso-bar" id="progresoBar">
+        <div class="progreso_bar" id="progresoBar">
             <div class="progreso-step" data-step="1"></div>
             <div class="progreso-step" data-step="2"></div>
             <div class="progreso-step" data-step="3"></div>
@@ -410,6 +424,13 @@
                 'https://blogger.googleusercontent.com/img/a/AVvXsEjavRRHgBdk7ihrg25eePjOQ0oPpSBqSvvKxL_RZ_gB6HHEjp0hinC8utTVZ1z95ZCuczggvES1CD6CdzcmEZTMS444diDSyuSPnIdeMk1wNyLTd36wXxJZEo6vz47MEGa2nGE7o5pr9_MbZ1yr-7HzvrGPPBgNOKnNUY5zA3QoXE5sw4thajJBoA7iSd9x=w240-h240-n',
                 'https://blogger.googleusercontent.com/img/a/AVvXsEjuQyvJ3DkX48TNloWihiUgI6Wb5LzOweVTA-2C7lvaPvcXqVrxgD3YBOx0nY6FXT6uXTWP5IzVGMCdXLDYGdmZbODZtKq26AIN23kO9b5Y3CkyAp28Fe7hNUIJtnFZAwgJD4oqrFPIOHljGpWygJy59qvnOzCtWIBUSHQB668F8rnYW-BzyvDp3bzPfNRK=w240-h240-n',
                 'https://blogger.googleusercontent.com/img/a/AVvXsEheAFQnZc_GF_GE5j0ZVmzEVnn5wXmkzhBiIm29I2hLrGCmxklkMGzDGDutqx2zyvxvfWjVRS5uJthG31C9BemIwkQWKCZJDT071_AB5KguBXP3mWB_w7gcmW0DBSvky5fuxmr16h29DSbEUqTWqg8MEFRdDqZb6OZwMRvT8hCO-PmFkC5J0AUCPLT7PKSj=w240-h240-n'
+            ],
+            saturnino: [
+                'https://blogger.googleusercontent.com/img/a/AVvXsEgIgIDYVz05RXkjA5_rZI60OVD15n9CTxZNnKk2JPPCFlC7i0GYbLYjnHx2XOsOFBwXQL8wP1uyqzpIbnRhyjrf-TjUv18b6N8fUblCCJdDAOktviIf9xLtEb57A7ROJ7gXjelvjBzmxQHLC2oYQJfg25pDu-PgUnsvHHTmPrPjKc8s3KUpqoguIT0pBUmj',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEhMia-SjwcGAqqtDDolDR7d-wkRLthz36oR-5OYOjje4pILNVelwSwuZ0xXn54YsWXvSVPOhicx5uaHA3YvawgqIZtHIDlz_RZN-9acOEz9v5eRh8qxqnSgKVLVmQjPECnELr4akKpCTa-65BmIKrZ4tDg3AXwYGfXGXpuEHFRFM5YPwqY6lwAyhaNw8u4A',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEiu6DJJm3NVO47j5Cnlfo283YxxQDG97zTCatvecQRvFKoFbzGrF-DvO7DyYKWS9LF1wocsUunnC-3kNviuIm7lnF6mF1jmX4n1erB3C6ORicwV8fWj870nvhUr7njEUolOdATLKBz1_oKlu8ONghNf9FqClzyR3E3IehMHI3jEjYz1mLGQgiim_zNS98qM',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEjsOaxn4GmipVB7KKeNqmasorrsGLdGiYHIex0Er1HA98oYGLDccwivUA4OTPe6VoRxUjzT8heBee1hnbE_n9OeHF0zBz3qdr-nP8-765fV8p6HcTWkvssC11wkx_AY_H2eNSkK3gfD2iwPy66lc74BOZOi2XNmynj_x393TU9KfE3yB2W84aTK8XcNeYzA',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEik4pHwbzhM3v5LfDYUSlUZPMXnE0MRTFkPJCyWYdGp1XEueQcby5COyF6owoTe4RNhN9CFu2TlrW6WG3JEOQRzfRxYSaSYI0-dGtIRqOOOkij7xUdEaQcI8xxIzgm9Eqc9eYgLkS2v3ZVJX4v010TzkfkpmhKdAIDoxwgs5OhVF0AUIuXpO-uZdzKAGHfG'
             ]
         };
 
@@ -421,7 +442,8 @@
             cudico: { name: "Parcela Cudico", price: "$58.000.000", location: "4km de Lican Ray", size: "5.000 m²", desc: "A solo 300 metros de la carretera principal. Luz a conectar.", features: ["5.000 m²", "A 300mts carretera"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n", map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed" },
             '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", location: "18 min Villarrica", size: "5.000 m²", desc: "Mucho árbol nativo y luz soterrada.", features: ["5.000 m²", "Luz soterrada"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n", map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed" },
             conquil: { name: "Parcela Conquil", price: "$65.000.000", location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Vista panorámica al volcán. 1 ha parque común.", features: ["5.000 m²", "Vista al volcán"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg", map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed" },
-            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOqedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" }
+            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOqedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s400/IMG_20250616_162626843_HDR.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" },
+            saturnino: { name: "Casa Esquina Saturnino Epulef", price: "$450.000.000", location: "Saturnino Epulef con Manuel Antonio", size: "280 m² (2 casas)", desc: "Excelente oportunidad de inversión. Casa esquina con 2 propiedades: Casa 1 (3 dormitorios, 1 baño, cocina, living, comedor, leñera, patio, estacionamiento) + Casa 2 (4 dormitorios en segundo piso, baño, cocina, living, comedor, bodega, leñera, estacionamiento).", features: ["2 Casas", "7 Dormitorios total", "2 Baños", "2 Cocinas", "2 Estacionamientos", "Bodega", "Leñera", "Patio", "Ideal Inversión"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEgIgIDYVz05RXkjA5_rZI60OVD15n9CTxZNnKk2JPPCFlC7i0GYbLYjnHx2XOsOFBwXQL8wP1uyqzpIbnRhyjrf-TjUv18b6N8fUblCCJdDAOktviIf9xLtEb57A7ROJ7gXjelvjBzmxQHLC2oYQJfg25pDu-PgUnsvHHTmPrPjKc8s3KUpqoguIT0pBUmj", map: "https://www.google.com/maps?q=-39.2800,-72.1500&z=15&output=embed" }
         };
         
         const wa = "56974219730";
@@ -506,7 +528,7 @@
                             `<i>¡Gracias por tu interés! 😊</i>`;
                         saveToDatabase();
                     } else {
-                        r = `<b>Te entiendo!</b><br><br>Tenemos otras opciones:<br><br>` +
+                        r = `<b>Te entendemos!</b><br><br>Tenemos otras opciones:<br><br>` +
                             `🏠 <b>Casa Los Volcanes</b> - $89M<br>` +
                             `• 3 dormitorios + escritorio<br><br>` +
                             `Responde "casa" para más info`;
@@ -539,67 +561,63 @@
         
         function openProperty(id) {
             const p = properties[id];
-            const msg = `Hola! Estoy interesado en ${p.name}`;
-            const mapUrl = `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`;
+            const imgs = galleries[id] || [p.img];
+            currentGallery = imgs;
+            currentIndex = 0;
             
-            const propGalleries = galleries[id] || [p.img];
-            const thumbsHtml = propGalleries.map((img, i) => 
-                `<div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="openGallery('${id}', ${i})"><img src="${img}" alt="Foto ${i+1}"></div>`
-            ).join('');
+            let thumbs = imgs.map((src, i) => `<div class="gallery-thumb ${i===0?'active':''}" onclick="openGallery(${i});event.stopPropagation()"><img src="${src.replace('/s320/','/s160/').replace('/s400/','/s160/')}" alt=""></div>`).join('');
             
             document.getElementById('modalContent').innerHTML = `
+                <h2>${p.name}</h2>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> ${p.location}</p>
                 <div class="modal-grid">
                     <div>
-                        <img src="${p.img}" class="modal-img" alt="${p.name}" onclick="openGallery('${id}', 0)">
-                        <div class="gallery-thumbs" id="galleryThumbs">${thumbsHtml}</div>
-                        <p class="photo-count">${propGalleries.length} fotos • Click en imagen para ver todas</p>
+                        <img src="${imgs[0]}" class="modal-img" onclick="openGallery(0);event.stopPropagation()" alt="${p.name}">
+                        <div class="gallery-thumbs">${thumbs}</div>
+                        <p class="photo-count"><i class="fas fa-images"></i> ${imgs.length} fotos disponibles</p>
                     </div>
                     <div class="modal-info">
-                        <h2>${p.name}</h2>
-                        <div class="location"><i class="fas fa-map-marker-alt"></i> ${p.location} | ${p.size}</div>
                         <p>${p.desc}</p>
                         <div class="modal-price">${p.price}</div>
-                        <a href="${mapUrl}" class="modal-btn"><i class="fab fa-whatsapp"></i> Consultar</a>
-                        <div class="modal-map"><iframe src="${p.map}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-                        <ul class="modal-features">${p.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul>
+                        <ul class="modal-features">
+                            ${p.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}
+                        </ul>
+                        <div class="modal-map">${p.map ? `<iframe src="${p.map}"></iframe>` : ''}</div>
+                        <a href="https://wa.me/${wa}?text=Hola,%20estoy%20interesado%20en%20${encodeURIComponent(p.name)}" class="modal-btn"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
                     </div>
-                </div>`;
+                </div>
+            `;
             document.getElementById('propertyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
-        function openGallery(id, index) {
-            currentGallery = galleries[id] || [properties[id].img];
+        function closeProperty() {
+            document.getElementById('propertyModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function openGallery(index) {
             currentIndex = index;
             document.getElementById('lightboxImg').src = currentGallery[index];
-            document.getElementById('lightbox').classList.add('active');
             document.getElementById('lightboxCounter').textContent = `${index + 1} / ${currentGallery.length}`;
+            document.getElementById('lightbox').classList.add('active');
             
-            document.querySelectorAll('.gallery-thumb').forEach((t, i) => {
-                t.classList.toggle('active', i === index);
-            });
+            document.querySelectorAll('.gallery-thumb').forEach((t, i) => t.classList.toggle('active', i === index));
         }
         
-        function closeGallery() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
+        function closeGallery() { document.getElementById('lightbox').classList.remove('active'); }
         
-        function prevImage(e) {
-            e.stopPropagation();
-            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
-            document.getElementById('lightboxImg').src = currentGallery[currentIndex];
-            document.getElementById('lightboxCounter').textContent = `${currentIndex + 1} / ${currentGallery.length}`;
-        }
+        function prevImage(e) { e.stopPropagation(); currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; openGallery(currentIndex); }
         
-        function nextImage(e) {
-            e.stopPropagation();
-            currentIndex = (currentIndex + 1) % currentGallery.length;
-            document.getElementById('lightboxImg').src = currentGallery[currentIndex];
-            document.getElementById('lightboxCounter').textContent = `${currentIndex + 1} / ${currentGallery.length}`;
-        }
+        function nextImage(e) { e.stopPropagation(); currentIndex = (currentIndex + 1) % currentGallery.length; openGallery(currentIndex); }
         
-        function closeProperty() { document.getElementById('propertyModal').classList.remove('active'); }
-        
-        updateProgreso();
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') { closeProperty(); closeGallery(); }
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'ArrowLeft') prevImage(e);
+                if (e.key === 'ArrowRight') nextImage(e);
+            }
+        });
     </script>
 </body>
 </html>
