@@ -39,7 +39,7 @@
         .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(244, 63, 94, 0.4); }
         
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px 60px; position: relative; overflow: hidden; }
-        .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80') center/cover; }
+        .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80') center/cover; background-attachment: fixed; }
         .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,15,26,0.75) 0%, rgba(17,24,39,0.85) 50%, rgba(10,15,26,0.9) 100%); }
         .hero-content { position: relative; z-index: 1; }
         
@@ -71,11 +71,14 @@
         
         .property-card { background: var(--darkcard); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); transition: 0.4s; cursor: pointer; }
         .property-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(34,211,238,0.15); border-color: rgba(34,211,238,0.3); }
+        
         .property-img { height: 220px; overflow: hidden; position: relative; }
         .property-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .property-card:hover .property-img img { transform: scale(1.1); }
+        
         .property-badge { position: absolute; top: 15px; left: 15px; background: var(--celest); color: #0a0f1a; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
         .property-badge.inversion { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; }
+        
         .property-details { padding: 20px; }
         .property-location { color: var(--celest); font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
         .property-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #fff; }
@@ -177,7 +180,7 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-bg" id="heroBg"></div>
         <div class="hero-content">
             <div class="hero-badge"><span class="dot"></span><span>Villarrica, Chile</span></div>
             <h1>Tu Futuro en<br><span class="gradient-text">Villarrica</span></h1>
@@ -419,6 +422,14 @@
         };
         
         const wa = "56974219730";
+        
+        window.addEventListener('scroll', function() {
+            const heroBg = document.getElementById('heroBg');
+            if (heroBg) {
+                const scrolled = window.pageYOffset;
+                heroBg.style.transform = 'translateY(' + (scrolled * 0.5) + 'px)';
+            }
+        });
         
         function updateProgreso() {
             const steps = document.querySelectorAll('.progreso-step');
