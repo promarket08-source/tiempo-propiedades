@@ -101,16 +101,20 @@
         
         .chat-btn { position: fixed; bottom: 100px; right: 25px; width: 55px; height: 55px; background: linear-gradient(135deg, var(--celest), #06b6d4); border: none; border-radius: 50%; color: #fff; font-size: 22px; cursor: pointer; z-index: 99; box-shadow: 0 5px 20px rgba(34,211,238,0.4); }
         
-        .chat-panel { position: fixed; bottom: 170px; right: 20px; width: 320px; max-height: 450px; background: #111827; border-radius: 15px; z-index: 98; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: none; flex-direction: column; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .chat-panel { position: fixed; bottom: 170px; right: 20px; width: 350px; max-height: 500px; background: #111827; border-radius: 15px; z-index: 98; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: none; flex-direction: column; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
         .chat-panel.active { display: flex; }
         .chat-header { background: linear-gradient(135deg, var(--celest), #06b6d4); padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; }
         .chat-header h4 { font-size: 14px; font-weight: 700; }
         .chat-header p { font-size: 10px; opacity: 0.8; }
         
-        .chat-messages { flex: 1; padding: 12px; overflow-y: auto; max-height: 280px; }
-        .chat-msg { max-width: 85%; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; font-size: 12px; line-height: 1.4; }
+        .chat-messages { flex: 1; padding: 12px; overflow-y: auto; max-height: 320px; }
+        .chat-msg { max-width: 90%; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; font-size: 12px; line-height: 1.4; }
         .chat-msg.bot { background: #1f2937; color: #fff; align-self: flex-start; }
         .chat-msg.user { background: var(--celest); color: #0a0f1a; margin-left: auto; }
+        
+        .chat-options { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .chat-option { background: rgba(34,211,238,0.2); border: 1px solid var(--celest); color: var(--celest); padding: 6px 10px; border-radius: 15px; font-size: 11px; cursor: pointer; transition: 0.3s; }
+        .chat-option:hover { background: var(--celest); color: #0a0f1a; }
         
         .progreso_bar { display: flex; justify-content: center; gap: 4px; padding: 8px 12px; border-bottom: 1px solid #1f2937; }
         .progreso-step { width: 8px; height: 8px; border-radius: 50%; background: #374151; }
@@ -160,7 +164,12 @@
         .lightbox-next { right: 20px; }
         .lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 14px; }
         
-        @media(max-width:768px) { .nav-links { display: none; } .hero-stats { gap: 25px; } .stat-num { font-size: 32px; } }
+        @media(max-width:768px) { 
+            .nav-links { display: none; } 
+            .hero-stats { gap: 25px; } 
+            .stat-num { font-size: 32px; }
+            .chat-panel { width: 300px; right: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -319,24 +328,26 @@
             <button onclick="toggleChat()" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">×</button>
         </div>
         
-        <div class="progreso_bar" id="progresoBar">
-            <div class="progreso-step" data-step="1"></div>
-            <div class="progreso-step" data-step="2"></div>
-            <div class="progreso-step" data-step="3"></div>
-            <div class="progreso-step" data-step="4"></div>
-            <div class="progreso-step" data-step="5"></div>
-        </div>
-        
         <div class="chat-messages" id="chatMessages">
             <div class="chat-msg bot">
-                <b>👋 Hola! Soy tu asesor de Tiempo Propiedades</b><br><br>
-                Antes de mostrarte las propiedades, me gustaría conocerte mejor para ofrecerte exactamente lo que buscas.<br><br>
-                <b>¿Cómo te llamas?</b>
+                <b>👋 Hola! Bienvenido a Tiempo Propiedades</b><br><br>
+                Soy tu asesor virtual. Puedo ayudarte con:<br><br>
+                📋 Ver nuestro catálogo de propiedades<br>
+                💰 Conocer precios y características<br>
+                📅 Agendar una visita<br>
+                ❓ Responder tus preguntas<br><br>
+                <b>¿Qué te gustaría hacer?</b>
+                <div class="chat-options">
+                    <span class="chat-option" onclick="selectOption('ver propiedades')">Ver Propiedades</span>
+                    <span class="chat-option" onclick="selectOption('precios')">Ver Precios</span>
+                    <span class="chat-option" onclick="selectOption('agendar')">Agendar Visita</span>
+                    <span class="chat-option" onclick="selectOption('preguntar')">Hacer Pregunta</span>
+                </div>
             </div>
         </div>
         
         <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Escribe tu respuesta..." onkeypress="if(event.key==='Enter')sendMessage()">
+            <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeypress="if(event.key==='Enter')sendMessage()">
             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
@@ -355,74 +366,29 @@
     </div>
 
     <script>
-        let cliente = { nombre: '', necesidad: '', presupuesto: '', tieneMascotas: '', tieneNinos: '', ciudad: '', propiedadInteres: '', fecha: new Date().toISOString() };
-        let paso = 1;
+        const properties = {
+            chesque: { name: "Parcela Chesque", price: "$44.000.000", priceNum: 44000000, location: "10 min de Lican Ray", size: "5.000 m²", desc: "Parcela con árboles nativos. Empalme eléctrico conectado. Ideal para inversión con plusvalía garantizada.", features: ["5.000 m²", "Árboles nativos", "Empalme eléctrico", "Plusvalía 4%"], tipo: "parcela" },
+            cudico: { name: "Parcela Cudico", price: "$58.000.000", priceNum: 58000000, location: "4km de Lican Ray", size: "5.000 m²", desc: "A 300 metros de la carretera. Luz a conectar. Sector tranquilo.", features: ["5.000 m²", "A 300mts carretera", "Luz a conectar"], tipo: "parcela" },
+            '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", priceNum: 48000000, location: "18 min Villarrica", size: "5.000 m²", desc: "Mucho árbol nativo y luz soterrada. Vista al volcán.", features: ["5.000 m²", "Luz soterrada", "Vista al volcán"], tipo: "parcela" },
+            conquil: { name: "Parcela Conquil", price: "$65.000.000", priceNum: 65000000, location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Vista panorámica al volcán. 1 ha parque común.", features: ["5.000 m²", "Vista al volcán", "Parque común"], tipo: "parcela" },
+            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", priceNum: 89000000, location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar. Vista al volcán.", features: ["3 Dormitorios", "Sala escritorio", "Vista Volcán"], tipo: "casa" },
+            saturnino: { name: "Casa Esquina Saturnino Epulef", price: "$450.000.000", priceNum: 450000000, location: "Saturnino Epulef con Manuel Antonio", size: "280 m²", desc: "OPORTUNIDAD DE INVERSIÓN. 2 propiedades: Casa 1 (3 dorm, 1 baño) + Casa 2 (4 dorm, 1 baño). Excelente ubicación.", features: ["2 Casas", "7 Dormitorios", "2 Baños", "2 Estacionamientos", "Bodega"], tipo: "casa" }
+        };
+
+        const wa = "56974219730";
+        let esperandoCita = false;
+        let nombreCliente = "";
         
         const galleries = {
-            losvolcanes: [
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5eUxL-SjHHViLv8CtAFAxCB7P4mxWyAXkOHvHf8bwNI-GDwm9s_zkiPtqhw5-vVrrT_iLI9qFcI_OexNqEG1-5hqYGhREaiWujQ_76hKdIr74N1aIkxORXZo9mnGtSQUpp5p_dQDGRyl_NGPvscMb4zZIpEqzDe1OfdZ5N8aXCRnTgbh0-foWJ4eNOxN1/s320/IMG_20250616_163211524.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3eMem8f8R07zAzlcPnJdIlBZ7wv2-ZW8cs069AOGs4qfZpYh6huvha8ylxLM1YNex9DD00ghGHM1Xli8EjBuN_Qqnern0vrU6Y8Nwvl0MW20dhxZEpXmJVE5ENf2ejKfZM3mSSXPR88mf00MwWjXmfoQshDNNonYe8zYWe1r0yGbpyTcLh3C4Ua5WwXXx/s320/IMG_20250616_163255514.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSl0Kof8Gg_byLM4YnQ7BOhunjPn3NNFlvNHVnoxBoNwq6MJtgCcWe2ulLI1tdYD-xTNariovnqxXCVgjyTtD5-8tTAaMqT27Xb6d4WdNJ2M5dQ4n-jBijW3S-tQQySO_MBB6oo8HUg2EYpYHRzwcGUmkHtbw1j-hIkg7ZgDrCIUi3Hb1JLkEYzszzOqzG/s320/IMG_20250616_163502825.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtHgNbDBoVwBQlmyIkx7pprGnskP9n-kzpr-Pzu2IL9bM-7XsNbOoa-Rg2RiD4sAn7MPyA5q9b2FU5pecQanBOjQAgHy65SJSK305OxzsD5cOK9GLp-sQKDQx6fyaRnJ9N9LLXRDQhrTzpsyP0mGBS15gaN0hTHGn1NA-o6liK-QU_kRYPWjvBQZp4asXY/s320/IMG_20250616_163737632_HDR.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAvDO6oCkeb3BNWzfv_xSuIyZFEuqUVJbnLvCSZD31QBBpGnx-A3QOrBtz2-iw7fU9y-3Q5aynKr6CH2PtSBmFJX9sCM_ehycfoWkSkZHHGC69xxK68m-18Np5RN45wzFDD-UmyIv1HgwlWZynmBqaYk5L5YD1THPM7AFwtatR-m7vac8kLtf3INnqUB4d/s320/IMG_20250616_163849950.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihC9_kMh_4I3pH1k9NG6yXStpQ1WodZDFMGxdFQRVrjSDc9DObXdng7J8iv1muHzwSNfCj2mGMbbFxRHJnbjNchmxxI66gC0UvZS0Pr58Zk6yyijoS64MFKT7m4dFyC_j5FjcDsX5sUwh1xHuCqT4iYaf5VSojPydetOxMZkqb0FMJhd1tJGeWYhMZBYX1/s320/IMG_20250616_164005500.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLkuzJ0BfecO5fuF-qgSDwRPbU5bTylf5tF8Be-h37QVgOGfX2yHH6HCpBfDtWGhp5somEcRNEK6t4flLFXDUgjwjymSZtgBAt580crTJrxSmCSHp9z81uf2mMAPN8zhawJQd8UfuAbBIr8-oaG1vSpQqAWvg9-12cbSAGUL9mn8igQU6BXV97eM-g41pk/s320/IMG_20250616_164035274.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJdpG959b4Scl7i4p3VWhHYV33Kp3CQlyfwOe03KFMnaFL8TdP8nncCL4HrRGCHycZTHIStvKRDKCdkn1ANQ2AOtb0-KKSIfK6W8s5y702FrNgh8EDSz8mI_wsumSsJ_TiW9b3izuzy7LB62RyoeA1IsqmwtoUtd2B4fxrt-Kf7jhaTVZZw5-SFGh3fW2V/s320/IMG_20250616_164042531_HDR.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgp6EJwEYbNWymp7JGCuawHqDP8BbJaq-bGx6zfsDD9yXYRI8o9rcWyk3ozMUg6JRQWmkY7pLzGhnu4879WTZlp8zHp3SkoldubxtIM4-_48gDWmK0Q74ZmjqNc4l3Xsae5xA6tJQg_xbCrRxPEOfYJvVT61jhwVch6hVPK3PAaH-Mk2H8pXsgaIAbCiD26/s320/IMG_20250616_164056591.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhy5ATBpcZQN7dLqisPw57IEixYqkS7jGVqDBJO2M4vdKFSYoSLbgAQp-t8QHbOl4XI1wy8-TmlJu6jhclWx661j923vxd2WrBbs7Y79YRNKGXVzk8vVQsS2xkp5yRz7tgWE51dYrsXGDErwS70KoT21HuH5DQRIqlMEGC7QPJXm6L0VxHHa4msdJS5l8ED/s320/IMG_20250616_163311514.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg12sgNuCwlGaBxR5uFtSFNaMadpw9zhfvn2HBYkKf1kWHb7o1DEtTXdOnZBrnldyWO_rbxqV3wn4okHZBhlmxRXHoyYM8p27UWMHHFG4JUJWjvHEa2fAQ9Sk7z0Qb5tVnKLQZgifmCtIcHRsIbJc_hSAuSlYxkYznnHXqgrLGIpypzNQJUnxluGXAP4k2g/s320/IMG_20250616_163325160.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_OuTa2HXEMmdIsGUP2j7q5JUe9XyZbmR1J1eXy9ue9wDA-Am8ZjmMSClVgNwRhiU9CX-HrsMGOwUKFh6-pM4l8dgXAb7WWu9Y7yfTUjOWJYyC8ZGOLtj-UyXUKkOMifJBe6smDVxzrUSpCxm0Zztb0Jc9ovIu-izuAci_yQpFXhnfzzWqGNFtSNW-6anP/s320/IMG_20250616_163717623.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAFuQxWX7QlP_Cip5hzSKD82rkiIM-T1NBEbCdZQKizQ10Ttb8EturaiIWxF_mZ1-OyILDlkSy3KtjOT4WMq0XX6kicJRInfyoQD2dxZoSSrhLGSIFVk2SVZtyxy05mxrCOxd6jL8f88XeQqEKMG6RbLjwDX7ptS0UfmsJZ2Iv-OoYQvIE2RZzHDPW5xd_/s320/IMG_20250616_163859462.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLRHbqC_gu3DStEdb1jk_fgUl6Sw-t6Rhr2GC6dVUkvpmfzILUDxNYbloDQahDj5VqymAUy2BLZnR2GbZhVWlHVfYSCIc3krHzAJBW20skpDgTV8BeYxfdhnA4jdPiRvlLuN_oLBlt_e2KTIEn7E-P84TlNts1I_QXqFFbmPgsteGROoyjU69l9ehmo1SL/s320/IMG_20250616_163941667.jpg'
-            ],
-            chesque: [
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s320/IMG_20241019_121008673.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPDkCoUpQ-L8YaDC3-g6gZezwMDqN4f5RIPqkNacr-K3vzyWGO6pS9Ny-o863FmNBI_7QMoidWCY18y4sE6pEqNJZceWw1W-3p0hVuBRSgzaklnqLniTqfICaSjUwmuvWQGS8cRMVbeEfuEp7dNmX53HDEButCzQNy8eGmqsmBv32XFluHI8ENQ863hihP/s320/IMG_20241019_122349923.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDVBbcultgK2cOTW8XJpHULRKF3omdG1ieXisFekyAFD43BlwxFC-wDaNIL7dXovULqlln8bas0LDM6td9j09IopAUF4VmiR-I_YNxME46FY0rrwDA-veYZQ8PaYu0kaEtrnV4Qi-cb5SIICFEU9FK7kuXIjHHq7r4XtK60kUBx7izfM27NI3lhZMmFtl6/s320/IMG_20241019_124021044.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRJ5LVS1uZoxlCTDvA8yq1xRaHiXOPkAHJTMMWMPHJ02AkvzGm5KGvKufpNpzzb_89pb2BrujMcjuspmsvGrqOadElPzmJA-7qN5Qp6Om4Ef9EUtaC7gtWXwYlui2N2sI9FQqqi7mSwmp6Pw2-q40ocx8vVM8noPw5njqlXdmrN_gSvBYQ4XrnUVE3qvj5/s320/IMG_20241019_124454363.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiD7DW0MqdinZDaRtIjOXPDVL1v1pSfGZgULxnXVaO23UiP24Qxu60JG28RQNXhgk7HpLYYomsIiSlrJIzLjDccsO_of4LJEY5Hjs9RqN39pB2aYwUfhizv13mLqKvwV0QxItaFC5z2TEOAeQXsdyJmFXIeMte7rJEwB6fWoicbDVxGPf-gjS-mbB2NRzt6/s320/IMG_20241019_125910192.jpg'
-            ],
-            conquil: [
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s320/IMG_20240914_132233162.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyw-EoKZ8vywy6xlV_YkVr8kgIoCmV29KRSFQXKsEy0sVsZ6H_g1TO-0ty2BqX5qE4ZaYWsKMliXcdAZSxW45uicGuNT7Pmt0pPm3jpr7-wYnWtA-pKtB2wgspFYIgzJ7lHqUf-DqFWRESGV-1kRAGUFs4fYGWSPYfwEaFrHzCUyQbCvKsCEYyq1zWtfvr/s320/IMG_20240914_132152407.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxIRW8Herkco43vv_DEaNmAQTxqpqnYsLlGrRhH467-yxKkmGmBLiMGwPCO8SU5b9bIuxwnOU0azBI2F_8ZqNh0UxRI36npW-gvG-gfjizSJ2s4d2bmq2QcZOet2-t3250Y2PAhP75Uuh05uHy1aVO6HX4sxAx5wH2n2gfmJLyFqBE5h8iIjZNxRDLZy2J/s320/IMG_20240914_132104574.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixcJ7vJNlYTojYF_orGpPdAUoqfmdwNYU0gMVybh1p0qU7zk4f5GUdRq9lTa8oD_MjKk7IfVoDjW4bi2UhtAy51nuwotB25Oix7-zd6pXKN0UFbDXyg1ljifufzCID8swDviCJBwCYOb34O1r7psOQ7xPrKVhnmV7VU5dbIfgEfcLzOECLVjA1HktYA9L6/s320/IMG_20240914_133211723.jpg'
-            ],
-            '5tafaja': [
-                'https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w320-h180-n',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEjlPSo5uLmhS7jH-TZJWjDHXN6YTgWGpkq2Gi1V1XOENmRFbgBl7rYrJghNBnDYLUUB530LPrKk9GCRi5vbjtegtDAXRDxMowD6y8aj_LION0X_5RVWcqQ___AVCHOyfPV7JF0p4U9D49doWOdwIBVXeMcqm0yNrt4KvYIURYrF6oNITqtMgmK2aEvGnvl6=w320-h180-n',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEjasFR7RMG29FUNfs5N8s_odoNQC0RqOxz_0-FNnCG2LnaeNU6UOc8Jp9E4sNqFUg12RtE1p4nZBl8N76fr0V2UzFTfXMYVXL6nw77iCSxca2l292YNXvfOxYp1qMoSZrbVSEwx7Lyz5rnN1obtJENGJCuI3dUblIyjQBUtYr51kb7Yd6T3SZyKE_66OUWo=w320-h180-n'
-            ],
-            cudico: [
-                'https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w240-h240-n',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEhHl1NLTIL12XqUdVqYXh6lr0KV0OI14s9B2Pzigb7oxcnGgyB8l51pzBRYZQw5LSFdlyNAJ25pC0-K5I3LsGGemi-7PPo_5I8PakaQP_bc08-2-gJGiY9VouoXBSSIH5NhRL-_8ZFr57GBFWU5UoiQOtpl8m-33658wx2iPpdEfSL2z1jZl94Vafo0fYNP=w240-h240-n',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEiZzRo0sFf-fQ9g2zsfTucvKZkknFMtR_PTTPull5350pVUAPXe4mBEbLC5AvuSEetK5owxzcyOw_S9VmO28OSx5aUxgbmeU4uJXNvR0ypmw0UhkICquhQoSKlVa0CJoS9cg-jBECjHCrg2GToMfyhzp32SI3xlxUkePyBb3fQ9DzzL2n8VIFY0GDrrKzLy=w240-h240-n'
-            ],
-            saturnino: [
-                'https://blogger.googleusercontent.com/img/a/AVvXsEiRU9IwrTFxTZJj-ouHFrftxFYElI9d5wT7Eg9v3uh3gfaB8w5H_L_D3CtvuZRJt0uJuqB4ilpK5i-aHEpr-thHTvnD_Yhcf5NkqhSClhB4zkDelWRI477YVzCqerOqIKZHq-yv-yDq92GGTAPkNZN61-n8phgqZHhJ0XJ_aKYM8eYkHRIreg1U5rJuLYQU',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEgIgIDYVz05RXkjA5_rZI60OVD15n9CTxZNnKk2JPPCFlC7i0GYbLYjnHx2XOsOFBwXQL8wP1uyqzpIbnRhyjrf-TjUv18b6N8fUblCCJdDAOktviIf9xLtEb57A7ROJ7gXjelvjBzmxQHLC2oYQJfg25pDu-PgUnsvHHTmPrPjKc8s3KUpqoguIT0pBUmj',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEhMia-SjwcGAqqtDDolDR7d-wkRLthz36oR-5OYOjje4pILNVelwSwuZ0xXn54YsWXvSVPOhicx5uaHA3YvawgqIZtHIDlz_RZN-9acOEz9v5eRh8qxqnSgKVLVmQjPECnELr4akKpCTa-65BmIKrZ4tDg3AXwYGfXGXpuEHFRFM5YPwqY6lwAyhaNw8u4A',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEiu6DJJm3NVO47j5Cnlfo283YxxQDG97zTCatvecQRvFKoFbzGrF-DvO7DyYKWS9LF1wocsUunnC-3kNviuIm7lnF6mF1jmX4n1erB3C6ORicwV8fWj870nvhUr7njEUolOdATLKBz1_oKlu8ONghNf9FqClzyR3E3IehMHI3jEjYz1mLGQgiim_zNS98qM',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEjsOaxn4GmipVB7KKeNqmasorrsGLdGiYHIex0Er1HA98oYGLDccwivUA4OTPe6VoRxUjzT8heBee1hnbE_n9OeHF0zBz3qdr-nP8-765fV8p6HcTWkvssC11wkx_AY_H2eNSkK3gfD2iwPy66lc74BOZOi2XNmynj_x393TU9KfE3yB2W84aTK8XcNeYzA',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEik4pHwbzhM3v5LfDYUSlUZPMXnE0MRTFkPJCyWYdGp1XEueQcby5COyF6owoTe4RNhN9CFu2TlrW6WG3JEOQRzfRxYSaSYI0-dGtIRqOOOkij7xUdEaQcI8xxIzgm9Eqc9eYgLkS2v3ZVJX4v010TzkfkpmhKdAIDoxwgs5OhVF0AUIuXpO-uZdzKAGHfG',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEilibhzK28yCJ4HWEo7uizyN0Ga4Qx_74O5nre6KiIlcrVO7gtdjpllZTcAtI_J5MLXNAYGfrSZxGc8bER4Fm-t3Bh2SUwSmv-1Pz3RturjPld7v9hgmMeaTKubzk0y-ZU-jOJxLFGSs-bSB4xAXVpSj_tBSidrG3q9DFeQrt2O0-i08AKPR3gNy1McH2M4'
-            ]
+            losvolcanes: ['https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5eUxL-SjHHViLv8CtAFAxCB7P4mxWyAXkOHvHf8bwNI-GDwm9s_zkiPtqhw5-vVrrT_iLI9qFcI_OexNqEG1-5hqYGhREaiWujQ_76hKdIr74N1aIkxORXZo9mnGtSQUpp5p_dQDGRyl_NGPvscMb4zZIpEqzDe1OfdZ5N8aXCRnTgbh0-foWJ4eNOxN1/s320/IMG_20250616_163211524.jpg','https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3eMem8f8R07zAzlcPnJdIlBZ7wv2-ZW8cs069AOGs4qfZpYh6huvha8ylxLM1YNex9DD00ghGHM1Xli8EjBuN_Qqnern0vrU6Y8Nwvl0MW20dhxZEpXmJVE5ENf2ejKfZM3mSSXPR88mf00MwWjXmfoQshDNNonYe8zYWe1r0yGbpyTcLh3C4Ua5WwXXx/s320/IMG_20250616_163255514.jpg'],
+            chesque: ['https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s320/IMG_20241019_121008673.jpg'],
+            conquil: ['https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s320/IMG_20240914_132233162.jpg'],
+            saturnino: ['https://blogger.googleusercontent.com/img/a/AVvXsEiRU9IwrTFxTZJj-ouHFrftxFYElI9d5wT7Eg9v3uh3gfaB8w5H_L_D3CtvuZRJt0uJuqB4ilpK5i-aHEpr-thHTvnD_Yhcf5NkqhSClhB4zkDelWRI477YVzCqerOqIKZHq-yv-yDq92GGTAPkNZN61-n8phgqZHhJ0XJ_aKYM8eYkHRIreg1U5rJuLYQU','https://blogger.googleusercontent.com/img/a/AVvXsEgIgIDYVz05RXkjA5_rZI60OVD15n9CTxZNnKk2JPPCFlC7i0GYbLYjnHx2XOsOFBwXQL8wP1uyqzpIbnRhyjrf-TjUv18b6N8fUblCCJdDAOktviIf9xLtEb57A7ROJ7gXjelvjBzmxQHLC2oYQJfg25pDu-PgUnsvHHTmPrPjKc8s3KUpqoguIT0pBUmj']
         };
 
         let currentGallery = [];
         let currentIndex = 0;
 
-        const properties = {
-            chesque: { name: "Parcela Chesque", price: "$44.000.000", location: "10 min de Lican Ray", size: "5.000 m²", desc: "Parcela con árboles nativos. Empalme eléctrico conectado.", features: ["5.000 m²", "Árboles nativos", "Plusvalía 4%"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqelu-NWZpPs5QbbSnEhqjlasLx6yvNPEsV6rPmG60_IW_cnIkpqtxSTCwoFLqXLm7I1-VBoasDor3BI2XrgidSHYoYeIVImkr3Rz0y_qckZw0ENCNASVEXWfK32hxup5MtXUmxaRQQhXwaU1Fl6NOeYEDDd0ZIOb0zRUfelj_-_IDay22-sLUnnXoXGtf/s400/IMG_20241019_121008673.jpg", map: "https://www.google.com/maps?q=-39.4285,-72.2314&z=15&output=embed" },
-            cudico: { name: "Parcela Cudico", price: "$58.000.000", location: "4km de Lican Ray", size: "5.000 m²", desc: "A 300 metros de la carretera. Luz a conectar.", features: ["5.000 m²", "A 300mts carretera"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEht_-Za_dBWfamsSb1Ej2ME1SI-r9uZn1l-9VVk9PJBqUYOkDmGvEEnILKc0JkS1h3jzDns0oXrOwFgSAL62ZrTVj8w0DqD_q9duptT3EPaBreC0xQgG1q8iQVKDdJRjI4JPYxu5KPcDPgANHcpT4NG4e8KsDdOgLiFwE3Dub4MUL6khlO68tyLaHavIw8H=w400-h400-n", map: "https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed" },
-            '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", location: "18 min Villarrica", size: "5.000 m²", desc: "Árbol nativo y luz soterrada.", features: ["5.000 m²", "Luz soterrada"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEgYk2Vp1UJ8pfj4Akx564hT1JnFqGdlyNhXLfo0HTyfbrSMssR-4M72j7G_Sqv96OcS6rqM2L_fiKMT-K47Fw0PzaGbai9-gAX60CcEtMVkVkKNkoTjzbybwp1JdwNg8q-ajqh2fBbygje4VWnGR-WDEoFzFKFMfmBT6WG_itwkbgtD5aK3SuZnoXkv8fk6=w400-h250-n", map: "https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed" },
-            conquil: { name: "Parcela Conquil", price: "$65.000.000", location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Vista panorámica al volcán.", features: ["5.000 m²", "Vista al volcán"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s400/IMG_20240914_132233162.jpg", map: "https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed" },
-            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar.", features: ["3 Dormitorios", "Sala escritorio"], img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5eUxL-SjHHViLv8CtAFAxCB7P4mxWyAXkOHvHf8bwNI-GDwm9s_zkiPtqhw5-vVrrT_iLI9qFcI_OexNqEG1-5hqYGhREaiWujQ_76hKdIr74N1aIkxORXZo9mnGtSQUpp5p_dQDGRyl_NGPvscMb4zZIpEqzDe1OfdZ5N8aXCRnTgbh0-foWJ4eNOxN1/s320/IMG_20250616_163211524.jpg", map: "https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed" },
-            saturnino: { name: "Casa Esquina Saturnino Epulef", price: "$450.000.000", location: "Saturnino Epulef con Manuel Antonio", size: "280 m² (2 casas)", desc: "Oportunidad de inversión. 2 propiedades: Casa 1 (3 dormitorios, 1 baño, cocina, living, comedor, leñera, patio, estacionamiento) + Casa 2 (4 dormitorios, baño, cocina, living, comedor, bodega, leñera, estacionamiento).", features: ["2 Casas", "7 Dormitorios", "2 Baños", "2 Cocinas", "2 Estacionamientos", "Bodega", "Ideal Inversión"], img: "https://blogger.googleusercontent.com/img/a/AVvXsEiRU9IwrTFxTZJj-ouHFrftxFYElI9d5wT7Eg9v3uh3gfaB8w5H_L_D3CtvuZRJt0uJuqB4ilpK5i-aHEpr-thHTvnD_Yhcf5NkqhSClhB4zkDelWRI477YVzCqerOqIKZHq-yv-yDq92GGTAPkNZN61-n8phgqZHhJ0XJ_aKYM8eYkHRIreg1U5rJuLYQU", map: "https://www.google.com/maps?q=-39.2800,-72.1500&z=15&output=embed" }
-        };
-        
-        const wa = "56974219730";
-        
         window.addEventListener('scroll', function() {
             const heroBg = document.getElementById('heroBg');
             if (heroBg) {
@@ -430,27 +396,26 @@
                 heroBg.style.transform = 'translateY(' + (scrolled * 0.5) + 'px)';
             }
         });
-        
-        function updateProgreso() {
-            const steps = document.querySelectorAll('.progreso-step');
-            steps.forEach((s, i) => {
-                s.classList.remove('active', 'completo');
-                if (i + 1 < paso) s.classList.add('completo');
-                if (i + 1 === paso) s.classList.add('active');
-            });
-        }
-        
+
         function toggleChat() { document.getElementById('chatPanel').classList.toggle('active'); }
-        
+
+        function selectOption(opcion) {
+            const input = document.getElementById('chatInput');
+            input.value = opcion;
+            sendMessage();
+        }
+
         function sendMessage() {
             const input = document.getElementById('chatInput');
-            if (input.value.trim()) {
-                addMsg(input.value, 'user');
-                processMsg(input.value);
-                input.value = '';
-            }
+            const msg = input.value.trim();
+            if (!msg) return;
+            
+            addMsg(msg, 'user');
+            input.value = '';
+            
+            setTimeout(() => processMsg(msg), 500);
         }
-        
+
         function addMsg(text, who) {
             const div = document.createElement('div');
             div.className = 'chat-msg ' + who;
@@ -458,85 +423,167 @@
             document.getElementById('chatMessages').appendChild(div);
             document.getElementById('chatMessages').scrollTop = 9999;
         }
-        
+
         function processMsg(msg) {
-            let t = msg.toLowerCase();
+            const t = msg.toLowerCase();
             let r = '';
-            
-            switch(paso) {
-                case 1:
-                    cliente.nombre = msg;
-                    r = `<b>¡Hola, ${msg}! 👋</b><br><br>¿Qué tipo de propiedad buscas?<br><br>📍 <i>Parcela / Casa / Terreno</i>`;
-                    paso = 2;
-                    break;
-                case 2:
-                    cliente.necesidad = msg;
-                    r = `<b>¡Entendido! ${msg}</b><br><br>💰 ¿Tu presupuesto?<br><br>🎯 <i>$40-50M / $50-60M / $60-80M / $80M+</i>`;
-                    paso = 3;
-                    break;
-                case 3:
-                    cliente.presupuesto = msg;
-                    r = `<b>¡Perfecto, ${cliente.nombre}!</b><br><br>🐕 ¿Tienes mascotas?<br><br>🐾 <i>Sí / No / Me gustaría</i>`;
-                    paso = 4;
-                    break;
-                case 4:
-                    cliente.tieneMascotas = msg;
-                    r = `<b>¡Genial! ${msg}</b><br><br>👶 ¿Tienes niños?<br><br>😊 <i>Sí / No / Planeamos</i>`;
-                    paso = 5;
-                    break;
-                case 5:
-                    cliente.tieneNinos = msg;
-                    r = `<b>¡Perfecto! ${msg}</b><br><br>📍 ¿De qué ciudad escribes?<br><br>🌆 <i>Santiago / Concepción / Otra...</i>`;
-                    paso = 6;
-                    break;
-                case 6:
-                    cliente.ciudad = msg;
-                    r = `<b>¡Excelente! 🌟</b><br><br>Te recomiendo:<br><br>` +
-                        `⭐ <b>Parcela Chesque</b> - $44M<br>` +
-                        `• Mejor relación precio-calidad<br>` +
-                        `• Árboles nativos<br>` +
-                        `• Empalme eléctrico conectado<br><br>` +
-                        `<b>¿Te interesa?</b><br>` +
-                        `<i>Responde "sí"</i>`;
-                    paso = 7;
-                    break;
-                case 7:
-                    if (t.includes('sí') || t.includes('si') || t.includes('quiero')) {
-                        cliente.propiedadInteres = 'Parcela Chesque';
-                        r = `<b>¡Excelente! 🎉</b><br><br>` +
-                            `<a href="https://wa.me/${wa}?text=Hola,%20soy%20${encodeURIComponent(cliente.nombre)}.%20Estoy%20interesado%20en%20Parcela%20Chesque" class="btn-whatsapp" style="display:inline-block;margin-top:10px;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;">Contactar Asesor 📱</a>`;
-                        saveToDatabase();
-                    } else {
-                        r = `<b>Tenemos otras opciones:</b><br><br>` +
-                            `🏠 <b>Casa Los Volcanes</b> - $89M<br><br>` +
-                            `Responde "casa"`;
-                        paso = 8;
-                    }
-                    break;
-                case 8:
-                    if (t.includes('casa')) {
-                        cliente.propiedadInteres = 'Casa Los Volcanes';
-                        r = `<b>¡Excelente!</b><br><br>` +
-                            `<a href="https://wa.me/${wa}" class="btn-primary" style="display:inline-block;padding:12px 20px;border-radius:25px;text-decoration:none;">Contactar 📱</a>`;
-                        saveToDatabase();
-                    } else {
-                        r = `¿Quieres ver más propiedades?`;
-                    }
-                    break;
-                default:
-                    r = `¿En qué puedo ayudarte?`;
+
+            if (esperandoCita) {
+                if (!nombreCliente) {
+                    nombreCliente = msg;
+                    r = `<b>¡Perfecto, ${nombreCliente}! 📅</b><br><br>¿Qué fecha te viene mejor para la visita?<br><br>📆 <i>Ej: Este viernes 20 de abril / Próximo lunes...</i>`;
+                } else {
+                    r = `<b>¡Cita agendada! ✅</b><br><br>` +
+                        `📋 <b>Resumen:</b><br>` +
+                        `• Nombre: ${nombreCliente}<br>` +
+                        `• Fecha: ${msg}<br><br>` +
+                        `Un asesor te contactará para confirmar.<br><br>` +
+                        `<a href="https://wa.me/${wa}?text=Hola,%20soy%20${encodeURIComponent(nombreCliente)}.%20Quiero%20agendar%20una%20visita%20el%20día%20${encodeURIComponent(msg)}" class="btn-whatsapp" style="display:inline-block;margin-top:10px;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;">Confirmar por WhatsApp 📱</a><br><br>` +
+                        `<i>¿Hay algo más en lo que pueda ayudarte?</i>`;
+                    esperandoCita = false;
+                }
+                addMsg(r, 'bot');
+                return;
             }
-            
-            setTimeout(() => { addMsg(r, 'bot'); updateProgreso(); }, 600);
+
+            if (t.includes('ver') || t.includes('catálogo') || t.includes('propiedades') || t.includes('mostrar')) {
+                r = `<b>📋 Nuestro Catálogo:</b><br><br>` +
+                    `<b>🏡 PARCELAS:</b><br>` +
+                    `• Parcela Chesque - $44.000.000 (5.000m²)<br>` +
+                    `• Parcela Cudico - $58.000.000 (5.000m²)<br>` +
+                    `• Parcela 5ta Faja - $48.000.000 (5.000m²)<br>` +
+                    `• Parcela Conquil - $65.000.000 (5.000m²)<br><br>` +
+                    `<b>🏠 CASAS:</b><br>` +
+                    `• Casa Los Volcanes - $89.000.000 (120m²)<br>` +
+                    `• Casa Esquina Inversión - $450.000.000 (280m²)<br><br>` +
+                    `<b>¿Cuál te interesa?</b><br>` +
+                    `<i>Puedes decir el nombre o escribir "ver detalles de [nombre]"</i>`;
+            }
+            else if (t.includes('precio') || t.includes('cuánto') || t.includes('cuesta') || t.includes('valor')) {
+                if (t.includes('chesque')) r = getPropertyInfo('chesque');
+                else if (t.includes('cudico')) r = getPropertyInfo('cudico');
+                else if (t.includes('5ta') || t.includes('faja')) r = getPropertyInfo('5tafaja');
+                else if (t.includes('conquil')) r = getPropertyInfo('conquil');
+                else if (t.includes('volcanes')) r = getPropertyInfo('losvolcanes');
+                else if (t.includes('saturnino') || t.includes('esquina') || t.includes('inversión')) r = getPropertyInfo('saturnino');
+                else {
+                    r = `<b>💰 Lista de Precios:</b><br><br>` +
+                        `<b>Parcelas:</b><br>` +
+                        `• Chesque: $44.000.000<br>` +
+                        `• Cudico: $58.000.000<br>` +
+                        `• 5ta Faja: $48.000.000<br>` +
+                        `• Conquil: $65.000.000<br><br>` +
+                        `<b>Casas:</b><br>` +
+                        `• Los Volcanes: $89.000.000<br>` +
+                        `• Esquina Inversión: $450.000.000<br><br>` +
+                        `<i>¿Quieres más info de alguna?</i>`;
+                }
+            }
+            else if (t.includes('agendar') || t.includes('visita') || t.includes('ver') || t.includes('cita')) {
+                r = `<b>📅 Agendar Visita</b><br><br>` +
+                    `Para agendar una visita a alguna propiedad, necesito:<br><br>` +
+                    `1. <b>Tu nombre</b><br>` +
+                    `2. <b>Qué propiedad</b> te interesa<br>` +
+                    `3. <b>Qué fecha</b> te viene mejor<br><br>` +
+                    `<i>¿Cómo te llamas?</i>`;
+                esperandoCita = true;
+            }
+            else if (t.includes('hola') || t.includes('buenas') || t.includes('saludos')) {
+                r = `<b>👋 Hola! Bienvenido a Tiempo Propiedades</b><br><br>` +
+                    `Soy tu asesor virtual. Puedo ayudarte con:<br><br>` +
+                    `📋 Ver propiedades<br>` +
+                    `💰 Conocer precios<br>` +
+                    `📅 Agendar visitas<br>` +
+                    `❓ Responder preguntas<br><br>` +
+                    `<b>¿Qué necesitas?</b>`;
+            }
+            else if (t.includes('dormitorio') || t.includes('dormitorios') || t.includes('habitación')) {
+                if (t.includes('chesque') || t.includes('cudico') || t.includes('5ta') || t.includes('conquil')) {
+                    r = `Las parcelas son terrenos sin construcción. No tienen dormitorios.<br><br>Pero si buscas casas:<br>` +
+                        `• Casa Los Volcanes: <b>3 dormitorios</b> - $89.000.000<br>` +
+                        `• Casa Esquina: <b>7 dormitorios</b> (entre 2 casas) - $450.000.000`;
+                } else {
+                    r = `<b>🏠 Propiedades con dormitorios:</b><br><br>` +
+                        `• Casa Los Volcanes: <b>3 dormitorios</b> - $89.000.000<br>` +
+                        `• Casa Esquina: <b>7 dormitorios</b> (en 2 propiedades) - $450.000.000`;
+                }
+            }
+            else if (t.includes('tamaño') || t.includes('metros') || t.includes('m²') || t.includes('terreno')) {
+                r = `<b>📐 Tamaños disponibles:</b><br><br>` +
+                    `<b>Parcelas (5.000m² cada una):</b><br>` +
+                    `• Chesque, Cudico, 5ta Faja, Conquil<br><br>` +
+                    `<b>Casas:</b><br>` +
+                    `• Los Volcanes: 120m²<br>` +
+                    `• Esquina Saturnino: 280m² (2 casas)`;
+            }
+            else if (t.includes('ubicación') || t.includes('donde') || t.includes('está')) {
+                r = `<b>📍 Ubicaciones:</b><br><br>` +
+                    `• <b>Chesque:</b> 10 min de Lican Ray<br>` +
+                    `• <b>Cudico:</b> 4km de Lican Ray<br>` +
+                    `• <b>5ta Faja:</b> 18 min de Villarrica<br>` +
+                    `• <b>Conquil:</b> km 6 Camino Conquil<br>` +
+                    `• <b>Los Volcanes:</b> Sector Los Volcanes<br>` +
+                    `• <b>Saturnino:</b> Manuel Antonio<br><br>` +
+                    `<i>¿Cuál te interesa visitar?</i>`;
+            }
+            else if (t.includes('financiamiento') || t.includes('crédito') || t.includes('hipoteca') || t.includes('pie')) {
+                r = `<b>💵 Opciones de Financiamiento:</b><br><br>` +
+                    `✅ Contado completo<br>` +
+                    `✅ Crédito hipotecario (con banco)<br>` +
+                    `✅ Subsidio habitacional<br>` +
+                    `✅ Pie + crédito<br><br>` +
+                    `Podemos asesorarte sobre la mejor opción.<br>` +
+                    `<a href="https://wa.me/${wa}?text=Hola,%20quiero%20info%20sobre%20financiamiento" class="btn-whatsapp" style="display:inline-block;margin-top:10px;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;">Pedir Asesoramiento 📱</a>`;
+            }
+            else if (t.includes('escritura') || t.includes('traspaso') || t.includes('comprar')) {
+                r = `<b>📝 Proceso de Compra:</b><br><br>` +
+                    `1. Visitar la propiedad<br>` +
+                    `2. Reservar con garantía<br>` +
+                    `3. Firmar promesa de compra<br>` +
+                    `4. Escritura en 25 días hábiles<br><br>` +
+                    `Plusvalía garantizada: <b>4% anual</b><br><br>` +
+                    `<i>¿Te interesa alguna propiedad?</i>`;
+            }
+            else if (t.includes('gracias') || t.includes('ok') || t.includes('perfecto')) {
+                r = `<b>😊 De nada! Estamos para ayudarte.</b><br><br>` +
+                    `¿Hay algo más en lo que pueda asistirte?`;
+            }
+            else if (t.includes('ayuda')) {
+                r = `<b>🤖 Puedo ayudarte con:</b><br><br>` +
+                    `📋 Ver el catálogo completo<br>` +
+                    `💰 Conocer precios exactos<br>` +
+                    `📏 Tamaños y características<br>` +
+                    `📍 Ubicaciones<br>` +
+                    `📅 Agendar visitas<br>` +
+                    `💵 Opciones de financiamiento<br>` +
+                    `📝 Proceso de compra<br><br>` +
+                    `<b>¿Qué necesitas?</b>`;
+            }
+            else {
+                r = `<b>🤔 No entendí tu mensaje.</b><br><br>` +
+                    `Puedo ayudarte con:<br>` +
+                    `📋 Ver propiedades<br>` +
+                    `💰 Precios<br>` +
+                    `📅 Agendar visita<br>` +
+                    `❓ Responder preguntas<br><br>` +
+                    `<i>¿Qué necesitas?</i>`;
+            }
+
+            addMsg(r, 'bot');
         }
-        
-        function saveToDatabase() {
-            console.log('💾 Cliente:', cliente);
-            const db = JSON.parse(localStorage.getItem('clientesTP') || '[]');
-            db.push(cliente);
-            localStorage.setItem('clientesTP', JSON.stringify(db));
+
+        function getPropertyInfo(id) {
+            const p = properties[id];
+            return `<b>🏠 ${p.name}</b><br><br>` +
+                `💰 <b>Precio: ${p.price}</b><br>` +
+                `📍 Ubicación: ${p.location}<br>` +
+                `📐 Tamaño: ${p.size}<br><br>` +
+                `<b>Características:</b><br>${p.features.map(f => '• ' + f).join('<br>')}<br><br>` +
+                `<b>Descripción:</b><br>${p.desc}<br><br>` +
+                `<a href="https://wa.me/${wa}?text=Hola,%20estoy%20interesado%20en%20${encodeURIComponent(p.name)}%20(${p.price})" class="btn-whatsapp" style="display:inline-block;margin-top:10px;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;">Contactar 📱</a> ` +
+                `<span class="chat-option" onclick="openProperty('${id}');toggleChat()">Ver Detalles →</span>`;
         }
-        
+
         function openProperty(id) {
             const p = properties[id];
             const imgs = galleries[id] || [p.img];
@@ -544,6 +591,13 @@
             currentIndex = 0;
             
             let thumbs = imgs.map((src, i) => `<div class="gallery-thumb ${i===0?'active':''}" onclick="openGallery(${i});event.stopPropagation()"><img src="${src.replace('/s320/','/s160/').replace('/s400/','/s160/')}" alt=""></div>`).join('');
+            
+            const mapUrl = id === 'chesque' ? 'https://www.google.com/maps?q=-39.4285,-72.2314&z=15&output=embed' :
+                         id === 'cudico' ? 'https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed' :
+                         id === '5tafaja' ? 'https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed' :
+                         id === 'conquil' ? 'https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed' :
+                         id === 'losvolcanes' ? 'https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed' :
+                         'https://www.google.com/maps?q=-39.2800,-72.1500&z=15&output=embed';
             
             document.getElementById('modalContent').innerHTML = `
                 <h2>${p.name}</h2>
@@ -560,7 +614,7 @@
                         <ul class="modal-features">
                             ${p.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}
                         </ul>
-                        ${p.map ? `<div class="modal-map"><iframe src="${p.map}"></iframe></div>` : ''}
+                        <div class="modal-map"><iframe src="${mapUrl}"></iframe></div>
                         <a href="https://wa.me/${wa}?text=Hola,%20estoy%20interesado%20en%20${encodeURIComponent(p.name)}" class="modal-btn"><i class="fab fa-whatsapp"></i> Contactar</a>
                     </div>
                 </div>
@@ -568,27 +622,24 @@
             document.getElementById('propertyModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeProperty() {
             document.getElementById('propertyModal').classList.remove('active');
             document.body.style.overflow = '';
         }
-        
+
         function openGallery(index) {
             currentIndex = index;
             document.getElementById('lightboxImg').src = currentGallery[index];
             document.getElementById('lightboxCounter').textContent = `${index + 1} / ${currentGallery.length}`;
             document.getElementById('lightbox').classList.add('active');
-            
             document.querySelectorAll('.gallery-thumb').forEach((t, i) => t.classList.toggle('active', i === index));
         }
-        
+
         function closeGallery() { document.getElementById('lightbox').classList.remove('active'); }
-        
         function prevImage(e) { e.stopPropagation(); currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; openGallery(currentIndex); }
-        
         function nextImage(e) { e.stopPropagation(); currentIndex = (currentIndex + 1) % currentGallery.length; openGallery(currentIndex); }
-        
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') { closeProperty(); closeGallery(); }
             if (document.getElementById('lightbox').classList.contains('active')) {
