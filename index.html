@@ -79,7 +79,6 @@
         .property-badge { position: absolute; top: 15px; left: 15px; background: var(--celest); color: #0a0f1a; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
         .property-badge.inversion { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; }
         .property-badge.nueva { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; }
-        .property-badge.destacada { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; }
 
         .property-details { padding: 20px; }
         .property-location { color: var(--celest); font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
@@ -243,7 +242,7 @@
                 </div>
                 <div class="property-details">
                     <div class="property-location"><i class="fas fa-map-marker-alt"></i> 18 min Villarrica</div>
-                    <h3 class="property-name">Parcela 5ta Faja - 2 Casas</h3>
+                    <h3 class="property-name">Parcela 5ta Faja</h3>
                     <div class="property-size">5.000 m² • Luz soterrada</div>
                     <div class="property-price">$48.000.000</div>
                 </div>
@@ -259,19 +258,6 @@
                     <h3 class="property-name">Parcela Conquil</h3>
                     <div class="property-size">5.000 m² • Vista al volcán</div>
                     <div class="property-price">$65.000.000</div>
-                </div>
-            </article>
-            
-            <article class="property-card" onclick="openProperty('coiposue')">
-                <div class="property-img">
-                    <img src="https://images.unsplash.com/photo-1510784669243-2a7478a16d43?w=600&q=80" alt="Parcela Coiposue">
-                    <span class="property-badge destacada">DESTACADA</span>
-                </div>
-                <div class="property-details">
-                    <div class="property-location"><i class="fas fa-map-marker-alt"></i> Sector Coiposue</div>
-                    <h3 class="property-name">Parcela Coiposue</h3>
-                    <div class="property-size">5.000 m² • Río Incluido</div>
-                    <div class="property-price">$52.000.000</div>
                 </div>
             </article>
         </div>
@@ -377,13 +363,12 @@
 
     <script>
         const properties = {
-            chesque: { name: "Parcela Chesque", price: "$44.000.000", priceNum: 44000000, location: "10 min de Lican Ray", size: "5.000 m²", desc: "Hermosa parcela de 5.000m² con árboles nativos de arrayán. Empalme eléctrico conectado. Acceso a estero a 200mts donde se puede pescar y acampar. Ideal para inversión con plusvalía garantizada 4% anual.", features: ["5.000 m²", "Árboles nativos", "Empalme eléctrico", "Acceso a estero", "Plusvalía 4%"], tipo: "parcela" },
+            chesque: { name: "Parcela Chesque", price: "$44.000.000", priceNum: 44000000, location: "10 min de Lican Ray", size: "5.000 m²", desc: "Hermosa parcela de 5.000m² con árboles nativos de arrayán. Empalme eléctrico conectado. Acceso a estero a 200mts donde se puede pescar y acampar. Ideal para inversión con plusvalía garantizada 4% anual.", features: ["5.000 m²", "��rboles nativos", "Empalme eléctrico", "Acceso a estero", "Plusvalía 4%"], tipo: "parcela" },
             cudico: { name: "Parcela Cudico", price: "$58.000.000", priceNum: 58000000, location: "4km de Lican Ray", size: "5.000 m²", desc: "Hermosa parcela de 5.000mts² en sector cudico, a solo 4km de Licanray, camino Villarrica Licanray a 300mts de carretera, con luz a conectar en la misma propiedad. Se puede hacer pozo o inscribirse en APR.", features: ["5.000 m²", "A 300mts carretera", "Luz a conectar", "Pozo o APR"], tipo: "parcela" },
-            '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", priceNum: 48000000, location: "18 min Villarrica, Sector 5ta Faja", size: "5.000 m²", desc: "Hermosa parcela con mucho árbol nativo y lugar muy tranquilo, de 5.000mts² con luz soterrada, agua para hacer pozo o se puede postular a un APR (agua potable rural) a 18 min de Villarrica sector 5ta faja a 500mts de carretera que va hacia pitrufquen, portón de acceso. Valor 48 millones.", features: ["5.000 m��", "Luz soterrada", "Pozo o APR", "500mts carretera", "Portón de acceso", "Árboles nativos"], tipo: "parcela" },
+            '5tafaja': { name: "Parcela 5ta Faja", price: "$48.000.000", priceNum: 48000000, location: "18 min Villarrica, Sector 5ta Faja", size: "5.000 m²", desc: "Hermosa parcela con mucho árbol nativo y lugar muy tranquilo, de 5.000mts² con luz soterrada, agua para hacer pozo o se puede postular a un APR (agua potable rural) a 18 min de Villarrica sector 5ta faja a 500mts de carretera que va hacia pitrufquen, portón de acceso.", features: ["5.000 m²", "Luz soterrada", "Pozo o APR", "500mts carretera", "Portón de acceso", "Árboles nativos"], tipo: "parcela" },
             conquil: { name: "Parcela Conquil", price: "$65.000.000", priceNum: 65000000, location: "km 6 Camino Conquil", size: "5.000 m²", desc: "Hermosas parcelas en sector Conquil km 6 camino Conquil hacia Pucón, de 5.000mts² en un entorno de áreas verdes, vista al volcán completa, 1 hectáreas de parque a orillas del rio Conquil como área común, luz a conectar a 300mts y respecto al agua se puede hacer pozo o inscribirse una vez obtenido el rol de la propiedad.", features: ["5.000 m²", "Vista al volcán", "1 ha parque común", "Frente a río", "Luz a 300mts"], tipo: "parcela" },
-            coiposue: { name: "Parcela Coiposue", price: "$52.000.000", priceNum: 52000000, location: "Sector Coiposue", size: "5.000 m²", desc: "Parcela con frente a río. Muchos árboles nativos. Luz eléctrica conectada. Sector exclusivo y tranquilo. Ideal para familia.", features: ["5.000 m²", "Frente a río", "Árboles nativos", "Luz eléctrica", "Sector tranquilo"], tipo: "parcela" },
-            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", priceNum: 89000000, location: "Sector Los Volcanes", size: "120 m²", desc: "3 dormitorios + sala de escritorio. Lista para habitar. Vista al volcán.", features: ["3 Dormitorios", "Sala escritorio", "Vista Volcán"], tipo: "casa" },
-            saturnino: { name: "Casa Esquina Saturnino Epulef", price: "$450.000.000", priceNum: 450000000, location: "Saturnino Epulef con Manuel Antonio", size: "280 m²", desc: "OPORTUNIDAD DE INVERSIÓN. 2 propiedades: Casa 1 (3 dorm, 1 baño) + Casa 2 (4 dorm, 1 baño). Excelente ubicación.", features: ["2 Casas", "7 Dormitorios", "2 Baños", "2 Estacionamientos", "Bodega"], tipo: "casa" }
+            losvolcanes: { name: "Casa Los Volcanes", price: "$89.000.000", priceNum: 89000000, location: "Sector Los Volcanes", size: "120 m²", desc: "Casa en sector Los Volcanes. 3 dormitorios, 1 baño, cocina, living-comedor, leñera, patio con estacionamiento. Lista para habitar. Vista al volcán.", features: ["3 Dormitorios", "1 Baño", "Living-Comedor", "Leñera", "Estacionamiento", "Vista Volcán"], tipo: "casa" },
+            saturnino: { name: "Casa Esquina Saturnino Epulef", price: "$450.000.000", priceNum: 450000000, location: "Saturnino Epulef con Manuel Antonio", size: "280 m²", desc: "INVERSIÓN INMOBILIARIA - Casa esquina con muy buena ubicación. 280m² totales: Casa 1 (3 dormitorios, 1 baño, cocina, living-comedor, leñera y patio con estacionamiento). Casa 2 (4 dormitorios en segundo piso, 1 baño, cocina, living-comedor, bodega y leñera, más estacionamiento). Excelente oportunidad.", features: ["2 Casas", "7 Dormitorios", "2 Baños", "2 Estacionamientos", "2 Bodegas", "2 Leñeras"], tipo: "casa" }
         };
 
         const wa = "56974219730";
@@ -413,13 +398,7 @@
                 'https://blogger.googleusercontent.com/img/a/AVvXsEjasFR7RMG29FUNfs5N8s_odoNQC0RqOxz_0-FNnCG2LnaeNU6UOc8Jp9E4sNqFUg12RtE1p4nZBl8N76fr0V2UzFTfXMYVXL6nw77iCSxca2l292YNXvfOxYp1qMoSZrbVSEwx7Lyz5rnN1obtJENGJCuI3dUblIyjQBUtYr51kb7Yd6T3SZyKE_66OUWo/s320/IMG-3.jpg',
                 'https://blogger.googleusercontent.com/img/a/AVvXsEiVF0krUCOvxq06kLmUbfmGzhU-mFhuoocoi-FJikriOXu8Y9WlIKYFyEZU9GStykjP4eGt-Kec796jNrnwONvQ5gR2efaUWiw0oaTeycqoce8Mszzf65qji5sUlt5KcjVv1nV6xZZb8ctRemhwLrDmedObJ9iJiBaXNmmLX3cXsMEsPC78TsvJ9_iuXoPw/s320/IMG-4.jpg',
                 'https://blogger.googleusercontent.com/img/a/AVvXsEh1cyVvjHrSGM3Yi03O9hDD2aabvRBjbn65upc8k0vA61aUVmeVTQYX8Ip4uXkbKEE_lPygiVXhOQ8-NTkITOpz0zmpOiAdrTtVTqXD9AmQ9koFCCl7e6ow-uG2XeyKG181tPj4CvN7FtxrdBXuZiWUI0OpHzT4T4ln5_95cTBF9whTOraeEZXPnTxe9uaf/s320/IMG-5.jpg',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEhnUHMKgk7oyfjp20S7FbhkbcrNlkab87IKwYy-Bd_wxrTaagcexxEjg1wU0trzaNBVRbFGqLkE1Cl5cYL_4oEzlJuGpqQsHaJWw_K7_IDG0DWuGLI3teL9tz3ZlWhMm_LkzNdnKDxxtBk5xzJP2xVzIZ-vpVjfl473oRFFMqG3uoxrpOeqY2PqPF3fntGp/s320/IMG-6.jpg',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEjDdMMkpB-Hh6mxpdUTsYRf-_jYAiQiDGAQSj1PfmE8twC2DztDwlosY6bXyvZKjBArpGlUz9WNvdK6UqCxCL-dG2JVCCOUi2WFAKvvNHnZVE8BV7MtxJJ2_aUAvyVnDs_0X-XqTfTWu9UH-Ad24_oSweXJ7d3nnhtrzAZ9TWbvAr_ZW2C_wTUOREsg5MFs/s320/IMG-7.jpg',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEiUmiv8sFA7NFBC5kA0l4BmNKqaZRZw7tCUJ5f91P_PcLROcJYOuVsq2pUj-CGuC46i_ZP0KlyqqF9A6si0M4QEpzrdjg8ZIo2_fF3rZO4jVVRYuWzapCPva1I_LlqSD3G_YpWNF1tl79NPbfdEi8vjsEIcMElarI2E_fcKH_ugJG74g2g7n1zmbNr5wt4h/s320/IMG-8.jpg',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEgLgES4I31yJ1_VS60oo_gqnURL1BjGF2IR-KbNm3NGB2fp3wgSLLNNQvIu48-N--uDUuzZ05f8OG5sAWz_q250uw4TJ_umPbsp18J-bvyRiDOwaZEjxYI-wXG1SGIXFLN-CJDb48-8eJRfsz8M0m0kw0IUuyfY9s-38ctscf9xOp9F4iOi3kQNUCfN8q-H/s320/IMG-9.jpg',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEjbSB4ZK6Q0P-cPgV7E6GbHB5x5qHJkI6pRXpJmP56Z9Y3fyMD5Im7xG3FzvCjh43jQbd4Pw-rARF7sw4velzds7Begnzrrm4tHE-3Orp4UYB7D2y6KCTT75e9k0MDy2JcmgqvBXe82eDD_baGMpTfASvMWDRTaXacWCw4R2QnVrSXIzZnonnr7IxUsb0wB/s320/IMG-10.jpg',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEiRLJcIhcwjVuuGh4fqS4LbTIh-K8C5W8sr8-k7Vdn6IeW9l9zssRvbQwh9625wWW4dXW4xU-q_ErBwjFUlZ2sgmwiUMkD60r2_wXfS9NYd5bcCKIr4BFx7NUEuVl5mX_8JggT8lvBkUKQpOwFgmrLTE62fYaaRTZ0LbXFR-eP3PHKMJ1gm9Eijdfg8HYpw/s320/IMG-11.jpg',
-                'https://blogger.googleusercontent.com/img/a/AVvXsEhmpWBBDQklnz0Z6Bnio-y-pptAmit01KP4rJGr4Mkk3Ag-6dCG0OKfOFTVUfeNFqtPiT6Yg1nWRtJW9znSxwn-IueXiqktV09LINgQsTKQhVTIiUgYLsCwcpU1hBLAObMiN1iQZEFGmlzMQTHDf3D4g88Dl9ix-upGG01vFWYiVvMHPAgfOicFa7LYHj-c/s320/IMG-12.jpg'
+                'https://blogger.googleusercontent.com/img/a/AVvXsEhnUHMKgk7oyfjp20S7FbhkbcrNlkab87IKwYy-Bd_wxrTaagcexxEjg1wU0trzaNBVRbFGqLkE1Cl5cYL_4oEzlJuGpqQsHaJWw_K7_IDG0DWuGLI3teL9tz3ZlWhMm_LkzNdnKDxxtBk5xzJP2xVzIZ-vpVjfl473oRFFMqG3uoxrpOeqY2PqPF3fntGp/s320/IMG-6.jpg'
             ],
             conquil: [
                 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS6PFaaiX1nVDO32POTKgAzascsDMgPnNeRZx9RZXdaqcQd_uMWii8D_OZzkeReBi1714ouXez6YokvHUlxIiWXF02OFsiedCBM407-KAc6aZ4PDTvo51CDDJI1dqSHGDygZFvxuEk-eVG2A4DND719iZDrtvn59-Q5vupDuaRFcaJG8t4sLlTYqFQUOgm/s320/IMG_20240914_132233162.jpg',
@@ -427,16 +406,26 @@
                 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxIRW8Herkco43vv_DEaNmAQTxqpqnYsLlGrRhH467-yxKkmGmBLiMGwPCO8SU5b9bIuxwnOU0azBI2F_8ZqNh0UxRI36npW-gvG-gfjizSJ2s4d2bmq2QcZOet2-t3250Y2PAhP75Uuh05uHy1aVO6HX4sxAx5wH2n2gfmJLyFqBE5h8iIjZNxRDLZy2J/s320/IMG_20240914_132104574.jpg',
                 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixcJ7vJNlYTojYF_orGpPdAUoqfmdwNYU0gMVybh1p0qU7zk4f5GUdRq9lTa8oD_MjKk7IfVoDjW4bi2UhtAy51nuwotB25Oix7-zd6pXKN0UFbDXyg1ljifufzCID8swDviCJBwCYOb34O1r7psOQ7xPrKVhnmV7VU5dbIfgEfcLzOECLVjA1HktYA9L6/s320/IMG_20240914_133211723.jpg',
                 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtMICRdJHWg_iU3N8_dMXn_5vyVPYTLFNouFH-9LxtB9J0gBFfmuWJfK2JehItanO1h30-anjM31DsRlT-GkP5l0k0L-CstYX49mlEtH_p9rvg_qTcb6Djukblr_rpT5dbEBxPjV0fl_xaM33D_N-n2HgPyXyuCFBzsVmeQ9CsHRLv0RYQJDzwMp7ozuDR/s320/IMG_20240914_133136275.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEho75dP2Q890JK0hV8KzZJfdOOhdN44NuTXpp-0c8aphXShmLTzHHwqgdex_sVQiLCN8HX0Jmb_Je3YtR3Z5WyIaXZvXRHHcUfWd9MF6wtsnPJkTuDaI7kzMRXOlz30ZFr2UCrnqrLBCGCgJCL05SdacNXvTlJSX7sksgTImWic1poI9K1J-vlnUrEJHJX_/s320/IMG_20240914_132910105.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYQ5zzLCZw2KEPuUXQE7aLN5bVTR2hbDmzhEZGl94Mwws_CJF46pl3EOqA-t9rCHmqzqPPuEAuCdBPiwImcJRCsusySZ9CEySGNDBj0DxZfgfvWKCHAS1abxWPppFvYtbC6VLunByM_0MKoLR_f_yuAmr5OokvRKhslLaSR8HzQa0q1mzcEyp1qoos0iEF/s320/IMG_20240914_132804501.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgac0ZY3L2aScnZBJ-WT9A4cWsdnBsgEhh0kCiIxk9jwWIgLL1Uy-pkJ8DIBYCU8cRPKxyzxtriR0B3CT9aN5082Cpr0itVgA1WXY3N7ioK_ikBf3hWqWvcH47_-Ixc65xQWY0EVIsYVjWgL9IqhhvSjUb2_T940OrjH7n9YHQ8XmBHMxqNL6CSMuGEmspI/s320/IMG_20240914_132338050.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuX2mOrg3wwML-eeXfatONy3osZdcRv-lR2F_bIBwdKq-yTSMxzd-BMdyvr_uhYN_rX5kvffFH-2OITLBrI7v4WBnUPxUS16lKhyphen3vWpD0SARgwn63meKinm7IRVyYQpEUAn-4WGx_2_6Q3CK5yFkBd5s0OmAd5gqugrO1yOGKWbc1vERgo_McUp9ksVKe/s320/IMG_20240914_132246277.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqk8o16pUPTIQBO0uujTPBVXNYKzgPNddehzDtlXospI7jmLWOIoFns5Nxqm-11bS2vLelcBRqKfFZ1LxU0drXgN9YZHPYIRy3FF-Ek5uyHeX5U2LDXSDILXyFb-_IHL3rEomGmCZHFr3mGKdFfNC5iL-NNkQAhpBiyE_h2TQ9CiJwqrMY2_GpbHzaHC89/s320/IMG_20240914_132147096.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQ8zKrqPfhh0ZuGrPtbMfvUBn_BfMqdPB2Lye0gEXmdVgz16qrFEEclsaiD57e9JM3_UpVLk1owdDj9H62w3cJLpQ2oMjs9B3vEfVkIN_MzhKmOAePsdqCQC0eoQVvC7dcNssV8uUZehfKSYsUW6xpXKe93w-jHGGVB-i3r-Pu4Ds6CjHZis0VPExoDRpV/s320/IMG_20240914_133144043.jpg',
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiq__DWrmK-1o3iL63ABvhoJIGzdYVewCxwLVSFvkcjIiqBaPXTGkl4BzsHMs1FNkmDmYZAbes-DjV5Z1XjrY5wjLOdYzp7cb28atwaCDkwuS-XQ5cmFYPJi8_TnOLHwzkY-eKjWM0lrJvyjhdDtqC7KcpBJ15uux3_NWuLCePoi14XjEjP9LUtTgTH6AkI/s320/IMG_20240914_132200729.jpg'
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEho75dP2Q890JK0hV8KzZJfdOOhdN44NuTXpp-0c8aphXShmLTzHHwqgdex_sVQiLCN8HX0Jmb_Je3YtR3Z5WyIaXZvXRHHcUfWd9MF6wtsnPJkTuDaI7kzMRXOlz30ZFr2UCrnqrLBCGCgJCL05SdacNXvTlJSX7sksgTImWic1poI9K1J-vlnUrEJHJX_/s320/IMG_20240914_132910105.jpg'
             ],
-            saturnino: ['https://blogger.googleusercontent.com/img/a/AVvXsEiRU9IwrTFxTZJj-ouHFrftxFYElI9d5wT7Eg9v3uh3gfaB8w5H_L_D3CtvuZRJt0uJuqB4ilpK5i-aHEpr-thHTvnD_Yhcf5NkqhSClhB4zkDelWRI477YVzCqerOqIKZHq-yv-yDq92GGTAPkNZN61-n8phgqZHhJ0XJ_aKYM8eYkHRIreg1U5rJuLYQU','https://blogger.googleusercontent.com/img/a/AVvXsEgIgIDYVz05RXkjA5_rZI60OVD15n9CTxZNnKk2JPPCFlC7i0GYbLYjnHx2XOsOFBwXQL8wP1uyqzpIbnRhyjrf-TjUv18b6N8fUblCCJdDAOktviIf9xLtEb57A7ROJ7gXjelvjBzmxQHLC2oYQJfg25pDu-PgUnsvHHTmPrPjKc8s3KUpqoguIT0pBUmj'],
-            losvolcanes: ['https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5eUxL-SjHHViLv8CtAFAxCB7P4mxWyAXkOHvHf8bwNI-GDwm9s_zkiPtqhw5-vVrrT_iLI9qFcI_OexNqEG1-5hqYGhREaiWujQ_76hKdIr74N1aIkxORXZo9mnGtSQUpp5p_dQDGRyl_NGPvscMb4zZIpEqzDe1OfdZ5N8aXCRnTgbh0-foWJ4eNOxN1/s320/IMG_20250616_163211524.jpg','https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3eMem8f8R07zAzlcPnJdIlBZ7wv2-ZW8cs069AOGs4qfZpYh6huvha8ylxLM1YNex9DD00ghGHM1Xli8EjBuN_Qqnern0vrU6Y8Nwvl0MW20dhxZEpXmJVE5ENf2ejKfZM3mSSXPR88mf00MwWjXmfoQshDNNonYe8zYWe1r0yGbpyTcLh3C4Ua5WwXXx/s320/IMG_20250616_163255514.jpg']
+            saturnino: [
+                'https://blogger.googleusercontent.com/img/a/AVvXsEiRU9IwrTFxTZJj-ouHFrftxFYElI9d5wT7Eg9v3uh3gfaB8w5H_L_D3CtvuZRJt0uJuqB4ilpK5i-aHEpr-thHTvnD_Yhcf5NkqhSClhB4zkDelWRI477YVzCqerOqIKZHq-yv-yDq92GGTAPkNZN61-n8phgqZHhJ0XJ_aKYM8eYkHRIreg1U5rJuLYQU',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEgIgIDYVz05RXkjA5_rZI60OVD15n9CTxZNnKk2JPPCFlC7i0GYbLYjnHx2XOsOFBwXQL8wP1uyqzpIbnRhyjrf-TjUv18b6N8fUblCCJdDAOktviIf9xLtEb57A7ROJ7gXjelvjBzmxQHLC2oYQJfg25pDu-PgUnsvHHTmPrPjKc8s3KUpqoguIT0pBUmj',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEhMia-SjwcGAqqtDDolDR7d-wkRLthz36oR-5OYOjje4pILNVelwSwuZ0xXn54YsWXvSVPOhicx5uaHA3YvawgqIZtHIDlz_RZN-9acOEz9v5eRh8qxqnSgKVLVmQjPECnELr4akKpCTa-65BmIKrZ4tDg3AXwYGfXGXpuEHFRFM5YPwqY6lwAyhaNw8u4A',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEiu6DJJm3NVO47j5Cnlfo283YxxQDG97zTCatvecQRvFKoFbzGrF-DvO7DyYKWS9LF1wocsUunnC-3kNviuIm7lnF6mF1jmX4n1erB3C6ORicwV8fWj870nvhUr7njEUolOdATLKBz1_oKlu8ONghNf9FqClzyR3E3IehMHI3jEjYz1mLGQgiim_zNS98qM',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEjsOaxn4GmipVB7KKeNqmasorrsGLdGiYHIex0Er1HA98oYGLDccwivUA4OTPe6VoRxUjzT8heBee1hnbE_n9OeHF0zBz3qdr-nP8-765fV8p6HcTWkvssC11wkx_AY_H2eNSkK3gfD2iwPy66lc74BOZOi2XNmynj_x393TU9KfE3yB2W84aTK8XcNeYzA',
+                'https://blogger.googleusercontent.com/img/a/AVvXsEik4pHwbzhM3v5LfDYUSlUZPMXnE0MRTFkPJCyWYdGp1XEueQcby5COyF6owoTe4RNhN9CFu2TlrW6WG3JEOQRzfRxYSaSYI0-dGtIRqOOOkij7xUdEaQcI8xxIzgm9Eqc9eYgLkS2v3ZVJX4v010TzkfkpmhKdAIDoxwgs5OhVF0AUIuXpO-uZdzKAGHfG'
+            ],
+            losvolcanes: [
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5eUxL-SjHHViLv8CtAFAxCB7P4mxWyAXkOHvHf8bwNI-GDwm9s_zkiPtqhw5-vVrrT_iLI9qFcI_OexNqEG1-5hqYGhREaiWujQ_76hKdIr74N1aIkxORXZo9mnGtSQUpp5p_dQDGRyl_NGPvscMb4zZIpEqzDe1OfdZ5N8aXCRnTgbh0-foWJ4eNOxN1/s320/IMG_20250616_163211524.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3eMem8f8R07zAzlcPnJdIlBZ7wv2-ZW8cs069AOGs4qfZpYh6huvha8ylxLM1YNex9DD00ghGHM1Xli8EjBuN_Qqnern0vrU6Y8Nwvl0MW20dhxZEpXmJVE5ENf2ejKfZM3mSSXPR88mf00MwWjXmfoQshDNNonYe8zYWe1r0yGbpyTcLh3C4Ua5WwXXx/s320/IMG_20250616_163255514.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1On43NTuo5EmJZCEUAfYJzjshXW9QfZgGMz0sCi_66TEKrO_uWt4RVkSo0NHX9k48Ed1_10AMA-AZRBqL_JjszEj8UZaXQ0aMyOqedl7iWXekPSLZP37W1uydai4844CgVqFn8XtLRudUEZfjCYJwPIhQULFVkc2kKnp3-I8pMOsSfLrCygAOgHVUgKwA/s320/IMG_20250616_162626843_HDR.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSl0Kof8Gg_byLM4YnQ7BOhunjPn3NNFlvNHVnoxBoNwq6MJtgCcWe2ulLI1tdYD-xTNariovnqxXCVgjyTtD5-8tTAaMqT27Xb6d4WdNJ2M5dQ4n-jBijW3S-tQQySO_MBB6oo8HUg2EYpYHRzwcGUmkHtbw1j-hIkg7ZgDrCIUi3Hb1JLkEYzszzOqzG/s320/IMG_20250616_163502825.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtHgNbDBoVwBQlmyIkx7pprGnskP9n-kzpr-Pzu2IL9bM-7XsNbOoa-Rg2RiD4sAn7MPyA5q9b2FU5pecQanBOjQAgHy65SJSK305OxzsD5cOK9GLp-sQKDQx6fyaRnJ9N9LLXRDQhrTzpsyP0mGBS15gaN0hTHGn1NA-o6liK-QU_kRYPWjvBQZp4asXY/s320/IMG_20250616_163737632_HDR.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAvDO6oCkeb3BNWzfv_xSuIyZFEuqUVJbnLvCSZD31QBBpGnx-A3QOrBtz2-iw7fU9y-3Q5aynKr6CH2PtSBmFJX9sCM_ehycfoWkSkZHHGC69xxK68m-18Np5RN45wzFDD-UmyIv1HgwlWZynmBqaYk5L5YD1THPM7AFwtatR-m7vac8kLtf3INnqUB4d/s320/IMG_20250616_163849950.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihC9_kMh_4I3pH1k9NG6yXStpQ1WodZDFMGxdFQRVrjSDc9DObXdng7J8iv1muHzwSNfCj2mGMbbFxRHJnbjNchmxxI66gC0UvZS0Pr58Zk6yyijoS64MFKT7m4dFyC_j5FjcDsX5sUwh1xHuCqT4iYaf5VSojPydetOxMZkqb0FMJhd1tJGeWYhMZBYX1/s320/IMG_20250616_164005500.jpg',
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLkuzJ0BfecO5fuF-qgSDwRPbU5bTylf5tF8Be-h37QVgOGfX2yHH6HCpBfDtWGhp5somEcRNEK6t4flLFXDUgjwjymSZtgBAt580crTJrxSmCSHp9z81uf2mMAPN8zhawJQd8UfuAbBIr8-oaG1vSpQqAWvg9-12cbSAGUL9mn8igQU6BXV97eM-g41pk/s320/IMG_20250616_164035274.jpg'
+            ]
         };
 
         let currentGallery = [];
@@ -493,12 +482,11 @@
 
             if (t.includes('ver') || t.includes('catálogo') || t.includes('propiedades') || t.includes('mostrar')) {
                 r = `<b>📋 Nuestro Catálogo:</b><br><br>` +
-                    `<b>���� PARCELAS:</b><br>` +
+                    `<b>🏡 PARCELAS:</b><br>` +
                     `• Parcela Chesque - $44.000.000 (5.000m²)<br>` +
                     `• Parcela Cudico - $58.000.000 (5.000m²)<br>` +
                     `• Parcela 5ta Faja - $48.000.000 (5.000m²) 🔥<br>` +
-                    `• Parcela Conquil - $65.000.000 (5.000m²)<br>` +
-                    `• Parcela Coiposue - $52.000.000 (5.000m²) ⭐<br><br>` +
+                    `• Parcela Conquil - $65.000.000 (5.000m²)<br><br>` +
                     `<b>🏠 CASAS:</b><br>` +
                     `• Casa Los Volcanes - $89.000.000 (120m²)<br>` +
                     `• Casa Esquina Inversión - $450.000.000 (280m²)<br><br>` +
@@ -509,7 +497,6 @@
                 else if (t.includes('cudico')) r = getPropertyInfo('cudico');
                 else if (t.includes('5ta') || t.includes('faja')) r = getPropertyInfo('5tafaja');
                 else if (t.includes('conquil')) r = getPropertyInfo('conquil');
-                else if (t.includes('coiposue')) r = getPropertyInfo('coiposue');
                 else if (t.includes('volcanes')) r = getPropertyInfo('losvolcanes');
                 else if (t.includes('saturnino') || t.includes('esquina') || t.includes('inversión')) r = getPropertyInfo('saturnino');
                 else {
@@ -518,17 +505,16 @@
                         `• Chesque: $44.000.000<br>` +
                         `• Cudico: $58.000.000<br>` +
                         `• 5ta Faja: $48.000.000<br>` +
-                        `• Conquil: $65.000.000<br>` +
-                        `• Coiposue: $52.000.000<br><br>` +
+                        `• Conquil: $65.000.000<br><br>` +
                         `<b>Casas:</b><br>` +
                         `• Los Volcanes: $89.000.000<br>` +
                         `• Esquina Inversión: $450.000.000<br><br>` +
                         `<i>¿Quieres más info de alguna?</i>`;
                 }
             }
-            else if (t.includes('agendar') || t.includes('visita') || t.includes('ver') || t.includes('cita')) {
+            else if (t.includes('agendar') || t.includes('visita') || t.includes('cita')) {
                 r = `<b>📅 Agendar Visita</b><br><br>` +
-                    `Para agendar una visita a alguna propiedad, necesito:<br><br>` +
+                    `Para agendar una visita, necesito:<br><br>` +
                     `1. <b>Tu nombre</b><br>` +
                     `2. <b>Qué propiedad</b> te interesa<br>` +
                     `3. <b>Qué fecha</b> te viene mejor<br><br>` +
@@ -542,73 +528,6 @@
                     `💰 Conocer precios<br>` +
                     `📅 Agendar visitas<br>` +
                     `❓ Responder preguntas<br><br>` +
-                    `<b>¿Qué necesitas?</b>`;
-            }
-            else if (t.includes('dormitorio') || t.includes('dormitorios') || t.includes('habitación')) {
-                if (t.includes('chesque') || t.includes('cudico') || t.includes('conquil') || t.includes('coiposue') || t.includes('5ta') || t.includes('faja')) {
-                    r = `Las parcelas son terrenos sin construcción. No tienen dormitorios.<br><br>Pero si buscas casas o propiedades con dormitorios:<br>` +
-                        `• Casa Los Volcanes: <b>3 dormitorios</b> - $89.000.000<br>` +
-                        `• Casa Esquina: <b>7 dormitorios</b> (entre 2 casas) - $450.000.000`;
-                } else {
-                    r = `<b>🏠 Propiedades con dormitorios:</b><br><br>` +
-                        `• Casa Los Volcanes: <b>3 dormitorios</b> - $89.000.000<br>` +
-                        `• Casa Esquina: <b>7 dormitorios</b> (en 2 propiedades) - $450.000.000`;
-                }
-            }
-            else if (t.includes('tamaño') || t.includes('metros') || t.includes('m²') || t.includes('terreno')) {
-                r = `<b>📐 Tamaños disponibles:</b><br><br>` +
-                    `<b>Parcelas:</b><br>` +
-                    `• Chesque: 5.000m²<br>` +
-                    `• Cudico: 5.000m²<br>` +
-                    `• 5ta Faja: 5.000m² 🔥<br>` +
-                    `• Conquil: 5.000m²<br>` +
-                    `• Coiposue: 5.000m² ⭐<br><br>` +
-                    `<b>Casas:</b><br>` +
-                    `• Los Volcanes: 120m²<br>` +
-                    `• Esquina Saturnino: 280m² (2 casas)`;
-            }
-            else if (t.includes('ubicación') || t.includes('donde') || t.includes('está')) {
-                r = `<b>📍 Ubicaciones:</b><br><br>` +
-                    `• <b>Chesque:</b> 10 min de Lican Ray<br>` +
-                    `• <b>Cudico:</b> 4km de Lican Ray<br>` +
-                    `• <b>5ta Faja:</b> 18 min de Villarrica<br>` +
-                    `• <b>Conquil:</b> km 6 Camino Conquil<br>` +
-                    `• <b>Coiposue:</b> Sector Coiposue<br>` +
-                    `• <b>Los Volcanes:</b> Sector Los Volcanes<br>` +
-                    `• <b>Saturnino:</b> Manuel Antonio<br><br>` +
-                    `<i>¿Cuál te interesa visitar?</i>`;
-            }
-            else if (t.includes('financiamiento') || t.includes('crédito') || t.includes('hipoteca') || t.includes('pie')) {
-                r = `<b>💵 Opciones de Financiamiento:</b><br><br>` +
-                    `✅ Contado completo<br>` +
-                    `✅ Crédito hipotecario (con banco)<br>` +
-                    `✅ Subsidio habitacional<br>` +
-                    `✅ Pie + crédito<br><br>` +
-                    `Podemos asesorarte sobre la mejor opción.<br>` +
-                    `<a href="https://wa.me/${wa}?text=Hola,%20quiero%20info%20sobre%20financiamiento" class="btn-whatsapp" style="display:inline-block;margin-top:10px;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;">Pedir Asesoramiento 📱</a>`;
-            }
-            else if (t.includes('escritura') || t.includes('traspaso') || t.includes('comprar')) {
-                r = `<b>📝 Proceso de Compra:</b><br><br>` +
-                    `1. Visitar la propiedad<br>` +
-                    `2. Reservar con garantía<br>` +
-                    `3. Firmar promesa de compra<br>` +
-                    `4. Escritura en 25 días hábiles<br><br>` +
-                    `Plusvalía garantizada: <b>4% anual</b><br><br>` +
-                    `<i>¿Te interesa alguna propiedad?</i>`;
-            }
-            else if (t.includes('gracias') || t.includes('ok') || t.includes('perfecto')) {
-                r = `<b>😊 De nada! Estamos para ayudarte.</b><br><br>` +
-                    `¿Hay algo más en lo que pueda asistirte?`;
-            }
-            else if (t.includes('ayuda')) {
-                r = `<b>🤖 Puedo ayudarte con:</b><br><br>` +
-                    `📋 Ver el catálogo completo<br>` +
-                    `💰 Conocer precios exactos<br>` +
-                    `📏 Tamaños y características<br>` +
-                    `📍 Ubicaciones<br>` +
-                    `📅 Agendar visitas<br>` +
-                    `💵 Opciones de financiamiento<br>` +
-                    `📝 Proceso de compra<br><br>` +
                     `<b>¿Qué necesitas?</b>`;
             }
             else {
@@ -648,7 +567,6 @@
                          id === 'cudico' ? 'https://www.google.com/maps?q=-39.4150,-72.2500&z=15&output=embed' :
                          id === '5tafaja' ? 'https://www.google.com/maps?q=-39.3700,-72.2000&z=15&output=embed' :
                          id === 'conquil' ? 'https://www.google.com/maps?q=-39.3500,-72.1000&z=15&output=embed' :
-                         id === 'coiposue' ? 'https://www.google.com/maps?q=-39.4000,-72.2200&z=15&output=embed' :
                          id === 'losvolcanes' ? 'https://www.google.com/maps?q=-39.3600,-72.1800&z=15&output=embed' :
                          'https://www.google.com/maps?q=-39.2800,-72.1500&z=15&output=embed';
             
